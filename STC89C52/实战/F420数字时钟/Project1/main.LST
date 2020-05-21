@@ -1,0 +1,23 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              12/20/2019 19:28:43 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN C:\F420数字时钟\Project1\main.OBJ
+COMPILER INVOKED BY: C:\Keil5 C51\keil5 c51-code\C51\BIN\C51.exe C:\F420数字时钟\Project1\main.c
+
+line level    source
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2488    ----
+   CONSTANT SIZE    =    145    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     14       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

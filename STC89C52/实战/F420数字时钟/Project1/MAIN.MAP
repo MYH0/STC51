@@ -1,0 +1,314 @@
+LX51 LINKER/LOCATER V4.66.97.0                                                          12/20/2019  19:28:46  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.97.0, INVOKED BY:
+C:\KEIL5 C51\KEIL5 C51-CODE\C51\BIN\LX51.EXE C:\F420数字时钟\PROJECT1\MAIN.OBJ TO C:\F420数字时钟\PROJECT1\MAIN.ABS
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  C:\F420数字时钟\PROJECT1\MAIN.OBJ (MAIN)
+         COMMENT TYPE 1: C51 Compiler
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C?CLDPTR)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C?UIDIV)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C_INIT)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  C:\F420数字时钟\PROJECT1\MAIN.ABS (MAIN)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   000B5DH   CODE
+I:000000H   I:000000H   I:00007FH   000019H   DATA
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+
+
+MEMORY MAP OF MODULE:  C:\F420数字时钟\PROJECT1\MAIN.ABS (MAIN)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   000015H   00000EH   BYTE   UNIT     DATA           ?DT?MAIN
+000016H   000018H   000003H   BYTE   UNIT     DATA           _DATA_GROUP_
+000019H   000019H   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+000003H   000019H   000017H   BYTE   UNIT     CODE           ?PR?_LCDWRITECMD?MAIN
+00001AH   00001AH   000001H   ---    ---      **GAP**
+00001BH   00001DH   000003H   ---    OFFS..   CODE           ?CO?MAIN?0
+00001EH   000303H   0002E6H   BYTE   UNIT     CODE           ?PR?KEYSCANF1?MAIN
+000304H   0004A5H   0001A2H   BYTE   UNIT     CODE           ?PR?KEYSCANF2?MAIN
+0004A6H   00057AH   0000D5H   BYTE   UNIT     CODE           ?PR?KEYSCANF3?MAIN
+00057BH   00060BH   000091H   BYTE   UNIT     CODE           ?CO?MAIN
+00060CH   000697H   00008CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+000698H   000714H   00007DH   BYTE   UNIT     CODE           ?PR?DS1302_WRITE_TIME?MAIN
+000715H   00078FH   00007BH   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+000790H   0007FDH   00006EH   BYTE   UNIT     CODE           ?C?LIB_CODE
+0007FEH   000861H   000064H   BYTE   UNIT     CODE           ?PR?_LCDPRINTWEEK?MAIN
+000862H   0008BEH   00005DH   BYTE   UNIT     CODE           ?PR?DS1302_READ_TIME?MAIN
+0008BFH   00090CH   00004EH   BYTE   UNIT     CODE           ?PR?_DS1302_READ_BYTE?MAIN
+00090DH   000959H   00004DH   BYTE   UNIT     CODE           ?PR?FLASHTIME?MAIN
+00095AH   0009A4H   00004BH   BYTE   UNIT     CODE           ?PR?_DS1302_WRITE_BYTE?MAIN
+0009A5H   0009E0H   00003CH   BYTE   UNIT     CODE           ?PR?CLOCKJUDGE?MAIN
+0009E1H   000A0BH   00002BH   BYTE   UNIT     CODE           ?PR?_LCDPRINTSTR?MAIN
+000A0CH   000A32H   000027H   BYTE   UNIT     CODE           ?PR?TIMER1?MAIN
+000A33H   000A57H   000025H   BYTE   UNIT     CODE           ?PR?_LCDGOTOXY?MAIN
+000A58H   000A7BH   000024H   BYTE   UNIT     CODE           ?PR?_DELAYMS?MAIN
+000A7CH   000A9AH   00001FH   BYTE   UNIT     CODE           ?PR?_EEPROM_READ?MAIN
+LX51 LINKER/LOCATER V4.66.97.0                                                        12/20/2019  19:28:46  PAGE 2
+
+
+000A9BH   000AB9H   00001FH   BYTE   UNIT     CODE           ?PR?LCDSHOWINIT?MAIN
+000ABAH   000AD4H   00001BH   BYTE   UNIT     CODE           ?PR?_EEPROM_WRITE?MAIN
+000AD5H   000AEEH   00001AH   BYTE   UNIT     CODE           ?PR?_LCDPRINTNUM?MAIN
+000AEFH   000B07H   000019H   BYTE   UNIT     CODE           ?PR?_SECTOR_ERASE?MAIN
+000B08H   000B1EH   000017H   BYTE   UNIT     CODE           ?PR?_LCDWRITEDATA?MAIN
+000B1FH   000B32H   000014H   BYTE   UNIT     CODE           ?PR?LCDINIT?MAIN
+000B33H   000B46H   000014H   BYTE   UNIT     CODE           ?C_INITSEG
+000B47H   000B4EH   000008H   BYTE   UNIT     CODE           ?PR?ISP_DISABLE?MAIN
+000B4FH   000B56H   000008H   BYTE   UNIT     CODE           ?PR?TIMERINIT?MAIN
+000B57H   000B5DH   000007H   BYTE   UNIT     CODE           ?PR?DS1302_INIT?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   C:\F420数字时钟\PROJECT1\MAIN.ABS (MAIN)
+
+
+FUNCTION/MODULE               BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE   START  STOP  START  STOP
+=====================================================
+TIMER1/MAIN                  ----- -----  ----- -----
+
+*** NEW ROOT ***************
+
+?C_C51STARTUP                ----- -----  ----- -----
+  +--> MAIN/MAIN
+  +--> ?C_INITSEG
+
+MAIN/MAIN                    ----- -----  ----- -----
+  +--> LCDINIT/MAIN
+  +--> DS1302_INIT/MAIN
+  +--> LCDSHOWINIT/MAIN
+  +--> TIMERINIT/MAIN
+  +--> _DS1302_READ_BYTE/MAIN
+  +--> DS1302_WRITE_TIME/MAIN
+  +--> _EEPROM_READ/MAIN
+  +--> DS1302_READ_TIME/MAIN
+  +--> FLASHTIME/MAIN
+  +--> CLOCKJUDGE/MAIN
+  +--> KEYSCANF1/MAIN
+  +--> KEYSCANF2/MAIN
+  +--> KEYSCANF3/MAIN
+  +--> _DELAYMS/MAIN
+
+LCDINIT/MAIN                 ----- -----  ----- -----
+  +--> _LCDWRITECMD/MAIN
+
+_LCDWRITECMD/MAIN            ----- -----  ----- -----
+  +--> _DELAYMS/MAIN
+
+_DELAYMS/MAIN                ----- -----  ----- -----
+
+DS1302_INIT/MAIN             ----- -----  ----- -----
+
+LCDSHOWINIT/MAIN             ----- -----  ----- -----
+  +--> _LCDGOTOXY/MAIN
+  +--> _LCDPRINTSTR/MAIN
+
+_LCDGOTOXY/MAIN              ----- -----  0016H 0016H
+  +--> _LCDPRINTNUM/MAIN
+  +--> _LCDWRITECMD/MAIN
+
+_LCDPRINTNUM/MAIN            ----- -----  ----- -----
+  +--> _LCDWRITEDATA/MAIN
+
+_LCDWRITEDATA/MAIN           ----- -----  ----- -----
+LX51 LINKER/LOCATER V4.66.97.0                                                        12/20/2019  19:28:46  PAGE 3
+
+
+  +--> _DELAYMS/MAIN
+
+_LCDPRINTSTR/MAIN            ----- -----  0016H 0018H
+  +--> _LCDWRITEDATA/MAIN
+
+TIMERINIT/MAIN               ----- -----  ----- -----
+
+_DS1302_READ_BYTE/MAIN       ----- -----  ----- -----
+
+DS1302_WRITE_TIME/MAIN       ----- -----  ----- -----
+  +--> _DS1302_WRITE_BYTE/MAIN
+
+_DS1302_WRITE_BYTE/MAIN      ----- -----  ----- -----
+
+_EEPROM_READ/MAIN            ----- -----  ----- -----
+  +--> ISP_DISABLE/MAIN
+
+ISP_DISABLE/MAIN             ----- -----  ----- -----
+
+DS1302_READ_TIME/MAIN        ----- -----  ----- -----
+  +--> _DS1302_READ_BYTE/MAIN
+
+FLASHTIME/MAIN               ----- -----  ----- -----
+  +--> _LCDGOTOXY/MAIN
+  +--> _LCDPRINTNUM/MAIN
+  +--> _LCDPRINTWEEK/MAIN
+
+_LCDPRINTWEEK/MAIN           ----- -----  ----- -----
+  +--> _LCDPRINTSTR/MAIN
+
+CLOCKJUDGE/MAIN              ----- -----  ----- -----
+  +--> _DELAYMS/MAIN
+
+KEYSCANF1/MAIN               ----- -----  ----- -----
+  +--> _LCDWRITECMD/MAIN
+  +--> _LCDGOTOXY/MAIN
+  +--> _DELAYMS/MAIN
+  +--> _LCDPRINTNUM/MAIN
+  +--> _LCDPRINTWEEK/MAIN
+  +--> DS1302_WRITE_TIME/MAIN
+
+KEYSCANF2/MAIN               ----- -----  ----- -----
+  +--> _LCDGOTOXY/MAIN
+  +--> _LCDPRINTSTR/MAIN
+  +--> _LCDPRINTNUM/MAIN
+  +--> _LCDWRITECMD/MAIN
+  +--> _DELAYMS/MAIN
+  +--> LCDSHOWINIT/MAIN
+  +--> _SECTOR_ERASE/MAIN
+  +--> _EEPROM_WRITE/MAIN
+
+_SECTOR_ERASE/MAIN           ----- -----  ----- -----
+  +--> ISP_DISABLE/MAIN
+
+_EEPROM_WRITE/MAIN           ----- -----  ----- -----
+  +--> ISP_DISABLE/MAIN
+
+KEYSCANF3/MAIN               ----- -----  ----- -----
+  +--> _LCDGOTOXY/MAIN
+  +--> _LCDPRINTSTR/MAIN
+  +--> _DELAYMS/MAIN
+  +--> _LCDPRINTNUM/MAIN
+  +--> LCDSHOWINIT/MAIN
+
+?C_INITSEG                   ----- -----  ----- -----
+LX51 LINKER/LOCATER V4.66.97.0                                                        12/20/2019  19:28:46  PAGE 4
+
+
+
+
+
+PUBLIC SYMBOLS OF MODULE:  C:\F420数字时钟\PROJECT1\MAIN.ABS (MAIN)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+      01000790H   CODE     ---       ?C?CLDPTR
+      00000000H   NUMBER   ---       ?C?CODESEG
+      010007A9H   CODE     ---       ?C?UIDIV
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      01000653H   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      01000A5CH   CODE     ---       _DELAYMS
+      010008BFH   CODE     ---       _DS1302_READ_BYTE
+      0100095AH   CODE     ---       _DS1302_WRITE_BYTE
+      01000A7CH   CODE     ---       _EEPROM_READ
+      01000ABAH   CODE     ---       _EEPROM_WRITE
+      01000A3CH   CODE     ---       _LCDGOTOXY
+      01000AD5H   CODE     ---       _LCDPRINTNUM
+      010009E7H   CODE     ---       _LCDPRINTSTR
+      010007FEH   CODE     ---       _LCDPRINTWEEK
+      01000003H   CODE     ---       _LCDWRITECMD
+      01000B08H   CODE     ---       _LCDWRITEDATA
+      01000AEFH   CODE     ---       _SECTOR_ERASE
+      00000013H   DATA     ---       BUZZER_FLAG
+      00000015H   DATA     ---       CLOCK_HOUR
+      00000012H   DATA     ---       CLOCK_MINUTE
+      00000008H   DATA     ---       CLOCK_SWT
+      010009A5H   CODE     ---       CLOCKJUDGE
+      01000B57H   CODE     ---       DS1302_INIT
+      01000862H   CODE     ---       DS1302_READ_TIME
+      01000698H   CODE     ---       DS1302_WRITE_TIME
+      0100090DH   CODE     ---       FLASHTIME
+      01000B47H   CODE     ---       ISP_DISABLE
+      0100001EH   CODE     ---       KEYSCANF1
+      01000304H   CODE     ---       KEYSCANF2
+      010004A6H   CODE     ---       KEYSCANF3
+      01000B1FH   CODE     ---       LCDINIT
+      01000A9BH   CODE     ---       LCDSHOWINIT
+      01000715H   CODE     ---       MAIN
+      00000014H   DATA     ---       STOP_WATCH_COUNT
+      00000010H   DATA     ---       STOP_WATCH_SECOND
+      00000009H   DATA     ---       TIMEBUFF
+      01000A0CH   CODE     ---       TIMER1
+      01000B4FH   CODE     ---       TIMERINIT
+
+
+
+SYMBOL TABLE OF MODULE:  C:\F420数字时钟\PROJECT1\MAIN.ABS (MAIN)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       MAIN
+      00000015H   PUBLIC    DATA     ---       CLOCK_HOUR
+      00000014H   PUBLIC    DATA     ---       STOP_WATCH_COUNT
+      00000013H   PUBLIC    DATA     ---       BUZZER_FLAG
+      00000012H   PUBLIC    DATA     ---       CLOCK_MINUTE
+      00000010H   PUBLIC    DATA     ---       STOP_WATCH_SECOND
+      00000009H   PUBLIC    DATA     ---       TIMEBUFF
+      00000008H   PUBLIC    DATA     ---       CLOCK_SWT
+      01000715H   PUBLIC    CODE     ---       MAIN
+      01000A0CH   PUBLIC    CODE     ---       TIMER1
+      01000B4FH   PUBLIC    CODE     ---       TIMERINIT
+LX51 LINKER/LOCATER V4.66.97.0                                                        12/20/2019  19:28:46  PAGE 5
+
+
+      010009A5H   PUBLIC    CODE     ---       CLOCKJUDGE
+      010004A6H   PUBLIC    CODE     ---       KEYSCANF3
+      01000304H   PUBLIC    CODE     ---       KEYSCANF2
+      0100001EH   PUBLIC    CODE     ---       KEYSCANF1
+      01000862H   PUBLIC    CODE     ---       DS1302_READ_TIME
+      01000698H   PUBLIC    CODE     ---       DS1302_WRITE_TIME
+      0100095AH   PUBLIC    CODE     ---       _DS1302_WRITE_BYTE
+      010008BFH   PUBLIC    CODE     ---       _DS1302_READ_BYTE
+      01000B57H   PUBLIC    CODE     ---       DS1302_INIT
+      0100090DH   PUBLIC    CODE     ---       FLASHTIME
+      010007FEH   PUBLIC    CODE     ---       _LCDPRINTWEEK
+      01000AD5H   PUBLIC    CODE     ---       _LCDPRINTNUM
+      01000A9BH   PUBLIC    CODE     ---       LCDSHOWINIT
+      01000A3CH   PUBLIC    CODE     ---       _LCDGOTOXY
+      010009E7H   PUBLIC    CODE     ---       _LCDPRINTSTR
+      01000B1FH   PUBLIC    CODE     ---       LCDINIT
+      01000B08H   PUBLIC    CODE     ---       _LCDWRITEDATA
+      01000003H   PUBLIC    CODE     ---       _LCDWRITECMD
+      01000AEFH   PUBLIC    CODE     ---       _SECTOR_ERASE
+      01000ABAH   PUBLIC    CODE     ---       _EEPROM_WRITE
+      01000A7CH   PUBLIC    CODE     ---       _EEPROM_READ
+      01000B47H   PUBLIC    CODE     ---       ISP_DISABLE
+      01000A5CH   PUBLIC    CODE     ---       _DELAYMS
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+
+      ---         MODULE    ---      ---       ?C?CLDPTR
+      01000790H   PUBLIC    CODE     ---       ?C?CLDPTR
+
+      ---         MODULE    ---      ---       ?C?UIDIV
+      010007A9H   PUBLIC    CODE     ---       ?C?UIDIV
+
+      ---         MODULE    ---      ---       ?C_INIT
+      01000653H   PUBLIC    CODE     ---       ?C_START
+
+Program Size: data=26.0 xdata=0 const=0 code=2909
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,18 @@
+C51 COMPILER V9.60.0.0   DS1302                                                            12/20/2019 19:26:35 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE DS1302
+OBJECT MODULE PLACED IN C:\F420数字时钟\Project1\DS1302.OBJ
+COMPILER INVOKED BY: C:\Keil5 C51\keil5 c51-code\C51\BIN\C51.exe C:\F420数字时钟\Project1\DS1302.h
+
+line level    source
+
+*** ERROR C202 IN LINE 1 OF C:\F420首质敝覾Project1\DS1302.h: 'P1': undefined identifier
+*** ERROR C202 IN LINE 2 OF C:\F420首质敝覾Project1\DS1302.h: 'P1': undefined identifier
+*** ERROR C202 IN LINE 3 OF C:\F420首质敝覾Project1\DS1302.h: 'P1': undefined identifier
+*** ERROR C202 IN LINE 10 OF C:\F420首质敝覾Project1\DS1302.h: 'RST_P': undefined identifier
+*** ERROR C202 IN LINE 11 OF C:\F420首质敝覾Project1\DS1302.h: 'SCK_P': undefined identifier
+*** ERROR C202 IN LINE 12 OF C:\F420首质敝覾Project1\DS1302.h: 'SDA_P': undefined identifier
+*** ERROR C129 IN LINE 18 OF C:\F420首质敝覾Project1\DS1302.h: missing ';' before 'DS1302_Read_Byte'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  7 ERROR(S)
