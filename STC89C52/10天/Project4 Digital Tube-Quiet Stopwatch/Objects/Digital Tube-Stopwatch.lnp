@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\Digital Tube-Stopwatch" 
+PRINT(".\Listings\Digital Tube-Stopwatch.m51") RAMSIZE(256) 

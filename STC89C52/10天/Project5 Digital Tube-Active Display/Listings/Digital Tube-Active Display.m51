@@ -1,0 +1,205 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    04/08/2020  19:59:04  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL5 C51\KEIL5 C51-CODE\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\Digital Tube-Active Display PRINT (.\Listin
+>> gs\Digital Tube-Active Display.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\Digital Tube-Active Display (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0006H     UNIT         _DATA_GROUP_
+            DATA    000EH     0001H     UNIT         ?DT?MAIN
+            IDATA   000FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0020H     UNIT         ?PR?_DELAYMS?MAIN
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     008CH     UNIT         ?C_C51STARTUP
+            CODE    00B2H     0039H     UNIT         ?PR?UART_ISR?MAIN
+            CODE    00EBH     002CH     UNIT         ?PR?_DISPLAY_SMG0?MAIN
+            CODE    0117H     0020H     UNIT         ?PR?_DISPLAY_SMG_1BIT?MAIN
+            CODE    0137H     0017H     UNIT         ?PR?UART1_INIT?MAIN
+            CODE    014EH     0017H     UNIT         ?PR?MAIN?MAIN
+            CODE    0165H     0016H     UNIT         ?CO?MAIN
+            CODE    017BH     0004H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Digital Tube-Active Display (MAIN)
+
+
+SEGMENT                              DATA_GROUP 
+  +--> CALLED SEGMENT              START    LENGTH
+--------------------------------------------------
+?C_C51STARTUP                      -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                      -----    -----
+  +--> ?PR?UART1_INIT?MAIN
+  +--> ?PR?_DISPLAY_SMG0?MAIN
+
+?PR?_DISPLAY_SMG0?MAIN             0008H    0006H
+  +--> ?PR?_DISPLAY_SMG_1BIT?MAIN
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/08/2020  19:59:04  PAGE 2
+
+
+?PR?_DISPLAY_SMG_1BIT?MAIN         -----    -----
+  +--> ?CO?MAIN
+  +--> ?PR?_DELAYMS?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Digital Tube-Active Display (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00E8H         PUBLIC        P4
+  C:0175H         PUBLIC        weixuan
+  C:0137H         PUBLIC        UART1_init
+  B:00A8H.7       PUBLIC        EA
+  D:00A8H         PUBLIC        IE
+  B:00A8H.4       PUBLIC        ES
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  D:00CBH         PUBLIC        RCAP2H
+  D:00CAH         PUBLIC        RCAP2L
+  C:014EH         PUBLIC        main
+  C:00B2H         PUBLIC        Uart_Isr
+  D:0099H         PUBLIC        SBUF
+  C:0003H         PUBLIC        _DelayMs
+  C:00EBH         PUBLIC        _Display_smg0
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:000EH         PUBLIC        uart_count
+  D:00CDH         PUBLIC        TH2
+  D:00CCH         PUBLIC        TL2
+  D:00E7H         PUBLIC        ISP_CONTR
+  C:0117H         PUBLIC        _Display_smg_1bit
+  B:00A0H.6       PUBLIC        dx
+  D:00C8H         PUBLIC        T2CON
+  C:0165H         PUBLIC        duanxuan
+  B:00A0H.7       PUBLIC        wx
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          UART1_INIT
+  C:0137H         LINE#         11
+  C:0137H         LINE#         12
+  C:0137H         LINE#         13
+  C:013AH         LINE#         14
+  C:0140H         LINE#         15
+  C:0146H         LINE#         16
+  C:0149H         LINE#         17
+  C:014BH         LINE#         18
+  C:014DH         LINE#         19
+  -------         ENDPROC       UART1_INIT
+  -------         PROC          UART_ISR
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/08/2020  19:59:04  PAGE 3
+
+
+  C:00B2H         LINE#         37
+  C:00BBH         LINE#         39
+  C:00BEH         LINE#         40
+  C:00BEH         LINE#         41
+  C:00C0H         LINE#         42
+  C:00C7H         LINE#         43
+  C:00C7H         LINE#         44
+  C:00C9H         LINE#         45
+  C:00D4H         LINE#         46
+  C:00D4H         LINE#         47
+  C:00D7H         LINE#         48
+  C:00DAH         LINE#         49
+  C:00DAH         LINE#         50
+  C:00DCH         LINE#         52
+  C:00DCH         LINE#         53
+  C:00DFH         LINE#         54
+  C:00DFH         LINE#         55
+  C:00DFH         LINE#         56
+  C:00E2H         LINE#         57
+  C:00E2H         LINE#         58
+  C:00E4H         LINE#         59
+  C:00E4H         LINE#         60
+  -------         ENDPROC       UART_ISR
+  -------         PROC          _DELAYMS
+  D:0006H         SYMBOL        time
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0003H         LINE#         4
+  C:0003H         LINE#         5
+  C:0003H         LINE#         7
+  C:000DH         LINE#         8
+  C:0022H         LINE#         9
+  -------         ENDPROC       _DELAYMS
+  -------         PROC          _DISPLAY_SMG_1BIT
+  D:0007H         SYMBOL        duan
+  D:0005H         SYMBOL        wei
+  C:0117H         LINE#         8
+  C:0117H         LINE#         9
+  C:0117H         LINE#         10
+  C:0119H         LINE#         11
+  C:0120H         LINE#         12
+  C:0122H         LINE#         13
+  C:0125H         LINE#         14
+  C:0127H         LINE#         15
+  C:012EH         LINE#         16
+  C:0130H         LINE#         17
+  -------         ENDPROC       _DISPLAY_SMG_1BIT
+  -------         PROC          _DISPLAY_SMG0
+  D:0006H         SYMBOL        one
+  D:0009H         SYMBOL        two
+  D:0001H         SYMBOL        three
+  D:000BH         SYMBOL        four
+  D:000CH         SYMBOL        five
+  D:000DH         SYMBOL        six
+  C:00EBH         LINE#         1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/08/2020  19:59:04  PAGE 4
+
+
+  C:00EFH         LINE#         2
+  C:00EFH         LINE#         3
+  C:00F4H         LINE#         5
+  C:00FBH         LINE#         7
+  C:0102H         LINE#         9
+  C:0109H         LINE#         11
+  C:0110H         LINE#         13
+  -------         ENDPROC       _DISPLAY_SMG0
+  -------         PROC          MAIN
+  C:014EH         LINE#         7
+  C:014EH         LINE#         8
+  C:014EH         LINE#         9
+  C:0151H         LINE#         10
+  C:0151H         LINE#         11
+  C:0151H         LINE#         12
+  C:0163H         LINE#         13
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=16.0 xdata=0 code=383
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

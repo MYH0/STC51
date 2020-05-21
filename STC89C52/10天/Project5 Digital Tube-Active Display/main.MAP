@@ -1,0 +1,165 @@
+LX51 LINKER/LOCATER V4.66.97.0                                                          05/01/2020  04:06:03  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.97.0, INVOKED BY:
+C:\KEIL5 C51\KEIL5 C51-CODE\C51\BIN\LX51.EXE C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Di
+>> splay\main.obj TO C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\main.abs
+
+
+CPU MODE:     NXP 80C51MX (64KB CODE)
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\main.obj (MAIN)
+         COMMENT TYPE 0: CX51 V9.60.0.0
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\CX51S.LIB (?C_STARTUP)
+         COMMENT TYPE 0: AX51 V3.07
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\CX51S.LIB (?C_INIT)
+         COMMENT TYPE 0: AX51 V3.07
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\main.
+>> abs (MAIN)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+800000H     800000H     80FFFFH     00018AH   CODE
+7F0000H     7F0000H     7F007FH     00000FH   DATA
+800000H     800000H     80FFFFH     000016H   CONST
+7F0000H     7F0000H     7F00FFH     000001H   IDATA
+
+
+MEMORY MAP OF MODULE:  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\main.abs (MAIN)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+7F0000H   7F0007H   000008H   ---    AT..     DATA           "REG BANK 0"
+7F0008H   7F000DH   000006H   BYTE   UNIT     DATA           _DATA_GROUP_
+7F000EH   7F000EH   000001H   BYTE   UNIT     DATA           ?DT?MAIN
+7F000FH   7F000FH   000001H   BYTE   UNIT     IDATA          ?STACK
+7F0010H   7FFFFFH   00FFF0H   ---    ---      **GAP**
+800000H   800002H   000003H   ---    OFFS..   CODE           ?CO?STARTUP?3
+800003H   800022H   000020H   BYTE   UNIT     CODE           ?PR?_DELAYMS?MAIN
+800023H   800025H   000003H   BYTE   OFFS..   CODE           ?MAIN?00023
+800026H   8000D2H   0000ADH   BYTE   UNIT     CODE           ?C_C51STARTUP
+8000D3H   80010BH   000039H   BYTE   UNIT     CODE           ?PR?UART_ISR?MAIN
+80010CH   800137H   00002CH   BYTE   UNIT     CODE           ?PR?_DISPLAY_SMG0?MAIN
+800138H   800157H   000020H   BYTE   UNIT     CODE           ?PR?_DISPLAY_SMG_1BIT?MAIN
+800158H   80016EH   000017H   BYTE   UNIT     CODE           ?PR?UART1_INIT?MAIN
+80016FH   800185H   000017H   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+800186H   800189H   000004H   BYTE   UNIT     CODE           ?C_INITSEG
+80018AH   80019FH   000016H   BYTE   UNIT     CONST          ?CO?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\main.abs (MAIN
+>> )
+
+
+FUNCTION/MODULE              BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE  START  STOP  START  STOP
+====================================================
+UART_ISR/MAIN               ----- -----  ----- -----
+
+*** NEW ROOT **************
+
+?C_C51STARTUP               ----- -----  ----- -----
+  +--> MAIN/MAIN
+LX51 LINKER/LOCATER V4.66.97.0                                                        05/01/2020  04:06:03  PAGE 2
+
+
+  +--> ?C_INITSEG
+
+MAIN/MAIN                   ----- -----  ----- -----
+  +--> UART1_INIT/MAIN
+  +--> _DISPLAY_SMG0/MAIN
+
+UART1_INIT/MAIN             ----- -----  ----- -----
+
+_DISPLAY_SMG0/MAIN          ----- -----  0008H 000DH
+  +--> _DISPLAY_SMG_1BIT/MAIN
+
+_DISPLAY_SMG_1BIT/MAIN      ----- -----  ----- -----
+  +--> _DELAYMS/MAIN
+
+_DELAYMS/MAIN               ----- -----  ----- -----
+
+?C_INITSEG                  ----- -----  ----- -----
+
+
+
+PUBLIC SYMBOLS OF MODULE:  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\main.abs (MA
+>> IN)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+      007F0008H   DATA     BYTE      ?_Display_smg0?BYTE
+      00000080H   NUMBER   ---       ?C?CODESEG
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      0080005BH   CODE     NEAR LAB  ?C_START
+      00800000H   CODE     NEAR LAB  ?C_STARTUP
+      00800003H   CODE     ---       _DelayMs
+      0080010CH   CODE     ---       _Display_smg0
+      00800138H   CODE     ---       _Display_smg_1bit
+      0080018AH   CONST    ---       duanxuan
+      0080016FH   CODE     ---       main
+      00800158H   CODE     ---       UART1_init
+      007F000EH   DATA     BYTE      uart_count
+      008000D3H   CODE     ---       Uart_Isr
+      0080019AH   CONST    ---       weixuan
+
+
+
+SYMBOL TABLE OF MODULE:  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\main.abs (MAIN
+>> )
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       MAIN
+      007F000EH   PUBLIC    DATA     BYTE      uart_count
+      0080019AH   PUBLIC    CONST    ---       weixuan
+      0080018AH   PUBLIC    CONST    ---       duanxuan
+      0080016FH   PUBLIC    CODE     ---       main
+      007F0008H   PUBLIC    DATA     BYTE      ?_Display_smg0?BYTE
+      0080010CH   PUBLIC    CODE     ---       _Display_smg0
+      00800138H   PUBLIC    CODE     ---       _Display_smg_1bit
+      00800003H   PUBLIC    CODE     ---       _DelayMs
+      008000D3H   PUBLIC    CODE     ---       Uart_Isr
+      00800158H   PUBLIC    CODE     ---       UART1_init
+
+      00800158H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      008000D3H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+LX51 LINKER/LOCATER V4.66.97.0                                                        05/01/2020  04:06:03  PAGE 3
+
+
+
+      00800003H   BLOCK     CODE     ---       LVL=0
+      00800003H   BLOCK     CODE     NEAR LAB  LVL=1
+      007F0004H   SYMBOL    DATA     VOID      i
+      007F0002H   SYMBOL    DATA     VOID      j
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      00800138H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0080010CH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0080016FH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      00800000H   PUBLIC    CODE     NEAR LAB  ?C_STARTUP
+
+      ---         MODULE    ---      ---       ?C_INIT
+      0080005BH   PUBLIC    CODE     NEAR LAB  ?C_START
+
+Program Size: data=16.0 xdata=0 const=22 code=394
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

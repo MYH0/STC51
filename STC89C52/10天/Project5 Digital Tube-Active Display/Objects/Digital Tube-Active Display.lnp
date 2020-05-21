@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\Digital Tube-Active Display" 
+PRINT(".\Listings\Digital Tube-Active Display.m51") RAMSIZE(256) 
