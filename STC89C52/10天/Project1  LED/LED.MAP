@@ -1,0 +1,119 @@
+LX51 LINKER/LOCATER V4.66.97.0                                                          05/01/2020  04:00:47  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.97.0, INVOKED BY:
+C:\KEIL5 C51\KEIL5 C51-CODE\C51\BIN\LX51.EXE C:\0Practice\Hardware\STC51\STC89C52\10Days\Project1  LED\LED.obj TO C:\0Pr
+>> actice\Hardware\STC51\STC89C52\10Days\Project1  LED\LED.abs
+
+
+CPU MODE:     NXP 80C51MX (64KB CODE)
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project1  LED\LED.obj (LED)
+         COMMENT TYPE 0: CX51 V9.60.0.0
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\CX51S.LIB (?C_STARTUP)
+         COMMENT TYPE 0: AX51 V3.07
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\CX51S.LIB (?C_INIT)
+         COMMENT TYPE 0: AX51 V3.07
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project1  LED\LED.abs (LED)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+800000H     800000H     80FFFFH     00010DH   CODE
+7F0000H     7F0000H     7F007FH     000009H   DATA
+7F0000H     7F0000H     7F00FFH     000001H   IDATA
+
+
+MEMORY MAP OF MODULE:  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project1  LED\LED.abs (LED)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+7F0000H   7F0007H   000008H   ---    AT..     DATA           "REG BANK 0"
+7F0008H   7F0008H   000001H   BYTE   UNIT     DATA           ?DT?LED
+7F0009H   7F0009H   000001H   BYTE   UNIT     IDATA          ?STACK
+7F000AH   7FFFFFH   00FFF6H   ---    ---      **GAP**
+800000H   800002H   000003H   ---    OFFS..   CODE           ?CO?STARTUP?3
+800003H   800019H   000017H   BYTE   UNIT     CODE           ?PR?UART1_INIT?LED
+80001AH   80001FH   000006H   BYTE   UNIT     CODE           ?PR?MAIN?LED
+800020H   800022H   000003H   ---    ---      **GAP**
+800023H   800025H   000003H   BYTE   OFFS..   CODE           ?LED?00023
+800026H   8000D2H   0000ADH   BYTE   UNIT     CODE           ?C_C51STARTUP
+8000D3H   80010BH   000039H   BYTE   UNIT     CODE           ?PR?UART_ISR?LED
+80010CH   80010FH   000004H   BYTE   UNIT     CODE           ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   C:\0Practice\Hardware\STC51\STC89C52\10Days\Project1  LED\LED.abs (LED)
+
+
+FUNCTION/MODULE              BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE  START  STOP  START  STOP
+====================================================
+UART_ISR/LED                ----- -----  ----- -----
+
+*** NEW ROOT **************
+
+?C_C51STARTUP               ----- -----  ----- -----
+  +--> MAIN/LED
+  +--> ?C_INITSEG
+
+MAIN/LED                    ----- -----  ----- -----
+  +--> UART1_INIT/LED
+
+UART1_INIT/LED              ----- -----  ----- -----
+
+LX51 LINKER/LOCATER V4.66.97.0                                                        05/01/2020  04:00:47  PAGE 2
+
+
+?C_INITSEG                  ----- -----  ----- -----
+
+
+
+PUBLIC SYMBOLS OF MODULE:  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project1  LED\LED.abs (LED)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+      00000080H   NUMBER   ---       ?C?CODESEG
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      0080005BH   CODE     NEAR LAB  ?C_START
+      00800000H   CODE     NEAR LAB  ?C_STARTUP
+      0080001AH   CODE     ---       main
+      00800003H   CODE     ---       UART1_init
+      007F0008H   DATA     BYTE      uart_count
+      008000D3H   CODE     ---       Uart_Isr
+
+
+
+SYMBOL TABLE OF MODULE:  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project1  LED\LED.abs (LED)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       LED
+      007F0008H   PUBLIC    DATA     BYTE      uart_count
+      0080001AH   PUBLIC    CODE     ---       main
+      008000D3H   PUBLIC    CODE     ---       Uart_Isr
+      00800003H   PUBLIC    CODE     ---       UART1_init
+
+      00800003H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      008000D3H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0080001AH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      00800000H   PUBLIC    CODE     NEAR LAB  ?C_STARTUP
+
+      ---         MODULE    ---      ---       ?C_INIT
+      0080005BH   PUBLIC    CODE     NEAR LAB  ?C_START
+
+Program Size: data=10.0 xdata=0 const=0 code=269
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

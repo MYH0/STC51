@@ -1,0 +1,140 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    04/08/2020  18:10:19  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL5 C51\KEIL5 C51-CODE\C51\BIN\BL51.EXE .\Objects\LED.obj TO .\Objects\LED PRINT (.\Listings\LED.m51) RAMSIZE (256)
+>> 
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\LED.obj (LED)
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\LED (LED)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         ?DT?LED
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0017H     UNIT         ?PR?UART1_INIT?LED
+            CODE    001AH     0006H     UNIT         ?PR?MAIN?LED
+                    0020H     0003H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     008CH     UNIT         ?C_C51STARTUP
+            CODE    00B2H     0039H     UNIT         ?PR?UART_ISR?LED
+            CODE    00EBH     0004H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\LED (LED)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?LED
+  +--> ?C_INITSEG
+
+?PR?MAIN?LED
+  +--> ?PR?UART1_INIT?LED
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\LED (LED)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        LED
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/08/2020  18:10:19  PAGE 2
+
+
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00E8H         PUBLIC        P4
+  C:0003H         PUBLIC        UART1_init
+  B:00A8H.7       PUBLIC        EA
+  D:00A8H         PUBLIC        IE
+  B:00A8H.4       PUBLIC        ES
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  D:00CBH         PUBLIC        RCAP2H
+  D:00CAH         PUBLIC        RCAP2L
+  C:001AH         PUBLIC        main
+  C:00B2H         PUBLIC        Uart_Isr
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  B:0090H.3       PUBLIC        P13
+  D:0088H         PUBLIC        TCON
+  D:0008H         PUBLIC        uart_count
+  D:00CDH         PUBLIC        TH2
+  D:00CCH         PUBLIC        TL2
+  D:00E7H         PUBLIC        ISP_CONTR
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          UART1_INIT
+  C:0003H         LINE#         10
+  C:0003H         LINE#         11
+  C:0003H         LINE#         12
+  C:0006H         LINE#         13
+  C:000CH         LINE#         14
+  C:0012H         LINE#         15
+  C:0015H         LINE#         16
+  C:0017H         LINE#         17
+  C:0019H         LINE#         18
+  -------         ENDPROC       UART1_INIT
+  -------         PROC          UART_ISR
+  C:00B2H         LINE#         37
+  C:00BBH         LINE#         39
+  C:00BEH         LINE#         40
+  C:00BEH         LINE#         41
+  C:00C0H         LINE#         42
+  C:00C7H         LINE#         43
+  C:00C7H         LINE#         44
+  C:00C9H         LINE#         45
+  C:00D4H         LINE#         46
+  C:00D4H         LINE#         47
+  C:00D7H         LINE#         48
+  C:00DAH         LINE#         49
+  C:00DAH         LINE#         50
+  C:00DCH         LINE#         52
+  C:00DCH         LINE#         53
+  C:00DFH         LINE#         54
+  C:00DFH         LINE#         55
+  C:00DFH         LINE#         56
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/08/2020  18:10:19  PAGE 3
+
+
+  C:00E2H         LINE#         57
+  C:00E2H         LINE#         58
+  C:00E4H         LINE#         59
+  C:00E4H         LINE#         60
+  -------         ENDPROC       UART_ISR
+  -------         PROC          MAIN
+  C:001AH         LINE#         3
+  C:001AH         LINE#         4
+  C:001AH         LINE#         5
+  C:001DH         LINE#         6
+  C:001FH         LINE#         7
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        LED
+
+Program Size: data=10.0 xdata=0 code=236
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

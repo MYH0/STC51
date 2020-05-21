@@ -1,0 +1,35 @@
+CX51 COMPILER V9.60.0.0   LED                                                              05/01/2020 04:00:38 PAGE 1   
+
+
+CX51 COMPILER V9.60.0.0, COMPILATION OF MODULE LED
+OBJECT MODULE PLACED IN C:\0Practice\Hardware\STC51\STC89C52\10Days\Project1  LED\LED.OBJ
+COMPILER INVOKED BY: C:\Keil5 C51\keil5 c51-code\C51\BIN\CX51.exe C:\0Practice\Hardware\STC51\STC89C52\10Days\Project1  
+                    -LED\LED.c
+
+line level    source
+
+   1          #include <STC89C5XRC.H>
+   2          #include "STC89_ISP_AUTO.H"
+   3          void main()
+   4          {
+   5   1              UART1_init();
+   6   1              P10 = 0;
+   7   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     89    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+CX51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
