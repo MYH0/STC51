@@ -1,0 +1,182 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              09/11/2020 01:22:00 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\main.OBJ
+COMPILER INVOKED BY: C:\KEIL\KEIL-CODE\C51\BIN\C51.exe C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\main.c
+
+line level    source
+
+   1          #include <STC89C5XRC.H>
+   2          #include "MYH_Drivers_STC89.h"
+*** WARNING C245 IN LINE 1 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/STC89_Delay_ms.h
+             -: unknown #pragma, line ignored
+*** WARNING C245 IN LINE 1 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/STC89_T0_INT1.h:
+             - unknown #pragma, line ignored
+*** WARNING C245 IN LINE 1 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/STC89_T1_INT3.h:
+             - unknown #pragma, line ignored
+*** WARNING C245 IN LINE 1 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/STC89_GTX_TX_1C_
+             -GPIO.h: unknown #pragma, line ignored
+*** WARNING C245 IN LINE 1 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/DigitalTube_Disp
+             -lay.h: unknown #pragma, line ignored
+*** WARNING C206 IN LINE 11 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_Indepe
+             -ndent.h: 'delay_ms': missing function-prototype
+*** ERROR C267 IN LINE 11 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_Independ
+             -ent.h: 'delay_ms': requires ANSI-style prototype
+*** ERROR C202 IN LINE 7 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 't
+             -emp': undefined identifier
+*** ERROR C202 IN LINE 8 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 't
+             -emp': undefined identifier
+*** ERROR C202 IN LINE 9 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 't
+             -emp': undefined identifier
+*** ERROR C202 IN LINE 12 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 13 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 14 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 18 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 19 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 21 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -num': undefined identifier
+*** ERROR C202 IN LINE 23 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -num': undefined identifier
+*** ERROR C202 IN LINE 25 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -num': undefined identifier
+*** ERROR C202 IN LINE 27 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -num': undefined identifier
+*** ERROR C202 IN LINE 35 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 37 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 38 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 41 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 43 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 44 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 50 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 51 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+C51 COMPILER V9.60.0.0   MAIN                                                              09/11/2020 01:22:00 PAGE 2   
+
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 52 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 55 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 56 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 57 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 61 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 62 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 64 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -num': undefined identifier
+*** ERROR C202 IN LINE 66 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -num': undefined identifier
+*** ERROR C202 IN LINE 68 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -num': undefined identifier
+*** ERROR C202 IN LINE 70 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -num': undefined identifier
+*** ERROR C202 IN LINE 78 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 80 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 81 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 84 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 86 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 87 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 93 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 94 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 95 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 98 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 99 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: '
+             -temp': undefined identifier
+*** ERROR C202 IN LINE 100 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 104 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 105 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 107 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'num': undefined identifier
+*** ERROR C202 IN LINE 109 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'num': undefined identifier
+*** ERROR C202 IN LINE 111 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'num': undefined identifier
+*** ERROR C202 IN LINE 113 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'num': undefined identifier
+*** ERROR C202 IN LINE 121 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 123 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 124 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+C51 COMPILER V9.60.0.0   MAIN                                                              09/11/2020 01:22:00 PAGE 3   
+
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 127 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 129 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 130 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 136 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 137 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 138 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 141 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 142 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 143 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 147 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 148 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 150 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'num': undefined identifier
+*** ERROR C202 IN LINE 152 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'num': undefined identifier
+*** ERROR C202 IN LINE 154 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'num': undefined identifier
+*** ERROR C202 IN LINE 156 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'num': undefined identifier
+*** ERROR C202 IN LINE 164 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 166 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 167 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 170 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 172 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 173 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'temp': undefined identifier
+*** ERROR C202 IN LINE 177 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project0000\MYH_Drivers_STC89/Keyboard_4x4.h: 
+             -'num': undefined identifier
+   3          void main()
+   4          {
+   5   1              ISP_AUTO_Init();
+   6   1              LED0_On;
+   7   1      }
+
+C51 COMPILATION COMPLETE.  6 WARNING(S),  74 ERROR(S)

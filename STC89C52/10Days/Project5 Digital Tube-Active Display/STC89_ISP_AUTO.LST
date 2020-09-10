@@ -1,0 +1,98 @@
+CX51 COMPILER V9.60.0.0   STC89_ISP_AUTO                                                   05/01/2020 04:03:37 PAGE 1   
+
+
+CX51 COMPILER V9.60.0.0, COMPILATION OF MODULE STC89_ISP_AUTO
+OBJECT MODULE PLACED IN C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_AUTO.OBJ
+COMPILER INVOKED BY: C:\Keil5 C51\keil5 c51-code\C51\BIN\CX51.exe C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 D
+                    -igital Tube-Active Display\STC89_ISP_AUTO.H
+
+line level    source
+
+   1          #include<intrins.h>
+   2          
+   3          typedef unsigned char uchar;
+   4          typedef unsigned int uint;
+   5          
+   6          #define FOSC 11059200L      //System frequency
+   7          #define BAUD 9600      //UART baudrate
+   8          
+   9          uchar uart_count = 0;
+  10          
+  11          void UART1_init()
+  12          {
+  13   1              SCON = 0x50;            //8-bit variable UART
+*** ERROR C202 IN LINE 13 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_
+             -AUTO.H: 'SCON': undefined identifier
+  14   1              TL2 = RCAP2L = (65536 - (FOSC / 32 / BAUD)); //Set auto-reload vaule
+*** ERROR C202 IN LINE 14 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_
+             -AUTO.H: 'TL2': undefined identifier
+  15   1              TH2 = RCAP2H = (65536 - (FOSC / 32 / BAUD)) >> 8;
+*** ERROR C202 IN LINE 15 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_
+             -AUTO.H: 'TH2': undefined identifier
+  16   1              T2CON = 0x34;           //Timer2 start run
+*** ERROR C202 IN LINE 16 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_
+             -AUTO.H: 'T2CON': undefined identifier
+  17   1              ES = 1;                 //Enable UART interrupt
+*** ERROR C202 IN LINE 17 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_
+             -AUTO.H: 'ES': undefined identifier
+  18   1              EA = 1;
+*** ERROR C202 IN LINE 18 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_
+             -AUTO.H: 'EA': undefined identifier
+  19   1      }
+  20          
+  21          /*****具体使用方法****
+  22          
+  23          void main()
+  24          {
+  25                  UART1_init();
+  26                  while(1)
+  27                  {
+  28                    ;
+  29          
+  30                  }
+  31          }
+  32          ********************/
+  33          
+  34          /*----------------------------
+  35          UART interrupt service routine
+  36          ----------------------------*/
+  37          void Uart_Isr() interrupt 4
+  38          {
+  39   1              if (RI)
+*** ERROR C202 IN LINE 39 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_
+             -AUTO.H: 'RI': undefined identifier
+  40   1              {
+CX51 COMPILER V9.60.0.0   STC89_ISP_AUTO                                                   05/01/2020 04:03:37 PAGE 2   
+
+  41   2                      RI = 0;             //Clear receive interrupt flag
+*** ERROR C202 IN LINE 41 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_
+             -AUTO.H: 'RI': undefined identifier
+  42   2                      if (SBUF == 0x7f)
+*** ERROR C202 IN LINE 42 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_
+             -AUTO.H: 'SBUF': undefined identifier
+  43   2                      {
+  44   3                              uart_count++;
+  45   3                              if (uart_count > 10)
+  46   3                              {
+  47   4                                      uart_count = 0;
+  48   4                                      ISP_CONTR = 0x60;
+*** ERROR C202 IN LINE 48 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_
+             -AUTO.H: 'ISP_CONTR': undefined identifier
+  49   4                              }
+  50   3                      }
+  51   2                      else
+  52   2                      {
+  53   3                              uart_count = 0;
+  54   3                      }
+  55   2              }
+  56   1              if (TI)
+*** ERROR C202 IN LINE 56 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_
+             -AUTO.H: 'TI': undefined identifier
+  57   1              {
+  58   2                      TI = 0;             //Clear transmit interrupt flag
+*** ERROR C202 IN LINE 58 OF C:\0Practice\Hardware\STC51\STC89C52\10Days\Project5 Digital Tube-Active Display\STC89_ISP_
+             -AUTO.H: 'TI': undefined identifier
+  59   2              }
+  60   1      }
+
+CX51 COMPILATION COMPLETE.  0 WARNING(S),  12 ERROR(S)

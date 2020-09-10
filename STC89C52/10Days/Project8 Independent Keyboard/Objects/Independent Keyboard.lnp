@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj" 
+TO ".\Objects\Independent Keyboard" 
+PRINT(".\Listings\Independent Keyboard.m51") RAMSIZE(256) 

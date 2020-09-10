@@ -1,0 +1,258 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/19/2020  01:44:17  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL5 C51\KEIL5 C51-CODE\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj TO .\Objects\Project6 Digital Tub
+>> e-Active Display-3Bit StopWatch PRINT (.\Listings\Project6 Digital Tube-Active Display-3Bit StopWatch.m51) RAMSIZE (2
+>> 56)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\main.obj (MAIN)
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C?SLDIV)
+  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C?ULDIV)
+
+
+LINK MAP OF MODULE:  .\Objects\Project6 Digital Tube-Active Display-3Bit StopWatch (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0006H     UNIT         _DATA_GROUP_
+            DATA    000EH     0001H     UNIT         ?DT?MAIN
+            IDATA   000FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0004H     UNIT         ?C_INITSEG
+                    0007H     0004H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     00CEH     UNIT         ?C?LIB_CODE
+            CODE    00DCH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0168H     0088H     UNIT         ?PR?TIMER0?MAIN
+            CODE    01F0H     007AH     UNIT         ?PR?_DISPLAY_SMG1?MAIN
+            CODE    026AH     0056H     UNIT         ?PR?_INIT_TIMER0?MAIN
+            CODE    02C0H     0044H     UNIT         ?C?LDIV
+            CODE    0304H     0030H     UNIT         ?PR?MAIN?MAIN
+            CODE    0334H     0020H     UNIT         ?PR?_DELAYMS?MAIN
+            CODE    0354H     0016H     UNIT         ?CO?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Project6 Digital Tube-Active Display-3Bit StopWatch (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                  0008H    0002H
+  +--> ?PR?_INIT_TIMER0?MAIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/19/2020  01:44:17  PAGE 2
+
+
+  +--> ?PR?_DISPLAY_SMG1?MAIN
+
+?PR?_INIT_TIMER0?MAIN          000AH    0002H
+
+?PR?_DISPLAY_SMG1?MAIN         000AH    0001H
+  +--> ?CO?MAIN
+  +--> ?PR?_DELAYMS?MAIN
+
+*** NEW ROOT ***************************************************
+
+?PR?TIMER0?MAIN                000CH    0002H
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Project6 Digital Tube-Active Display-3Bit StopWatch (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:00DCH         SEGMENT       ?C_C51STARTUP
+  I:000FH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:00DFH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:00DCH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:00DCH         LINE#         133
+  C:00DEH         LINE#         134
+  C:00DFH         LINE#         135
+  C:00E0H         LINE#         136
+  C:00E2H         LINE#         185
+  C:00E5H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/19/2020  01:44:17  PAGE 3
+
+
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:0364H         PUBLIC        weixuan
+  B:00A8H.7       PUBLIC        EA
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0304H         PUBLIC        main
+  C:0334H         PUBLIC        _DelayMs
+  D:0098H         PUBLIC        SCON
+  C:01F0H         PUBLIC        _Display_smg1
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  B:00A8H.1       PUBLIC        ET0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  C:0168H         PUBLIC        timer0
+  B:0088H.4       PUBLIC        TR0
+  B:00A0H.6       PUBLIC        dx
+  D:00C8H         PUBLIC        T2CON
+  C:0354H         PUBLIC        duanxuan
+  C:026AH         PUBLIC        _init_timer0
+  D:000EH         PUBLIC        n
+  B:00A0H.7       PUBLIC        wx
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAYMS
+  D:0006H         SYMBOL        time
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0334H         LINE#         7
+  C:0334H         LINE#         8
+  C:0334H         LINE#         10
+  C:033EH         LINE#         11
+  C:0353H         LINE#         12
+  -------         ENDPROC       _DELAYMS
+  -------         PROC          _DISPLAY_SMG1
+  D:0007H         SYMBOL        shu
+  -------         DO            
+  D:0006H         SYMBOL        bai
+  D:000AH         SYMBOL        shi
+  D:0001H         SYMBOL        ge
+  -------         ENDDO         
+  C:01F0H         LINE#         10
+  C:01F0H         LINE#         11
+  C:01F0H         LINE#         13
+  C:01F6H         LINE#         14
+  C:0202H         LINE#         15
+  C:0209H         LINE#         17
+  C:020BH         LINE#         18
+  C:0214H         LINE#         19
+  C:0216H         LINE#         20
+  C:0219H         LINE#         21
+  C:021BH         LINE#         22
+  C:0222H         LINE#         23
+  C:0224H         LINE#         24
+  C:022BH         LINE#         26
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/19/2020  01:44:17  PAGE 4
+
+
+  C:022DH         LINE#         27
+  C:0235H         LINE#         28
+  C:0237H         LINE#         29
+  C:023AH         LINE#         30
+  C:023CH         LINE#         31
+  C:0243H         LINE#         32
+  C:0245H         LINE#         33
+  C:024AH         LINE#         35
+  C:024CH         LINE#         36
+  C:0255H         LINE#         37
+  C:0257H         LINE#         38
+  C:025AH         LINE#         39
+  C:025CH         LINE#         40
+  C:0263H         LINE#         41
+  C:0265H         LINE#         42
+  -------         ENDPROC       _DISPLAY_SMG1
+  -------         PROC          _INIT_TIMER0
+  D:000AH         SYMBOL        timer0_long
+  C:026AH         LINE#         1
+  C:026EH         LINE#         2
+  C:026EH         LINE#         3
+  C:0270H         LINE#         4
+  C:0272H         LINE#         5
+  C:0275H         LINE#         6
+  C:0298H         LINE#         7
+  C:02BDH         LINE#         8
+  C:02BFH         LINE#         9
+  -------         ENDPROC       _INIT_TIMER0
+  -------         PROC          TIMER0
+  -------         DO            
+  D:000CH         SYMBOL        time_long0
+  -------         ENDDO         
+  C:0168H         LINE#         11
+  C:0185H         LINE#         16
+  C:018BH         LINE#         20
+  C:01AEH         LINE#         21
+  C:01D3H         LINE#         25
+  C:01D5H         LINE#         28
+  -------         ENDPROC       TIMER0
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        shu
+  -------         ENDDO         
+  C:0304H         LINE#         9
+  C:0304H         LINE#         10
+  C:0304H         LINE#         11
+  C:0309H         LINE#         12
+  C:0310H         LINE#         13
+  C:0310H         LINE#         14
+  C:0310H         LINE#         15
+  C:0316H         LINE#         16
+  C:0316H         LINE#         17
+  C:0318H         LINE#         18
+  C:0320H         LINE#         19
+  C:0328H         LINE#         20
+  C:032DH         LINE#         22
+  C:032DH         LINE#         23
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/19/2020  01:44:17  PAGE 5
+
+
+  C:0332H         LINE#         24
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?SLDIV
+  C:02C0H         PUBLIC        ?C?SLDIV
+  -------         ENDMOD        ?C?SLDIV
+
+  -------         MODULE        ?C?ULDIV
+  C:004AH         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+Program Size: data=16.0 xdata=0 code=870
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

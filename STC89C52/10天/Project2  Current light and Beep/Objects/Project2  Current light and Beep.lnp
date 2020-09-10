@@ -1,3 +1,0 @@
-".\Objects\Project2  Current light and Beep.obj" 
-TO ".\Objects\Project2  Current light and Beep" 
-PRINT(".\Listings\Project2  Current light and Beep.m51") RAMSIZE(256) 

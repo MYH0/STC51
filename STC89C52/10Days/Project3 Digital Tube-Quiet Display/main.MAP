@@ -1,0 +1,93 @@
+LX51 LINKER/LOCATER V4.66.97.0                                                          09/10/2020  23:05:11  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.97.0, INVOKED BY:
+C:\KEIL\KEIL-CODE\C51\BIN\LX51.EXE C:\0Practice\Hardware\STC51\STC89C52\10Days\Project3 Digital Tube-Quiet Display\main.
+>> obj TO C:\0Practice\Hardware\STC51\STC89C52\10Days\Project3 Digital Tube-Quiet Display\main.abs
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project3 Digital Tube-Quiet Display\main.obj (MAIN)
+         COMMENT TYPE 1: C51 Compiler
+  C:\KEIL\KEIL-CODE\C51\LIB\C51S.LIB (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project3 Digital Tube-Quiet Display\main.a
+>> bs (MAIN)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   000043H   CODE
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+I:000000H   I:000000H   I:00007FH   000008H   DATA
+
+
+MEMORY MAP OF MODULE:  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project3 Digital Tube-Quiet Display\main.abs (MAIN)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   000008H   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+000003H   000022H   000020H   BYTE   UNIT     CODE           ?CO?MAIN
+000023H   000036H   000014H   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+000037H   000042H   00000CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   C:\0Practice\Hardware\STC51\STC89C52\10Days\Project3 Digital Tube-Quiet Display\main.abs (MAIN)
+>> 
+
+
+FUNCTION/MODULE              BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE  START  STOP  START  STOP
+====================================================
+?C_C51STARTUP               ----- -----  ----- -----
+  +--> MAIN/MAIN
+
+MAIN/MAIN                   ----- -----  ----- -----
+
+
+
+PUBLIC SYMBOLS OF MODULE:  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project3 Digital Tube-Quiet Display\main.abs (MAI
+>> N)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+      00000000H   NUMBER   ---       ?C?CODESEG
+      00000000H   NUMBER   ---       ?C?XDATASEG
+LX51 LINKER/LOCATER V4.66.97.0                                                        09/10/2020  23:05:11  PAGE 2
+
+
+      01000023H   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      01000003H   CODE     ---       D
+      01000023H   CODE     ---       MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  C:\0Practice\Hardware\STC51\STC89C52\10Days\Project3 Digital Tube-Quiet Display\main.abs (MAIN)
+>> 
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       MAIN
+      01000003H   PUBLIC    CODE     ---       D
+      01000023H   PUBLIC    CODE     ---       MAIN
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+
+Program Size: data=9.0 xdata=0 const=0 code=67
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

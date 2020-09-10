@@ -1,18 +1,14 @@
 #include <STC89C5XRC.H>
-#include "Typedef.h"
-#include "STC89_ISP_AUTO.h"
-#include "DelayMs.h"
-
-
-
-
+#include <intrins.h>
+#include <math.h>
+#include "MYH_Drivers_STC89.h"
 void main()
 {
 
+	LED0_On;
 
 	while (1)
 	{
-
 
 	}
 }

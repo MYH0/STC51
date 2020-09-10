@@ -1,3 +1,0 @@
-".\Objects\main.obj" 
-TO ".\Objects\Digital Tube-Quiet Display" 
-PRINT(".\Listings\Digital Tube-Quiet Display.m51") RAMSIZE(256) 

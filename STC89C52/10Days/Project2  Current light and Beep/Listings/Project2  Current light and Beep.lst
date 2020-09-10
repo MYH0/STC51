@@ -1,0 +1,45 @@
+C51 COMPILER V9.60.0.0   PROJECT2__CURRENT_LIGHT_AND_BEEP                                  04/03/2020 11:03:02 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE PROJECT2__CURRENT_LIGHT_AND_BEEP
+OBJECT MODULE PLACED IN .\Objects\Project2  Current light and Beep.obj
+COMPILER INVOKED BY: C:\Keil5 C51\keil5 c51-code\C51\BIN\C51.EXE Project2  Current light and Beep.c OPTIMIZE(9,SPEED) BR
+                    -OWSE DEBUG OBJECTEXTEND PRINT(.\Listings\Project2  Current light and Beep.lst) OBJECT(.\Objects\Project2  Current light 
+                    -and Beep.obj)
+
+line level    source
+
+   1          #include <STC89C5XRC.H>
+   2          #include<intrins.h>
+   3          #define uint unsigned int
+   4          #define uchar unsigned char
+   5          #include<DelayMs.h>
+   6          
+   7          sbit beep = P2 ^ 3;
+   8          
+   9          void main()
+  10          {
+  11   1              uint temp;
+  12   1              temp = 0xfe;
+  13   1              beep = 0;
+  14   1              while (1)
+  15   1              {
+  16   2                      P1 = temp;
+  17   2                      temp = _crol_(temp, 1); 
+  18   2                      DelayMs(80);
+  19   2              }
+  20   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     65    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
