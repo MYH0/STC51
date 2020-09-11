@@ -4,9 +4,10 @@
 #include "MYH_Drivers_STC89.h"
 void main()
 {
-
 	LED0_On;
-	
+	wx = 0;
+	dx = 0;
+
 
 	while (1)
 	{

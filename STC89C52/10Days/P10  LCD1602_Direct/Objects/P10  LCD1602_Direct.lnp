@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\P10  LCD1602_Direct" 
+PRINT(".\Listings\P10  LCD1602_Direct.m51") RAMSIZE(256) 

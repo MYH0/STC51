@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Project0000",
+    "\\P10  LCD1602_Direct",
+    "\\P10  LCD1602_Direct\\MYH_Drivers_STC89",
     "\\Project0000\\MYH_Drivers_STC89"
   ],
-  "SelectedNode": "\\Project0000\\main.c",
+  "SelectedNode": "\\P10  LCD1602_Direct\\MYH_Drivers_STC89\\DigitalTube_Display.h",
   "PreviewInSolutionExplorer": false
 }
