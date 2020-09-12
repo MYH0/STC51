@@ -1,35 +1,35 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              04/08/2020 19:59:04 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              09/12/2020 12:18:07 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN .\Objects\main.obj
-COMPILER INVOKED BY: C:\Keil5 C51\keil5 c51-code\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRIN
-                    -T(.\Listings\main.lst) OBJECT(.\Objects\main.obj)
+COMPILER INVOKED BY: C:\KEIL\KEIL-CODE\C51\BIN\C51.EXE main.c OPTIMIZE(8,SIZE) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\main.lst) TABS(3) OBJECT(.\Objects\main.obj)
 
 line level    source
 
-   1          #include<STC89C5xRC.H>
-   2          #include"STC89_ISP_AUTO.H"
-   3          #include"DelayMs.h"
-   4          #include"DISPLAY_1BIT_SMG.H"
-   5          #include"Disaplay_digital-tube0.h"
-   6          
-   7          void main()
-   8          {
-   9   1              UART1_init();
-  10   1              while (1)
-  11   1              {               
-  12   2                      Display_smg0(6, 5, 4, 3, 2, 1);
-  13   2              }
+   1          #include <STC89C5XRC.H>
+   2          #include <intrins.h>
+   3          #include <math.h>
+   4          #include "MenYuhan_Drivers_STC89.h"
+   5          void main()
+   6          {
+   7   1         STC89_TX_1C_Board_IO_Base_Init();
+   8   1         DigitalTube_Display_6bit(6, 5, 4, 3, 2, 1);
+   9   1      
+  10   1         while (1)
+  11   1         {
+  12   2      
+  13   2         }
   14   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    211    ----
-   CONSTANT SIZE    =     22    ----
+   CODE SIZE        =   1518    ----
+   CONSTANT SIZE    =     23    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      1       6
+   DATA SIZE        =     24      25
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

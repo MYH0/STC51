@@ -1,10 +1,9 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/19/2020  01:44:17  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    09/12/2020  12:20:02  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
-C:\KEIL5 C51\KEIL5 C51-CODE\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj TO .\Objects\Project6 Digital Tub
->> e-Active Display-3Bit StopWatch PRINT (.\Listings\Project6 Digital Tube-Active Display-3Bit StopWatch.m51) RAMSIZE (2
->> 56)
+C:\KEIL\KEIL-CODE\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj TO .\Objects\Project6 Digital Tube-Active D
+>> isplay-3Bit StopWatch PRINT (.\Listings\Project6 Digital Tube-Active Display-3Bit StopWatch.m51) RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
@@ -13,9 +12,9 @@ MEMORY MODEL: SMALL
 INPUT MODULES INCLUDED:
   .\Objects\STARTUP.obj (?C_STARTUP)
   .\Objects\main.obj (MAIN)
-  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C_INIT)
-  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C?SLDIV)
-  C:\KEIL5 C51\KEIL5 C51-CODE\C51\LIB\C51S.LIB (?C?ULDIV)
+  C:\KEIL\KEIL-CODE\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL\KEIL-CODE\C51\LIB\C51S.LIB (?C?SLDIV)
+  C:\KEIL\KEIL-CODE\C51\LIB\C51S.LIB (?C?ULDIV)
 
 
 LINK MAP OF MODULE:  .\Objects\Project6 Digital Tube-Active Display-3Bit StopWatch (?C_STARTUP)
@@ -59,10 +58,10 @@ SEGMENT                          DATA_GROUP
 
 ?PR?MAIN?MAIN                  0008H    0002H
   +--> ?PR?_INIT_TIMER0?MAIN
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/19/2020  01:44:17  PAGE 2
-
-
   +--> ?PR?_DISPLAY_SMG1?MAIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/12/2020  12:20:02  PAGE 2
+
+
 
 ?PR?_INIT_TIMER0?MAIN          000AH    0002H
 
@@ -119,10 +118,10 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project6 Digital Tube-Active Display-3Bit Sto
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0080H         PUBLIC        P0
   D:0090H         PUBLIC        P1
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/19/2020  01:44:17  PAGE 3
-
-
   D:00A0H         PUBLIC        P2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/12/2020  12:20:02  PAGE 3
+
+
   D:00B0H         PUBLIC        P3
   C:0364H         PUBLIC        weixuan
   B:00A8H.7       PUBLIC        EA
@@ -179,10 +178,10 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project6 Digital Tube-Active Display-3Bit Sto
   C:0222H         LINE#         23
   C:0224H         LINE#         24
   C:022BH         LINE#         26
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/19/2020  01:44:17  PAGE 4
-
-
   C:022DH         LINE#         27
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/12/2020  12:20:02  PAGE 4
+
+
   C:0235H         LINE#         28
   C:0237H         LINE#         29
   C:023AH         LINE#         30
@@ -239,10 +238,10 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project6 Digital Tube-Active Display-3Bit Sto
   C:0328H         LINE#         20
   C:032DH         LINE#         22
   C:032DH         LINE#         23
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/19/2020  01:44:17  PAGE 5
-
-
   C:0332H         LINE#         24
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/12/2020  12:20:02  PAGE 5
+
+
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 

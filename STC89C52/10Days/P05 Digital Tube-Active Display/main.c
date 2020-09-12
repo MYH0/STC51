@@ -1,15 +1,14 @@
-#include<STC89C5xRC.H>
-#include"STC89_ISP_AUTO.H"
-#include"DelayMs.h"
-#include"DISPLAY_1BIT_SMG.H"
-#include"Disaplay_digital-tube0.h"
-#include"STC89_ISP_AUTO.H"
-
+#include <STC89C5XRC.H>
+#include <intrins.h>
+#include <math.h>
+#include "MenYuhan_Drivers_STC89.h"
 void main()
 {
-	UART1_init();
+	STC89_TX_1C_Board_IO_Base_Init();
+	DigitalTube_Display_6bit(6, 5, 4, 3, 2, 1);
+
 	while (1)
-	{		
-		Display_smg0(6, 5, 4, 3, 2, 1);
+	{
+
 	}
 }
