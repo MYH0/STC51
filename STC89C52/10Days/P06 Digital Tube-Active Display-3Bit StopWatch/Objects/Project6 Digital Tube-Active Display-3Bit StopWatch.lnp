@@ -1,4 +1,3 @@
-".\Objects\STARTUP.obj",
 ".\Objects\main.obj" 
 TO ".\Objects\Project6 Digital Tube-Active Display-3Bit StopWatch" 
 PRINT(".\Listings\Project6 Digital Tube-Active Display-3Bit StopWatch.m51") RAMSIZE(256) 

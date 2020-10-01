@@ -1,15 +1,14 @@
-#include<reg52.h>
-#include"DelayMs.h"
-#include"Disaplay_digital-tube1.h"
-
-uchar n = 1;
-
-#include"timer0_interrupt_1.h"
+#include <STC89C5XRC.H>
+#include <intrins.h>
+#include <math.h>
+#include "MenYuhan_Drivers_STC89.h"
 
 void main()
 {
-	int shu = 0;
-	init_timer0(50000);
+	STC89_TX_1C_Board_IO_Base_Init();
+	
+	T0_Init(50000);
+	TR0 = 1;
 	while (1)
 	{
 		if (n == 20)
@@ -20,7 +19,7 @@ void main()
 				shu = 0;
 
 		}
-		Display_smg1(shu);
+		DigitalTube_Display_num_3bit(shu);
 	}
 }
 

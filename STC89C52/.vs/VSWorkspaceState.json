@@ -3,12 +3,10 @@
     "",
     "\\0Functions",
     "\\10Days",
-    "\\10Days\\P01  LED\\MenYuhan_Drivers_STC89",
-    "\\10Days\\P03 Digital Tube-Quiet Display\\MenYuhan_Drivers_STC89",
-    "\\10Days\\P04 Digital Tube-Quiet Stopwatch\\MenYuhan_Drivers_STC89",
-    "\\10Days\\P05 Digital Tube-Active Display",
-    "\\10Days\\P05 Digital Tube-Active Display\\MenYuhan_Drivers_STC89"
+    "\\10Days\\P05 Digital Tube-Active Display\\MenYuhan_Drivers_STC89",
+    "\\10Days\\P06 Digital Tube-Active Display-3Bit StopWatch",
+    "\\10Days\\P06 Digital Tube-Active Display-3Bit StopWatch\\MenYuhan_Drivers_STC89"
   ],
-  "SelectedNode": "\\10Days\\P05 Digital Tube-Active Display\\MenYuhan_Drivers_STC89\\STC89_T1_INT3.h",
+  "SelectedNode": "\\10Days\\P06 Digital Tube-Active Display-3Bit StopWatch\\MenYuhan_Drivers_STC89.h",
   "PreviewInSolutionExplorer": false
 }
