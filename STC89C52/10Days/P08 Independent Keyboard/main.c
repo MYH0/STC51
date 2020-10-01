@@ -1,28 +1,27 @@
-#include<reg52.h>
-#include"DelayMs.h"
-
-sbit d1 = P1 ^ 0;
-
-uchar num = 0;
-
-#include"Disaplay_digital-tube1.h"
-#include"Independent_Keyboard.h"
+#include <STC89C5XRC.H>
+#include <intrins.h>
+#include <math.h>
+#include "MenYuhan_Drivers_STC89.h"
 
 void main()
 {
+	STC89_TX_1C_Board_IO_Base_Init();
+
 	wx = 1;
 	P0 = weixuan[0];
 	wx = 0;
 
 	P3 = 0xff;
-	d1 = 1;
+	LED0_Off;
 
 	while (1)
 	{
-		independent_key();
+		Keyboard_Independent();
 
 		dx = 1;
 		P0 = duanxuan[num];
 		dx = 0;
+
+		LED0_Off;
 	}
 }

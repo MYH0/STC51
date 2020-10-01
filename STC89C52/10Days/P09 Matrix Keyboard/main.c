@@ -1,25 +1,17 @@
-#include<reg52.h>
-#include"DelayMs.h"
-
-uchar num, temp;
-
-#include"Disaplay_digital-tube1.h"
-#include"Matrix_Keyboard.h"
+#include <STC89C5XRC.H>
+#include <intrins.h>
+#include <math.h>
+#include "MenYuhan_Drivers_STC89.h"
 
 void main()
 {
-	num = 16;
+	STC89_TX_1C_Board_IO_Base_Init();
 
-	dx = 1;
-	P0 = 0;
-	dx = 0;
-	P0 = 0xff;
-	wx = 1;
-	P0 = 0xc0;
-	wx = 0;
+	num = 41;
 
 	while (1)
 	{
-		display_smg1(matrix_keyboard());
+		Keyboard_4x4();
+		DigitalTube_Display_1bit(6, num);
 	}
 }
