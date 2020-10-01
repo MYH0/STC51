@@ -1,8 +1,8 @@
 /**********************************T1≥ı ºªØ*********************************/
-void Init_T1(uint timer1_long)
+void T1_Init(uint timer1_long)
 {
 //	EA = 1;
-	ET1 = 1;
+//	ET1 = 1;
 //	TMOD = 0X10;
 	TH1 = (65536 - timer1_long) / 256;
 	TL1 = (65536 - timer1_long) % 256;

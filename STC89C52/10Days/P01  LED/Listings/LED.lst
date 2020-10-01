@@ -1,28 +1,31 @@
-C51 COMPILER V9.60.0.0   LED                                                               04/08/2020 18:10:18 PAGE 1   
+C51 COMPILER V9.60.0.0   LED                                                               09/30/2020 23:37:02 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LED
 OBJECT MODULE PLACED IN .\Objects\LED.obj
-COMPILER INVOKED BY: C:\Keil5 C51\keil5 c51-code\C51\BIN\C51.EXE LED.c OPTIMIZE(9,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT
-                    -(.\Listings\LED.lst) OBJECT(.\Objects\LED.obj)
+COMPILER INVOKED BY: C:\KEIL\KEIL-CODE\C51\BIN\C51.EXE LED.c OPTIMIZE(9,SIZE) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\LED.lst) TABS(3) OBJECT(.\Objects\LED.obj)
 
 line level    source
 
-   1          #include <STC89C5xRC.H>
-   2          #include "STC89_ISP_AUTO.H"
-   3          void main()
-   4          {
-   5   1              UART1_init();
-   6   1              P13 = 0;
-   7   1      }
+   1          #include <STC89C5XRC.H>
+   2          #include <intrins.h>
+   3          #include <math.h>
+   4          #include "MenYuhan_Drivers_STC89.h"
+   5          
+   6          void main()
+   7          {
+   8   1         P10 = 0;
+   9   1         P11 = 0;
+  10   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     86    ----
-   CONSTANT SIZE    =   ----    ----
+   CODE SIZE        =   1119    ----
+   CONSTANT SIZE    =     23    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      1    ----
+   DATA SIZE        =     24      25
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

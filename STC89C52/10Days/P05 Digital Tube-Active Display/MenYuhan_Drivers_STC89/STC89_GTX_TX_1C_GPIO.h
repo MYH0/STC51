@@ -1,5 +1,6 @@
 /***************************************预定义*****************************************/
-/****************************************LED*********************/
+/***************************************LED**********************/
+/**************************************IO预定义*/
 sbit LED0 = P1 ^ 0;
 sbit LED1 = P1 ^ 1;
 sbit LED2 = P1 ^ 2;
@@ -8,7 +9,8 @@ sbit LED4 = P1 ^ 4;
 sbit LED5 = P1 ^ 5;
 sbit LED6 = P1 ^ 6;
 sbit LED7 = P1 ^ 7;
-
+/**************************************操作预定义*/
+/*开灯*/
 #define LED0_On LED0=0
 #define LED1_On LED1=0
 #define LED2_On LED2=0
@@ -18,7 +20,7 @@ sbit LED7 = P1 ^ 7;
 #define LED6_On LED6=0
 #define LED7_On LED7=0
 #define LED_ALL_On P1=0x00
-
+/*关灯*/
 #define LED0_Off LED0=1
 #define LED1_Off LED1=1
 #define LED2_Off LED2=1
@@ -28,7 +30,7 @@ sbit LED7 = P1 ^ 7;
 #define LED6_Off LED6=1
 #define LED7_Off LED7=1
 #define LED_ALL_Off P1=0xff
-
+/*反转*/
 #define LED0_Toggle P1^=BIT0
 #define LED1_Toggle P1^=BIT1
 #define LED2_Toggle P1^=BIT2
@@ -40,17 +42,25 @@ sbit LED7 = P1 ^ 7;
 #define LED_ALL_Toggle P1^=BIT8_ALL
 
 /***************************************Beep*****************/
+/**************************************IO预定义*/
 sbit Beep = P2 ^ 3;
-
-#define Beep_On Beep=1
-#define Beep_Off Beep=0
+/**************************************操作预定义*/
+#define Beep_On Beep=0
+#define Beep_Off Beep=1
 #define Beep_Toggle P2^=BIT3
+/***************************************数码管*****************/
+/**************************************IO预定义*/
+sbit wx = P2 ^ 7;
+sbit dx = P2 ^ 6;
+
 /***************************************操作****************************************/
 void STC89_TX_1C_Board_IO_Base_Init()
 {
-	P26 = 0;	//dx
-	P27 = 0;	//wx
+	dx = 0;	//dx
+	wx = 0;	//wx
 
-	LED0_On;
+	EA = 1;
+	ET0 = 1;
+	ET1 = 1;
 }
 

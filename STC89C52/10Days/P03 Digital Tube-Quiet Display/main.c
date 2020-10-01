@@ -1,20 +1,16 @@
-#include<reg52.h>
+#include <STC89C5XRC.H>
+#include <intrins.h>
+#include <math.h>
+#include "MenYuhan_Drivers_STC89.h"
 
-#define uint unsigned int
-#define uchar unsigned char
 
 int code d[] = { 0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,
 0x77,0x7c,0x39,0x5e,0x79,0x71 };
 
-sbit wx = P2 ^ 7;
-sbit dx = P2 ^ 6;
 
 void main()
 {
-	wx = 1;
-	P0 = 0xc0;
-	wx = 0;
-	dx = 1;
-	P0 = d[6];
-	dx = 0;
+	STC89_TX_1C_Board_IO_Base_Init();
+
+	DigitalTube_Display_1bit(3, 6);
 }

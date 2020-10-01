@@ -26,15 +26,16 @@ uchar code weixuan[] =			//左边第一位为bit0
 	0xfb,		//2
 	0xf7,		//3
 	0xef,		//4
-	0xdf		//5
+	0xdf,		//5
+	0xc0		//ALL--6
 };
 /*******************************************全局变量**********************************************/
 /********************************************IO定义************************/
-sbit wx = P2 ^ 7;
-sbit dx = P2 ^ 6;
+//sbit wx = P2 ^ 7;
+//sbit dx = P2 ^ 6;
 /***********************************************操作**********************************************/
 /*******************************************数码管显示1bit******************/
-void DigitalTube_Display_1bit(uchar duan, uchar wei)     //段数据，位数据
+void DigitalTube_Display_1bit(uchar wei, uchar duan)     //位数据，段数据
 {
 	dx = 1;
 	P0 = duanxuan[duan];   //送段数据
@@ -53,17 +54,17 @@ void DigitalTube_Display_num_3bit(uchar shu)
 	shi = shu / 10 % 10;
 	ge = shu % 10;
 
-	DigitalTube_Display_1bit(bai, 0);
-	DigitalTube_Display_1bit(shi, 1);
-	DigitalTube_Display_1bit(ge, 2);
+	DigitalTube_Display_1bit(0, bai);
+	DigitalTube_Display_1bit(1, shi); 
+	DigitalTube_Display_1bit(2, ge);
 }
 /*******************************************数码管显示6bit******************/
 void DigitalTube_Display_6bit(uchar zero, uchar one, uchar two, uchar three, uchar four, uchar five)
 {
-	DigitalTube_Display_1bit(zero, 0);
-	DigitalTube_Display_1bit(one, 1);
-	DigitalTube_Display_1bit(two, 2);
-	DigitalTube_Display_1bit(three, 3);
-	DigitalTube_Display_1bit(four, 4);
-	DigitalTube_Display_1bit(five, 5);
+	DigitalTube_Display_1bit(0, zero);
+	DigitalTube_Display_1bit(1, one);
+	DigitalTube_Display_1bit(2, two);
+	DigitalTube_Display_1bit(3, three);
+	DigitalTube_Display_1bit(4, four);
+	DigitalTube_Display_1bit(5, five);
 }

@@ -1,20 +1,20 @@
 #include <STC89C5XRC.H>
-#include<intrins.h>
-#define uint unsigned int
-#define uchar unsigned char
-#include<DelayMs.h>
+#include <intrins.h>
+#include <math.h>
+#include "MenYuhan_Drivers_STC89.h"
 
-sbit beep = P2 ^ 3;
+uint led_staus;
 
 void main()
 {
-	uint temp;
-	temp = 0xfe;
-	beep = 0;
+	STC89_TX_1C_Board_IO_Base_Init();
+	
+	led_staus = 0xfe;
+	Beep_On;
 	while (1)
 	{
-		P1 = temp;
-		temp = _crol_(temp, 1);	
-		DelayMs(80);
+		P1 = led_staus;
+		led_staus = _crol_(led_staus, 1);
+		Delay_ms(80);
 	}
 }
