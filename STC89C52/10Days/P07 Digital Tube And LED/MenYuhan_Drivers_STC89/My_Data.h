@@ -9,5 +9,7 @@ const uchar LCD1602_Str1[] = "18050100196";
 const uint LCD1602_Num0 = 713;
 
 /***********************************‘§…Ë±‰¡ø****************************************/
-uchar n = 1;
-int shu = 0;
+uchar t0 = 0, t1 = 0;
+uchar flag_t0 = 0, flag_t1 = 0;
+uchar temp = 0xfe;
+uint shu = 432;

@@ -3,7 +3,7 @@ void T0_Init(uint timer0_long)
 {
 //	EA = 1;
 	ET0 = 1;
-	TMOD = 0X01;
+//	TMOD = 0X01;
 	TH0 = (65536 - timer0_long) / 256;
 	TL0 = (65536 - timer0_long) % 256;
 //	TR0 = 1;
@@ -11,7 +11,28 @@ void T0_Init(uint timer0_long)
 /**********************************功能定义**********************************/
 void T0_INT_Func()
 {
-	n++;
+	t0++;
+	if (flag_t0 == 0)
+	{
+		if (t0 == 10)
+		{
+			t0 = 0;
+			temp = _crol_(temp, 1);
+			P1 = temp;
+		}
+	}
+	else
+	{
+		if (t0 % 4 == 0)
+			P1 = ~P1;
+		if (t0 == 60)
+		{
+			TR0 = 0;
+			t0 = 0;
+			P1 = 0xff;
+			flag_t1 = 1;
+		}
+	}
 }
 /************************************中断************************************/
 void T0_INT() interrupt 1

@@ -1,4 +1,3 @@
-".\Objects\STARTUP.obj",
 ".\Objects\main.obj" 
 TO ".\Objects\Project7 Digital Tube And LED" 
 PRINT(".\Listings\Project7 Digital Tube And LED.m51") RAMSIZE(256) 
