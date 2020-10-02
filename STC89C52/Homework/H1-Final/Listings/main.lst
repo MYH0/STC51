@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2020 16:43:52 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2020 16:49:31 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52          void Delay_ms_2()
   53          {
   54   1         unsigned char i, j;
-C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2020 16:43:52 PAGE 2   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2020 16:49:31 PAGE 2   
 
   55   1         _nop_();
   56   1         i = 4;
@@ -126,7 +126,7 @@ line level    source
  114          void STC89_TX_1C_Board_IO_Base_Init()
  115          {
  116   1         dx = 0;  //dx
-C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2020 16:43:52 PAGE 3   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2020 16:49:31 PAGE 3   
 
  117   1         wx = 0;  //wx
  118   1      
@@ -190,7 +190,7 @@ line level    source
  176   1      
  177   1      }
  178          /************************************Ω¯»Î÷–∂œ***********************************/
-C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2020 16:43:52 PAGE 4   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2020 16:49:31 PAGE 4   
 
  179          void EX0_INT() interrupt 0
  180          {
@@ -254,7 +254,7 @@ line level    source
  238             0xfd,    //1
  239             0xfb,    //2
  240             0xf7,    //3
-C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2020 16:43:52 PAGE 5   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2020 16:49:31 PAGE 5   
 
  241             0xef,    //4
  242             0xdf,    //5
@@ -294,71 +294,67 @@ line level    source
  276   1      }
  277          
  278          
- 279          
- 280          
- 281          
- 282          
- 283          void main()
- 284          {
- 285   1         STC89_TX_1C_Board_IO_Base_Init();
- 286   1      
- 287   1         EX0_Init();
- 288   1      
- 289   1         T0_Init(50000);
- 290   1         TMOD = 0X01;
- 291   1      
- 292   1         while (1)
- 293   1         {
- 294   2            while (t0_flag == 1)
- 295   2            {
- 296   3               DigitalTube_Display_Str_Error();
- 297   3            }
- 298   2      
- 299   2            DigitalTube_Display_1bit(0, 0);
- 300   2            Delay_s_1();
- 301   2            while (t0_flag == 1)
- 302   2            {
-C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2020 16:43:52 PAGE 6   
+ 279          void main()
+ 280          {
+ 281   1         STC89_TX_1C_Board_IO_Base_Init();
+ 282   1      
+ 283   1         EX0_Init();
+ 284   1      
+ 285   1         T0_Init(50000);
+ 286   1         TMOD = 0X01;
+ 287   1      
+ 288   1         while (1)
+ 289   1         {
+ 290   2            while (t0_flag == 1)
+ 291   2            {
+ 292   3               DigitalTube_Display_Str_Error();
+ 293   3            }
+ 294   2      
+ 295   2            DigitalTube_Display_1bit(0, 0);
+ 296   2            Delay_s_1();
+ 297   2            while (t0_flag == 1)
+ 298   2            {
+ 299   3               DigitalTube_Display_Str_Error();
+ 300   3            }
+ 301   2      
+ 302   2            DigitalTube_Display_1bit(1, 1);
+C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2020 16:49:31 PAGE 6   
 
- 303   3               DigitalTube_Display_Str_Error();
- 304   3            }
- 305   2      
- 306   2            DigitalTube_Display_1bit(1, 1);
- 307   2            Delay_s_1();
- 308   2            while (t0_flag == 1)
- 309   2            {
- 310   3               DigitalTube_Display_Str_Error();
- 311   3            }
- 312   2      
- 313   2            DigitalTube_Display_1bit(2, 2);
- 314   2            Delay_s_1();
- 315   2            while (t0_flag == 1)
- 316   2            {
- 317   3               DigitalTube_Display_Str_Error();
- 318   3            }
- 319   2      
- 320   2            DigitalTube_Display_1bit(3, 3);
- 321   2            Delay_s_1();
- 322   2            while (t0_flag == 1)
- 323   2            {
- 324   3               DigitalTube_Display_Str_Error();
- 325   3            }
- 326   2      
- 327   2            DigitalTube_Display_1bit(4, 4);
- 328   2            Delay_s_1();
- 329   2            while (t0_flag == 1)
- 330   2            {
- 331   3               DigitalTube_Display_Str_Error();
- 332   3            }
- 333   2      
- 334   2            DigitalTube_Display_1bit(5, 5);
- 335   2            Delay_s_1();
- 336   2            while (t0_flag == 1)
- 337   2            {
- 338   3               DigitalTube_Display_Str_Error();
- 339   3            }
- 340   2         }
- 341   1      }
+ 303   2            Delay_s_1();
+ 304   2            while (t0_flag == 1)
+ 305   2            {
+ 306   3               DigitalTube_Display_Str_Error();
+ 307   3            }
+ 308   2      
+ 309   2            DigitalTube_Display_1bit(2, 2);
+ 310   2            Delay_s_1();
+ 311   2            while (t0_flag == 1)
+ 312   2            {
+ 313   3               DigitalTube_Display_Str_Error();
+ 314   3            }
+ 315   2      
+ 316   2            DigitalTube_Display_1bit(3, 3);
+ 317   2            Delay_s_1();
+ 318   2            while (t0_flag == 1)
+ 319   2            {
+ 320   3               DigitalTube_Display_Str_Error();
+ 321   3            }
+ 322   2      
+ 323   2            DigitalTube_Display_1bit(4, 4);
+ 324   2            Delay_s_1();
+ 325   2            while (t0_flag == 1)
+ 326   2            {
+ 327   3               DigitalTube_Display_Str_Error();
+ 328   3            }
+ 329   2      
+ 330   2            DigitalTube_Display_1bit(5, 5);
+ 331   2            Delay_s_1();
+ 332   2            while (t0_flag == 1)
+ 333   2            {
+ 334   3               DigitalTube_Display_Str_Error();
+ 335   3            }
+ 336   2         }
+ 337   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
