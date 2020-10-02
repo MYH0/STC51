@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\P11 External INT" 
+PRINT(".\Listings\P11 External INT.m51") RAMSIZE(256) 
