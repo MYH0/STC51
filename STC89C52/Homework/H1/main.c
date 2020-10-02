@@ -2,6 +2,7 @@
 #include <intrins.h>
 #include <math.h>
 #include "MenYuhan_Drivers_STC89.h"
+
 void main()
 {
 	STC89_TX_1C_Board_IO_Base_Init();
@@ -15,16 +16,44 @@ void main()
 	{
 		DigitalTube_Display_1bit(0, 0);
 		Delay_s_1();
+		while (t0_flag == 1)
+		{
+			DigitalTube_Display_Str_Error();
+		}
+
 		DigitalTube_Display_1bit(1, 1);
 		Delay_s_1();
+		while (t0_flag == 1)
+		{
+			DigitalTube_Display_Str_Error();
+		}
+
 		DigitalTube_Display_1bit(2, 2);
 		Delay_s_1();
+		while (t0_flag == 1)
+		{
+			DigitalTube_Display_Str_Error();
+		}
+
 		DigitalTube_Display_1bit(3, 3);
 		Delay_s_1();
+		while (t0_flag == 1)
+		{
+			DigitalTube_Display_Str_Error();
+		}
+
 		DigitalTube_Display_1bit(4, 4);
 		Delay_s_1();
+		while (t0_flag == 1)
+		{
+			DigitalTube_Display_Str_Error();
+		}
+
 		DigitalTube_Display_1bit(5, 5);
 		Delay_s_1();
-
+		while (t0_flag == 1)
+		{
+			DigitalTube_Display_Str_Error();
+		}
 	}
 }

@@ -15,7 +15,7 @@ void T0_INT_Func()
 	if (n == 60)
 	{
 		n = 0;
-		error_flag = 0;
+		t0_flag = 0;
 		TR0 = 0;
 	}
 }

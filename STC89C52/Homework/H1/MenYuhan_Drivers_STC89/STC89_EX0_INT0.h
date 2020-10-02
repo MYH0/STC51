@@ -10,13 +10,14 @@ void EX0_Init()
 /************************************中断功能***********************************/
 void EX0_Func()
 {
+	t0_flag = 1;
 	TR0 = 1;
-	while (1)
-	{
-		DigitalTube_Display_Str_Error();
-		if (error_flag == 0)
-			break;
-	}
+	//while (1)
+	//{
+	//	DigitalTube_Display_Str_Error();
+	//	if (error_flag == 0)
+	//		break;
+	//}
 	
 }
 /************************************进入中断***********************************/
