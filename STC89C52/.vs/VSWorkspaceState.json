@@ -4,10 +4,11 @@
     "\\0Functions",
     "\\10Days",
     "\\Homework",
-    "\\Homework\\H1",
-    "\\Homework\\H1-Final",
-    "\\Homework\\H1\\MenYuhan_Drivers_STC89"
+    "\\Homework\\H1\\MenYuhan_Drivers_STC89",
+    "\\Homework\\H2",
+    "\\Homework\\H2-Final",
+    "\\Homework\\H2\\MenYuhan_Drivers_STC89"
   ],
-  "SelectedNode": "\\Homework\\H1\\main.c",
+  "SelectedNode": "\\Homework\\H2\\main.c",
   "PreviewInSolutionExplorer": false
 }

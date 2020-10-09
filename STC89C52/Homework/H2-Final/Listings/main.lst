@@ -1,0 +1,286 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              10/09/2020 23:42:18 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\KEIL\KEIL-CODE\C51\BIN\C51.EXE main.c OPTIMIZE(9,SIZE) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\main.lst) TABS(3) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <STC89C5XRC.H>
+   2          #include <intrins.h>
+   3          #include <math.h>
+   4          
+   5          typedef unsigned int uint;
+   6          typedef unsigned char uchar;
+   7          
+   8          #define BIT0 1<<0
+   9          #define BIT1 1<<1
+  10          #define BIT2 1<<2
+  11          #define BIT3 1<<3
+  12          
+  13          #define BIT4 1<<4
+  14          #define BIT5 1<<5
+  15          #define BIT6 1<<6
+  16          #define BIT7 1<<7
+  17          
+  18          #define BIT8_ALL 0xff
+  19          
+  20          /*************************************注意******************************************/
+  21          //data是C51关键字
+  22          /***********************************预装数据****************************************/
+  23          /************************************数码管*********************/
+  24          uchar code HELLO[] = { 17,14,21,21,24,41 };
+  25          /************************************LCD1602*******************/
+  26          const uchar LCD1602_Str0[] = "Men Yuhan";
+  27          const uchar LCD1602_Str1[] = "18050100196";
+  28          const uint LCD1602_Num0 = 713;
+  29          
+  30          /***********************************预设变量****************************************/
+  31          uint pwm_count = 0;     //控制高低电平;1xpwm_count==200;1--H,2、3、4、5--L
+  32          uint period_count = 0;  //控制LED切换;1xperiod_count==5xpwm_count
+  33          uint led_num = 0;
+  34          
+  35          //f=11.0592MHz
+  36          /******************************************粗略延时***********************************/
+  37          void Delay_ms(uint time_ms)
+  38          {
+  39   1         uint i, j;
+  40   1         for (i = 0; i < time_ms; i++)
+  41   1            for (j = 0; j < 113; j++);
+  42   1      }
+  43          /******************************************较为精准延时********************************/
+  44          /***********************************************ms*****************/
+  45          void Delay_ms_1()
+  46          {
+  47   1         unsigned char i, j;
+  48   1         _nop_();
+  49   1         i = 2;
+  50   1         j = 199;
+  51   1         do
+  52   1         {
+  53   2            while (--j);
+  54   2         } while (--i);
+C51 COMPILER V9.60.0.0   MAIN                                                              10/09/2020 23:42:18 PAGE 2   
+
+  55   1      }
+  56          
+  57          void Delay_ms_2()
+  58          {
+  59   1         unsigned char i, j;
+  60   1         _nop_();
+  61   1         i = 4;
+  62   1         j = 146;
+  63   1         do
+  64   1         {
+  65   2            while (--j);
+  66   2         } while (--i);
+  67   1      }
+  68          
+  69          void Delay_ms_5()
+  70          {
+  71   1         unsigned char i, j;
+  72   1         i = 9;
+  73   1         j = 244;
+  74   1         do
+  75   1         {
+  76   2            while (--j);
+  77   2         } while (--i);
+  78   1      }
+  79          /***********************************************s******************/
+  80          void Delay_s_0_5()
+  81          {
+  82   1         unsigned char i, j, k;
+  83   1      
+  84   1         _nop_();
+  85   1         i = 4;
+  86   1         j = 129;
+  87   1         k = 119;
+  88   1         do
+  89   1         {
+  90   2            do
+  91   2            {
+  92   3               while (--k);
+  93   3            } while (--j);
+  94   2         } while (--i);
+  95   1      }
+  96          
+  97          void Delay_s_1()
+  98          {
+  99   1         unsigned char i, j, k;
+ 100   1      
+ 101   1         _nop_();
+ 102   1         i = 8;
+ 103   1         j = 1;
+ 104   1         k = 243;
+ 105   1         do
+ 106   1         {
+ 107   2            do
+ 108   2            {
+ 109   3               while (--k);
+ 110   3            } while (--j);
+ 111   2         } while (--i);
+ 112   1      }
+ 113          
+ 114          /***************************************预定义*****************************************/
+ 115          /***************************************LED**********************/
+ 116          /**************************************IO预定义*/
+C51 COMPILER V9.60.0.0   MAIN                                                              10/09/2020 23:42:18 PAGE 3   
+
+ 117          sbit LED0 = P1 ^ 0;
+ 118          sbit LED1 = P1 ^ 1;
+ 119          sbit LED2 = P1 ^ 2;
+ 120          sbit LED3 = P1 ^ 3;
+ 121          sbit LED4 = P1 ^ 4;
+ 122          sbit LED5 = P1 ^ 5;
+ 123          sbit LED6 = P1 ^ 6;
+ 124          sbit LED7 = P1 ^ 7;
+ 125          /**************************************操作预定义*/
+ 126          /*开灯*/
+ 127          #define LED0_On LED0=0
+ 128          #define LED1_On LED1=0
+ 129          #define LED2_On LED2=0
+ 130          #define LED3_On LED3=0
+ 131          #define LED4_On LED4=0
+ 132          #define LED5_On LED5=0
+ 133          #define LED6_On LED6=0
+ 134          #define LED7_On LED7=0
+ 135          #define LED_ALL_On P1=0x00
+ 136          /*关灯*/
+ 137          #define LED0_Off LED0=1
+ 138          #define LED1_Off LED1=1
+ 139          #define LED2_Off LED2=1
+ 140          #define LED3_Off LED3=1
+ 141          #define LED4_Off LED4=1
+ 142          #define LED5_Off LED5=1
+ 143          #define LED6_Off LED6=1
+ 144          #define LED7_Off LED7=1
+ 145          #define LED_ALL_Off P1=0xff
+ 146          /*反转*/
+ 147          #define LED0_Toggle P1^=BIT0
+ 148          #define LED1_Toggle P1^=BIT1
+ 149          #define LED2_Toggle P1^=BIT2
+ 150          #define LED3_Toggle P1^=BIT3
+ 151          #define LED4_Toggle P1^=BIT4
+ 152          #define LED5_Toggle P1^=BIT5
+ 153          #define LED6_Toggle P1^=BIT6
+ 154          #define LED7_Toggle P1^=BIT7
+ 155          #define LED_ALL_Toggle P1^=BIT8_ALL
+ 156          
+ 157          /***************************************Beep*****************/
+ 158          /**************************************IO预定义*/
+ 159          sbit Beep = P2 ^ 3;
+ 160          /**************************************操作预定义*/
+ 161          #define Beep_On Beep=0
+ 162          #define Beep_Off Beep=1
+ 163          #define Beep_Toggle P2^=BIT3
+ 164          /***************************************数码管*****************/
+ 165          sbit wx = P2 ^ 7;
+ 166          sbit dx = P2 ^ 6;
+ 167          /***************************************独立按键****************/
+ 168          sbit Key_i0 = P3 ^ 4;
+ 169          sbit Key_i1 = P3 ^ 5;
+ 170          sbit Key_i2 = P3 ^ 6;
+ 171          sbit Key_i3 = P3 ^ 7;
+ 172          /***************************************操作****************************************/
+ 173          void STC89_TX_1C_Board_IO_Base_Init()
+ 174          {
+ 175   1         dx = 0;  //dx
+ 176   1         wx = 0;  //wx
+ 177   1      
+ 178   1         EA = 1;
+C51 COMPILER V9.60.0.0   MAIN                                                              10/09/2020 23:42:18 PAGE 4   
+
+ 179   1      }
+ 180          
+ 181          /**********************************T0初始化*********************************/
+ 182          void T0_Init(uint timer0_long)
+ 183          {
+ 184   1         // EA = 1;
+ 185   1         ET0 = 1;
+ 186   1         // TMOD = 0X01;
+ 187   1         TH0 = (65536 - timer0_long) / 256;
+ 188   1         TL0 = (65536 - timer0_long) % 256;
+ 189   1         // TR0 = 1;
+ 190   1      }
+ 191          /**********************************功能定义**********************************/
+ 192          void T0_INT_Func()
+ 193          {
+ 194   1         pwm_count++;
+ 195   1         if (pwm_count >= 5)
+ 196   1         {
+ 197   2            pwm_count = 0;
+ 198   2            period_count++;
+ 199   2            if (period_count >= 60)
+ 200   2            {
+ 201   3               period_count = 0;
+ 202   3               led_num++;
+ 203   3               if (led_num >= 8)
+ 204   3                  led_num = 0;
+ 205   3            }
+ 206   2         }
+ 207   1      
+ 208   1         if (pwm_count == 0)
+ 209   1         {
+ 210   2            switch (led_num)
+ 211   2            {
+ 212   3            case 0:LED0_On; break;
+ 213   3            case 1:LED1_On; break;
+ 214   3            case 2:LED2_On; break;
+ 215   3            case 3:LED3_On; break;
+ 216   3            case 4:LED4_On; break;
+ 217   3            case 5:LED5_On; break;
+ 218   3            case 6:LED6_On; break;
+ 219   3            case 7:LED7_On; break;
+ 220   3            default:break;
+ 221   3            }
+ 222   2         }
+ 223   1         else
+ 224   1            LED_ALL_Off;
+ 225   1      
+ 226   1      }
+ 227          /************************************中断************************************/
+ 228          void T0_INT() interrupt 1
+ 229          {
+ 230   1         /*****修改定时的时长*****/
+ 231   1         uint time_long0;
+ 232   1         time_long0 = 200;
+ 233   1         /*****装载定时的时长*****/
+ 234   1         TH0 = (65536 - time_long0) / 256;
+ 235   1         TL0 = (65536 - time_long0) % 256;
+ 236   1         /*****中断功能*****/
+ 237   1         T0_INT_Func();
+ 238   1      }
+ 239          
+ 240          void main()
+C51 COMPILER V9.60.0.0   MAIN                                                              10/09/2020 23:42:18 PAGE 5   
+
+ 241          {
+ 242   1         STC89_TX_1C_Board_IO_Base_Init();
+ 243   1      
+ 244   1         T0_Init(200);
+ 245   1         TMOD = 0X01;
+ 246   1         TR0 = 1;
+ 247   1      
+ 248   1         LED0_On;
+ 249   1      
+ 250   1         while (1)
+ 251   1         {
+ 252   2      
+ 253   2         }
+ 254   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    383    ----
+   CONSTANT SIZE    =      6    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     30       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
