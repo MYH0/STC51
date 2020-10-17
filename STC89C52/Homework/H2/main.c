@@ -1,4 +1,5 @@
-#include <STC12C5A60S2.H>
+//#include <STC12C5A60S2.H>
+#include <STC89C5xRC.H>
 #include <intrins.h>
 #include <math.h>
 #include "MenYuhan_Drivers_STC89.h"
@@ -16,36 +17,36 @@ void main()
 	while (1)
 	{
 		LED0_On;
-		Delay_ms(500);
-		LED0_Off;
+		Delay_s_0_5();
+		LED_ALL_Off;
 
 		LED1_On;
-		Delay_ms(500);
-		LED1_Off;
+		Delay_s_0_5();
+		LED_ALL_Off;
 
 		LED2_On;
-		Delay_ms(500);
-		LED2_Off;
+		Delay_s_0_5();
+		LED_ALL_Off;
 
 		LED3_On;
-		Delay_ms(500);
-		LED3_Off;
+		Delay_s_0_5();
+		LED_ALL_Off;
 
 		LED4_On;
-		Delay_ms(500);
-		LED4_Off;
+		Delay_s_0_5();
+		LED_ALL_Off;
 
 		LED5_On;
-		Delay_ms(500);
-		LED5_Off;
+		Delay_s_0_5();
+		LED_ALL_Off;
 
 		LED6_On;
-		Delay_ms(500);
-		LED6_Off;
+		Delay_s_0_5();
+		LED_ALL_Off;
 
 		LED7_On;
-		Delay_ms(500);
-		LED7_Off;
+		Delay_s_0_5();
+		LED_ALL_Off;
 
 
 
