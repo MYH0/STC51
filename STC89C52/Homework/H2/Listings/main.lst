@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              10/09/2020 23:30:40 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 11:26:43 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -8,35 +8,62 @@ COMPILER INVOKED BY: C:\KEIL\KEIL-CODE\C51\BIN\C51.EXE main.c OPTIMIZE(9,SIZE) B
 
 line level    source
 
-   1          #include <STC89C5XRC.H>
+   1          #include <STC12C5A60S2.H>
    2          #include <intrins.h>
    3          #include <math.h>
    4          #include "MenYuhan_Drivers_STC89.h"
-   5          void main()
-   6          {
-   7   1         STC89_TX_1C_Board_IO_Base_Init();
-   8   1      
-   9   1         T0_Init(200);
-  10   1         TMOD = 0X01;
-  11   1         TR0 = 1;
-  12   1      
-  13   1         LED0_On;
-  14   1      
-  15   1         while (1)
-  16   1         {
-  17   2      
-  18   2         }
-  19   1      }
+   5          
+   6          void main()
+   7          {
+   8   1         STC89_TX_1C_Board_IO_Base_Init();
+   9   1      
+  10   1         T0_Init(250);
+  11   1         TMOD = 0X01;
+  12   1         TR0 = 1;
+  13   1      
+  14   1         
+  15   1      
+  16   1         while (1)
+  17   1         {
+  18   2            LED0_On;
+  19   2            Delay_ms(500);
+  20   2      
+  21   2            LED1_On;
+  22   2            Delay_ms(500);
+  23   2      
+  24   2            LED2_On;
+  25   2            Delay_ms(500);
+  26   2      
+  27   2            LED3_On;
+  28   2            Delay_ms(500);
+  29   2      
+  30   2            LED4_On;
+  31   2            Delay_ms(500);
+  32   2      
+  33   2            LED5_On;
+  34   2            Delay_ms(500);
+  35   2      
+  36   2            LED6_On;
+  37   2            Delay_ms(500);
+  38   2      
+  39   2            LED7_On;
+  40   2            Delay_ms(500);
+  41   2      
+  42   2      
+  43   2         }
+  44   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1353    ----
+   CODE SIZE        =   1294    ----
    CONSTANT SIZE    =     55    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =     30      25
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
+C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 11:26:43 PAGE 2   
+
 END OF MODULE INFORMATION.
 
 

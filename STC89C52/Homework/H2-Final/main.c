@@ -1,6 +1,7 @@
-#include <STC89C5XRC.H>
+#include <STC12C5A60S2.H>
 #include <intrins.h>
 #include <math.h>
+
 
 typedef unsigned int uint;
 typedef unsigned char uchar;
@@ -192,36 +193,13 @@ void T0_Init(uint timer0_long)
 void T0_INT_Func()
 {
 	pwm_count++;
-	if (pwm_count >= 5)
-	{
-		pwm_count = 0;
-		period_count++;
-		if (period_count >= 60)
-		{
-			period_count = 0;
-			led_num++;
-			if (led_num >= 8)
-				led_num = 0;
-		}
-	}
 
+	if (pwm_count >= 5)
+		pwm_count = 0;
 	if (pwm_count == 0)
-	{
-		switch (led_num)
-		{
-		case 0:LED0_On; break;
-		case 1:LED1_On; break;
-		case 2:LED2_On; break;
-		case 3:LED3_On; break;
-		case 4:LED4_On; break;
-		case 5:LED5_On; break;
-		case 6:LED6_On; break;
-		case 7:LED7_On; break;
-		default:break;
-		}
-	}
+		P00 = 1;
 	else
-		LED_ALL_Off;
+		P00 = 0;
 
 }
 /************************************ÖÐ¶Ï************************************/
@@ -237,6 +215,8 @@ void T0_INT() interrupt 1
 	T0_INT_Func();
 }
 
+
+
 void main()
 {
 	STC89_TX_1C_Board_IO_Base_Init();
@@ -245,10 +225,42 @@ void main()
 	TMOD = 0X01;
 	TR0 = 1;
 
-	LED0_On;
+
 
 	while (1)
 	{
+		LED0_On;
+		Delay_ms(500);
+		LED0_Off;
+
+		LED1_On;
+		Delay_ms(500);
+		LED1_Off;
+
+		LED2_On;
+		Delay_ms(500);
+		LED2_Off;
+
+		LED3_On;
+		Delay_ms(500);
+		LED3_Off;
+
+		LED4_On;
+		Delay_ms(500);
+		LED4_Off;
+
+		LED5_On;
+		Delay_ms(500);
+		LED5_Off;
+
+		LED6_On;
+		Delay_ms(500);
+		LED6_Off;
+
+		LED7_On;
+		Delay_ms(500);
+		LED7_Off;
+
 
 	}
 }

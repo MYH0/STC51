@@ -10,7 +10,7 @@ void main()
 	STC89_TX_1C_Board_IO_Base_Init();
 	
 	led_staus = 0xfe;
-	Beep_On;
+	//Beep_On;
 	while (1)
 	{
 		P1 = led_staus;
