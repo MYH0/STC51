@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\H4" 
+PRINT(".\Listings\H4.m51") RAMSIZE(256) 

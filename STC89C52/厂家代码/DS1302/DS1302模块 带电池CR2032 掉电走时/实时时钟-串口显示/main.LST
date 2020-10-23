@@ -1,0 +1,282 @@
+C51 COMPILER V7.50   MAIN                                                                  10/20/2011 16:20:12 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*******************说明:**************************
+   2          将实时时钟数据通过串口发送
+   3          --------------------------------------------------
+   4          基于战神单片机工作室51/AVR最小系统板及DS1302
+   5          实时时钟模块编写
+   6          淘宝店铺地址: http://zsmcu.taobao.com/
+   7          QQ:284083167
+   8          手机:15016732495
+   9          **************************************************/
+  10          #include <reg52.h>
+  11          #define uchar unsigned char
+  12          #define uint  unsigned int
+  13          //DS1302引脚定义,可根据实际情况自行修改端口定义
+  14          sbit RST=P1^3;
+  15          sbit IO=P1^2;
+  16          sbit SCK=P1^1;
+  17          //DS1302地址定义
+  18          #define ds1302_sec_add                  0x80            //秒数据地址
+  19          #define ds1302_min_add                  0x82            //分数据地址
+  20          #define ds1302_hr_add                   0x84            //时数据地址
+  21          #define ds1302_date_add                 0x86            //日数据地址
+  22          #define ds1302_month_add                0x88            //月数据地址
+  23          #define ds1302_day_add                  0x8a            //星期数据地址
+  24          #define ds1302_year_add                 0x8c            //年数据地址
+  25          #define ds1302_control_add              0x8e            //控制数据地址
+  26          #define ds1302_charger_add              0x90                                     
+  27          #define ds1302_clkburst_add             0xbe
+  28          //初始时间定义
+  29          uchar time_buf[8] = {0x20,0x10,0x09,0x14,0x23,0x59,0x50,0x02};//初始时间
+  30          uchar readtime[14];//当前时间
+  31          uchar sec_buf=0;  //秒缓存
+  32          uchar sec_flag=0; //秒标志位
+  33          //功能:延时1毫秒
+  34          //入口参数:x
+  35          //出口参数:无
+  36          //说明:晶振为12M
+  37          void Delay_xms(uint x)
+  38          {
+  39   1        uint i,j;
+  40   1        for(i=0;i<x;i++)
+  41   1          for(j=0;j<112;j++);
+  42   1      }
+  43          //DS1302初始化函数
+  44          void ds1302_init(void) 
+  45          {
+  46   1              RST=0;                  //RST脚置低
+  47   1              SCK=0;                  //SCK脚置低
+  48   1      }
+  49          //向DS1302写入一字节数据
+  50          void ds1302_write_byte(uchar addr, uchar d) 
+  51          {
+  52   1              uchar i;
+  53   1              RST=1;                                  //启动DS1302总线        
+  54   1              //写入目标地址：addr
+  55   1              addr = addr & 0xFE;   //最低位置零，寄存器0位为0时写，为1时读
+C51 COMPILER V7.50   MAIN                                                                  10/20/2011 16:20:12 PAGE 2   
+
+  56   1              for (i = 0; i < 8; i ++) {
+  57   2                      if (addr & 0x01) {
+  58   3                              IO=1;
+  59   3                              }
+  60   2                      else {
+  61   3                              IO=0;
+  62   3                              }
+  63   2                      SCK=1;      //产生时钟
+  64   2                      SCK=0;
+  65   2                      addr = addr >> 1;
+  66   2                      }       
+  67   1              //写入数据：d
+  68   1              for (i = 0; i < 8; i ++) {
+  69   2                      if (d & 0x01) {
+  70   3                              IO=1;
+  71   3                              }
+  72   2                      else {
+  73   3                              IO=0;
+  74   3                              }
+  75   2                      SCK=1;    //产生时钟
+  76   2                      SCK=0;
+  77   2                      d = d >> 1;
+  78   2                      }
+  79   1              RST=0;          //停止DS1302总线
+  80   1      }
+  81          
+  82          //从DS1302读出一字节数据
+  83          uchar ds1302_read_byte(uchar addr) {
+  84   1      
+  85   1              uchar i,temp;   
+  86   1              RST=1;                                  //启动DS1302总线
+  87   1              //写入目标地址：addr
+  88   1              addr = addr | 0x01;    //最低位置高，寄存器0位为0时写，为1时读
+  89   1              for (i = 0; i < 8; i ++) {
+  90   2                      if (addr & 0x01) {
+  91   3                              IO=1;
+  92   3                              }
+  93   2                      else {
+  94   3                              IO=0;
+  95   3                              }
+  96   2                      SCK=1;
+  97   2                      SCK=0;
+  98   2                      addr = addr >> 1;
+  99   2                      }       
+ 100   1              //输出数据：temp
+ 101   1              for (i = 0; i < 8; i ++) {
+ 102   2                      temp = temp >> 1;
+ 103   2                      if (IO) {
+ 104   3                              temp |= 0x80;
+ 105   3                              }
+ 106   2                      else {
+ 107   3                              temp &= 0x7F;
+ 108   3                              }
+ 109   2                      SCK=1;
+ 110   2                      SCK=0;
+ 111   2                      }       
+ 112   1              RST=0;                                  //停止DS1302总线
+ 113   1              return temp;
+ 114   1      }
+ 115          //向DS302写入时钟数据
+ 116          void ds1302_write_time(void) 
+ 117          {
+C51 COMPILER V7.50   MAIN                                                                  10/20/2011 16:20:12 PAGE 3   
+
+ 118   1              ds1302_write_byte(ds1302_control_add,0x00);                     //关闭写保护 
+ 119   1              ds1302_write_byte(ds1302_sec_add,0x80);                         //暂停时钟 
+ 120   1              //ds1302_write_byte(ds1302_charger_add,0xa9);       //涓流充电 
+ 121   1              ds1302_write_byte(ds1302_year_add,time_buf[1]);         //年 
+ 122   1              ds1302_write_byte(ds1302_month_add,time_buf[2]);        //月 
+ 123   1              ds1302_write_byte(ds1302_date_add,time_buf[3]);         //日 
+ 124   1              ds1302_write_byte(ds1302_hr_add,time_buf[4]);           //时 
+ 125   1              ds1302_write_byte(ds1302_min_add,time_buf[5]);          //分
+ 126   1              ds1302_write_byte(ds1302_sec_add,time_buf[6]);          //秒
+ 127   1              ds1302_write_byte(ds1302_day_add,time_buf[7]);          //周 
+ 128   1              ds1302_write_byte(ds1302_control_add,0x80);                     //打开写保护     
+ 129   1      }
+ 130          //从DS302读出时钟数据
+ 131          void ds1302_read_time(void)  
+ 132          {
+ 133   1              time_buf[1]=ds1302_read_byte(ds1302_year_add);          //年 
+ 134   1              time_buf[2]=ds1302_read_byte(ds1302_month_add);         //月 
+ 135   1              time_buf[3]=ds1302_read_byte(ds1302_date_add);          //日 
+ 136   1              time_buf[4]=ds1302_read_byte(ds1302_hr_add);            //时 
+ 137   1              time_buf[5]=ds1302_read_byte(ds1302_min_add);           //分 
+ 138   1              time_buf[6]=(ds1302_read_byte(ds1302_sec_add))&0x7f;//秒，屏蔽秒的第7位，避免超出59
+ 139   1              time_buf[7]=ds1302_read_byte(ds1302_day_add);           //周    
+ 140   1      }
+ 141          //串口初始化(系统晶振为12MHz)
+ 142          void Uart_init(uchar Baud_flag)
+ 143          {
+ 144   1         TMOD = 0x20;       //T1 2
+ 145   1         PCON = 0x00;       //SMOD = 0
+ 146   1         SCON = 0x50;       //串口1 8
+ 147   1         switch(Baud_flag)
+ 148   1         {    
+ 149   2          case 0x00:        //2400 11.0592M:0xf4
+ 150   2                TH1=0xf3;
+ 151   2                TL1=0xf3;
+ 152   2              break;
+ 153   2              case 0x01:        //4800 11.0592M:0xfa
+ 154   2                TH1=0xf9;
+ 155   2                TL1=0xf9;
+ 156   2              break;
+ 157   2          case 0x02:        //9600 11.0592M:0xfd
+ 158   2                TH1=0xfd;
+ 159   2                TL1=0xfd;
+ 160   2              break;
+ 161   2          case 0x03:        //19200 11.0592M:0xfe
+ 162   2            TH1=0xfd;
+ 163   2                TL1=0xfd;
+ 164   2          break;
+ 165   2              default:          //默认为2400
+ 166   2                TH1=0xf3;
+ 167   2                TL1=0xf3;
+ 168   2              break;
+ 169   2         }
+ 170   1         TR1 = 1;               //启动定时器1                                                         
+ 171   1         ES=1;              //开串口中断
+ 172   1         EA=1;              //开总中断       
+ 173   1      }
+ 174          //串口发送
+ 175          void Send_char(uchar ch)
+ 176          {
+ 177   1       SBUF=ch; 
+ 178   1       while(!TI);      //等待发送完毕
+ 179   1       TI=0;           //清中断
+C51 COMPILER V7.50   MAIN                                                                  10/20/2011 16:20:12 PAGE 4   
+
+ 180   1      }
+ 181          //主函数
+ 182          void main(void)
+ 183          { 
+ 184   1       Delay_xms(50);//等待系统稳定
+ 185   1       ds1302_init(); //DS1302初始化
+ 186   1       Uart_init(0); //波特率初始化为2400
+ 187   1       Delay_xms(10);
+ 188   1       ds1302_write_time(); //写入初始值
+ 189   1       while(1)
+ 190   1        { 
+ 191   2        ds1302_read_time();  //读取时间 
+ 192   2        readtime[0]=(time_buf[0]>>4);   //分离出年千位
+ 193   2        readtime[1]=(time_buf[0]&0x0F); //分离出年百位 
+ 194   2        readtime[2]=(time_buf[1]>>4);   //分离出年十位
+ 195   2        readtime[3]=(time_buf[1]&0x0F); //分离出年个位 
+ 196   2      
+ 197   2        readtime[4]=(time_buf[2]>>4);   //分离出月十位
+ 198   2        readtime[5]=(time_buf[2]&0x0F); //分离出月个位 
+ 199   2      
+ 200   2        readtime[6]=(time_buf[3]>>4);   //分离出日十位
+ 201   2        readtime[7]=(time_buf[3]&0x0F); //分离出日个位 
+ 202   2      
+ 203   2        readtime[8]=(time_buf[4]>>4);   //分离出小时十位
+ 204   2        readtime[9]=(time_buf[4]&0x0F); //分离出小时个位 
+ 205   2        readtime[10]=(time_buf[5]>>4);   //分离出分钟十位
+ 206   2        readtime[11]=(time_buf[5]&0x0F); //分离出分钟个位
+ 207   2        readtime[12]=(time_buf[6]>>4);   //分离出秒钟十位
+ 208   2        readtime[13]=(time_buf[6]&0x0F); //分离出秒钟个位   
+ 209   2        if(readtime[13]!=sec_buf)       
+ 210   2         { 
+ 211   3          EA=0;
+ 212   3          sec_flag=0;    
+ 213   3              sec_buf=readtime[13];      
+ 214   3          Send_char(readtime[0]+'0');//年
+ 215   3              Send_char(readtime[1]+'0');     
+ 216   3          Send_char(readtime[2]+'0');
+ 217   3              Send_char(readtime[3]+'0');    
+ 218   3      
+ 219   3              Send_char('-');
+ 220   3      
+ 221   3          Send_char(readtime[4]+'0');//月
+ 222   3              Send_char(readtime[5]+'0');
+ 223   3      
+ 224   3              Send_char('-');
+ 225   3      
+ 226   3          Send_char(readtime[6]+'0');//日
+ 227   3              Send_char(readtime[7]+'0');
+ 228   3      
+ 229   3              Send_char(' ');
+ 230   3      
+ 231   3              Send_char(readtime[8]+'0');//时
+ 232   3              Send_char(readtime[9]+'0');
+ 233   3      
+ 234   3              Send_char(':');
+ 235   3      
+ 236   3              Send_char(readtime[10]+'0');//分
+ 237   3              Send_char(readtime[11]+'0');
+ 238   3      
+ 239   3              Send_char(':');
+ 240   3      
+ 241   3              Send_char(readtime[12]+'0');//秒
+C51 COMPILER V7.50   MAIN                                                                  10/20/2011 16:20:12 PAGE 5   
+
+ 242   3              Send_char(readtime[13]+'0');
+ 243   3      
+ 244   3              SBUF='\n';
+ 245   3          while(!TI);      //等待发送完毕
+ 246   3          TI=0;           //清中断
+ 247   3              EA=1;           
+ 248   3         }
+ 249   2         Delay_xms(1000);
+ 250   2        }
+ 251   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    623    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     24    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

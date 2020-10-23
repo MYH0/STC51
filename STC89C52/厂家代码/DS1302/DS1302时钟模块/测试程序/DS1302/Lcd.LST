@@ -1,0 +1,142 @@
+C51 COMPILER V9.01   LCD                                                                   10/09/2011 21:18:49 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LCD
+OBJECT MODULE PLACED IN Lcd.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Lcd.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*
+   2           * 1602液晶显示模块
+   3           *
+   4           * AUTHOR                       WHAT            DATE
+   5           * Huafeng Lin          created         2011/10/08
+   6           * Huafeng Lin          modified        2011/10/08
+   7           *
+   8           */
+   9          
+  10          #include"Lcd.h"
+  11          
+  12          sbit RS=P0^2;  
+  13          sbit RW=P0^1;  
+  14          sbit E=P0^0;
+  15            
+  16          #define busy  0x80
+  17          
+  18          void delay_LCM(uchar k) //延时函数   
+  19          {   
+  20   1              uint i,j;
+  21   1          for(i=0;i<k;i++)
+  22   1          {
+  23   2              for(j=0;j<60;j++)
+  24   2                      {;}
+  25   2          }
+  26   1      }   
+  27          
+  28          void test_1602busy()//测忙函数  
+  29          {  
+  30   1          P2=0xff;   
+  31   1          E=1;
+  32   1              RS=0;
+  33   1              RW=1;   
+  34   1          _nop_();
+  35   1              _nop_();   
+  36   1              while(P2&busy)  //检测LCD DB7 是否为1
+  37   1              {
+  38   2                      E=0;
+  39   2                      _nop_();
+  40   2                      E=1;
+  41   2                      _nop_();
+  42   2              }
+  43   1              E=0;  
+  44   1      }   
+  45          
+  46          void write_1602Command(uchar co)  //写命令函数 
+  47          { 
+  48   1              test_1602busy();        //检测LCD是否忙
+  49   1          RS=0;
+  50   1              RW=0;
+  51   1              E=0;   
+  52   1          _nop_(); 
+  53   1          P2=co;          
+  54   1          _nop_();  
+  55   1          E=1;                                //LCD的使能端高电平有效
+C51 COMPILER V9.01   LCD                                                                   10/09/2011 21:18:49 PAGE 2   
+
+  56   1          _nop_();  
+  57   1          E=0;   
+  58   1      }   
+  59          
+  60          void write_1602Data(uchar Data)//写数据函数   
+  61          {
+  62   1              test_1602busy(); 
+  63   1              P2=Data; 
+  64   1              RS=1;
+  65   1              RW=0;
+  66   1              E=1;   
+  67   1              _nop_();
+  68   1              E=0; 
+  69   1      }   
+  70          
+  71          void init_1602(void)//初始化函数  
+  72          {   
+  73   1              write_1602Command(0x38);  //LCD功能设定,DL=1(8位),N=1(2行显示)
+  74   1              delay_LCM(5); 
+  75   1              write_1602Command(0x01);  //清除LCD的屏幕
+  76   1              delay_LCM(5);  
+  77   1              write_1602Command(0x06);  //LCD模式设定,I/D=1(计数地址加1)
+  78   1              delay_LCM(5);  
+  79   1              write_1602Command(0x0F);  //显示屏幕
+  80   1              delay_LCM(5);
+  81   1      }
+  82          
+  83          void reset_1602(void)
+  84          {
+  85   1              write_1602Command(0x01);
+  86   1              delay_LCM(5);  
+  87   1              write_1602Command(0x06);
+  88   1              delay_LCM(5);  
+  89   1              write_1602Command(0x0c);
+  90   1              delay_LCM(5);
+  91   1      } 
+  92          
+  93          void DisplayOneChar(uchar X,uchar Y,uchar DData)
+  94          {
+  95   1          Y&=1;
+  96   1          X&=15;
+  97   1          if(Y)X|=0x40;               //若y为1（显示第二行），地址码+0X40
+  98   1          X|=0x80;                    //指令码为地址码+0X80
+  99   1          write_1602Command(X);
+ 100   1          write_1602Data(DData);
+ 101   1      }
+ 102          
+ 103          void display_1602(uchar *DData,X,Y)//显示函数  
+ 104          {   
+ 105   1          uchar ListLength=0;
+ 106   1          Y&=0x01;
+ 107   1          X&=0x0f;
+ 108   1          while(X<16)
+ 109   1          {
+ 110   2              DisplayOneChar(X,Y,DData[ListLength]);
+ 111   2              ListLength++;
+ 112   2              X++;
+ 113   2          } 
+ 114   1      }
+ 115          
+
+
+C51 COMPILER V9.01   LCD                                                                   10/09/2011 21:18:49 PAGE 3   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    248    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

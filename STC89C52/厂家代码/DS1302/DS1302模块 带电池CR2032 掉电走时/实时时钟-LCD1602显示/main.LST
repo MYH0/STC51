@@ -1,0 +1,378 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 19:20:57 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\KEIL\KEIL-CODE\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(3)
+
+line level    source
+
+   1          /*******************说明:**************************
+   2          将实时时钟数据通过LCD1602显示
+   3          --------------------------------------------------
+   4          基于战神单片机工作室51/AVR最小系统板及DS1302
+   5          实时时钟模块编写
+   6          淘宝店铺地址: http://zsmcu.taobao.com/
+   7          QQ:284083167
+   8          手机:15016732495
+   9          **************************************************/
+  10          #include <reg52.h>
+  11          #include <intrins.h>
+  12          #define uchar unsigned char
+  13          #define uint  unsigned int
+  14          uchar dis_time_buf[16]={0};
+  15          //LCD1602引脚定义
+  16          //采用8位并行方式,DB0~DB7连接至LCDDATA0~LCDDATA7
+  17          sbit RS=P3^5;
+  18          //sbit RW=P2^1;
+  19          sbit CS=P3^4;
+  20          #define LCDDATA P0
+  21          //DS1302引脚定义
+  22          sbit RST=P1^3;
+  23          sbit IO=P1^2;
+  24          sbit SCK=P1^1;
+  25          //DS1302地址定义
+  26          #define ds1302_sec_add        0x80     //秒数据地址
+  27          #define ds1302_min_add        0x82     //分数据地址
+  28          #define ds1302_hr_add         0x84     //时数据地址
+  29          #define ds1302_date_add       0x86     //日数据地址
+  30          #define ds1302_month_add      0x88     //月数据地址
+  31          #define ds1302_day_add        0x8a     //星期数据地址
+  32          #define ds1302_year_add       0x8c     //年数据地址
+  33          #define ds1302_control_add    0x8e     //控制数据地址
+  34          #define ds1302_charger_add    0x90               
+  35          #define ds1302_clkburst_add      0xbe
+  36          //初始时间定义
+  37          uchar time_buf[8] = {0x20,0x10,0x06,0x01,0x23,0x59,0x55,0x02};//初始时间2010年6月1号23点59分55秒 星期二
+  38          //功能:延时1毫秒
+  39          //入口参数:x
+  40          //出口参数:无
+  41          //说明:当晶振为12M时，j<112；当晶振为11.0592M时，j<122
+  42          void Delay_xms(uint x)
+  43          {
+  44   1        uint i,j;
+  45   1        for(i=0;i<x;i++)
+  46   1          for(j=0;j<112;j++);
+  47   1      }
+  48          //功能：12us延时
+  49          //STC89C52为1T单片机,即1个时钟/机器周期,速度为AT89C52的12倍
+  50          void Delay_xus(uint t)              
+  51          { 
+  52   1        for(;t>0;t--)
+  53   1         {
+  54   2          _nop_();
+  55   2         }
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 19:20:57 PAGE 2   
+
+  56   1      }
+  57          //控制LCD写时序
+  58          void LCD_en_write(void)       
+  59          {
+  60   1         CS=1;    
+  61   1          Delay_xus(20);
+  62   1         CS=0;   
+  63   1         Delay_xus(20);
+  64   1      }
+  65            
+  66          //写指令函数
+  67          void Write_Instruction(uchar command)
+  68          {
+  69   1        RS=0;
+  70   1        //RW=0;
+  71   1        CS=1;
+  72   1        LCDDATA=command;
+  73   1        LCD_en_write();//写入指令数据
+  74   1      }
+  75          
+  76          //写数据函数
+  77          void Write_Data(uchar Wdata)
+  78          {
+  79   1        RS=1;
+  80   1        //RW=0;
+  81   1        CS=1;
+  82   1        LCDDATA=Wdata;
+  83   1        LCD_en_write();//写入数据
+  84   1      }
+  85          
+  86          //字符显示初始地址设置
+  87          void LCD_SET_XY(uchar X,uchar Y)
+  88          {
+  89   1        uchar address;
+  90   1        if(Y==0)
+  91   1          address=0x80+X;//Y=0,表示在第一行显示，地址基数为0x80
+  92   1        else 
+  93   1          address=0xc0+X;//Y非0时，表时在第二行显示，地址基数为0xC0
+  94   1        Write_Instruction(address);//写指令，设置显示初始地址
+  95   1      }
+  96          //在第X行Y列开始显示Wdata所对应的单个字符
+  97          void LCD_write_char(uchar X,uchar Y,uchar Wdata)
+  98          {
+  99   1        LCD_SET_XY(X,Y);//写地址
+ 100   1        Write_Data(Wdata);//写入当前字符并显示
+ 101   1      }
+ 102          //清屏函数
+ 103          void LCD_clear(void)
+ 104          {
+ 105   1        Write_Instruction(0x01);
+ 106   1        Delay_xms(5);
+ 107   1      }
+ 108          //显示屏初始化函数
+ 109          void LCD_init(void) 
+ 110          {  
+ 111   1         Write_Instruction(0x38);            //8bit interface,2line,5*7dots
+ 112   1         Delay_xms(5);
+ 113   1         Write_Instruction(0x38);   
+ 114   1         Delay_xms(5);
+ 115   1         Write_Instruction(0x38);   
+ 116   1      
+ 117   1         Write_Instruction(0x08);   //关显示，不显光标，光标不闪烁
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 19:20:57 PAGE 3   
+
+ 118   1         Write_Instruction(0x01);   //清屏
+ 119   1         Delay_xms(5);
+ 120   1         
+ 121   1         Write_Instruction(0x04);   //写一字符，整屏显示不移动
+ 122   1         //Write_Instruction(0x05); //写一字符，整屏右移
+ 123   1         //Write_Instruction(0x06); //写一字符，整屏显示不移动
+ 124   1         //Write_Instruction(0x07); //写一字符，整屏左移
+ 125   1         Delay_xms(5);
+ 126   1         
+ 127   1         //Write_Instruction(0x0B); //关闭显示（不显示字符，只有背光亮）
+ 128   1         Write_Instruction(0x0C);   //开显示，光标、闪烁都关闭
+ 129   1         //Write_Instruction(0x0D); //开显示，不显示光标，但光标闪烁
+ 130   1         //Write_Instruction(0x0E); //开显示，显示光标，但光标不闪烁
+ 131   1         //Write_Instruction(0x0F); //开显示，光标、闪烁均显示
+ 132   1      }
+ 133          //DS1302初始化函数
+ 134          void ds1302_init(void) 
+ 135          {
+ 136   1         RST=0;         //RST脚置低
+ 137   1         SCK=0;         //SCK脚置低
+ 138   1      }
+ 139          //向DS1302写入一字节数据
+ 140          void ds1302_write_byte(uchar addr, uchar d) 
+ 141          {
+ 142   1         uchar i;
+ 143   1         RST=1;               //启动DS1302总线  
+ 144   1         //写入目标地址：addr
+ 145   1         addr = addr & 0xFE;   //最低位置零，寄存器0位为0时写，为1时读
+ 146   1         for (i = 0; i < 8; i ++) {
+ 147   2            if (addr & 0x01) {
+ 148   3               IO=1;
+ 149   3               }
+ 150   2            else {
+ 151   3               IO=0;
+ 152   3               }
+ 153   2            SCK=1;      //产生时钟
+ 154   2            SCK=0;
+ 155   2            addr = addr >> 1;
+ 156   2            }  
+ 157   1         //写入数据：d
+ 158   1         for (i = 0; i < 8; i ++) {
+ 159   2            if (d & 0x01) {
+ 160   3               IO=1;
+ 161   3               }
+ 162   2            else {
+ 163   3               IO=0;
+ 164   3               }
+ 165   2            SCK=1;    //产生时钟
+ 166   2            SCK=0;
+ 167   2            d = d >> 1;
+ 168   2            }
+ 169   1         RST=0;      //停止DS1302总线
+ 170   1      }
+ 171          
+ 172          //从DS1302读出一字节数据
+ 173          uchar ds1302_read_byte(uchar addr) {
+ 174   1      
+ 175   1         uchar i,temp;  
+ 176   1         RST=1;               //启动DS1302总线
+ 177   1         //写入目标地址：addr
+ 178   1         addr = addr | 0x01;    //最低位置高，寄存器0位为0时写，为1时读
+ 179   1         for (i = 0; i < 8; i ++) {
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 19:20:57 PAGE 4   
+
+ 180   2            if (addr & 0x01) {
+ 181   3               IO=1;
+ 182   3               }
+ 183   2            else {
+ 184   3               IO=0;
+ 185   3               }
+ 186   2            SCK=1;
+ 187   2            SCK=0;
+ 188   2            addr = addr >> 1;
+ 189   2            }  
+ 190   1         //输出数据：temp
+ 191   1         for (i = 0; i < 8; i ++) {
+ 192   2            temp = temp >> 1;
+ 193   2            if (IO) {
+ 194   3               temp |= 0x80;
+ 195   3               }
+ 196   2            else {
+ 197   3               temp &= 0x7F;
+ 198   3               }
+ 199   2            SCK=1;
+ 200   2            SCK=0;
+ 201   2            }  
+ 202   1         RST=0;               //停止DS1302总线
+ 203   1         return temp;
+ 204   1      }
+ 205          //向DS302写入时钟数据
+ 206          void ds1302_write_time(void) 
+ 207          {
+ 208   1         ds1302_write_byte(ds1302_control_add,0x00);        //关闭写保护 
+ 209   1         ds1302_write_byte(ds1302_sec_add,0x80);            //暂停时钟 
+ 210   1         //ds1302_write_byte(ds1302_charger_add,0xa9);       //涓流充电 
+ 211   1         ds1302_write_byte(ds1302_year_add,time_buf[1]);    //年 
+ 212   1         ds1302_write_byte(ds1302_month_add,time_buf[2]);   //月 
+ 213   1         ds1302_write_byte(ds1302_date_add,time_buf[3]);    //日 
+ 214   1         ds1302_write_byte(ds1302_hr_add,time_buf[4]);      //时 
+ 215   1         ds1302_write_byte(ds1302_min_add,time_buf[5]);     //分
+ 216   1         ds1302_write_byte(ds1302_sec_add,time_buf[6]);     //秒
+ 217   1         ds1302_write_byte(ds1302_day_add,time_buf[7]);     //周 
+ 218   1         ds1302_write_byte(ds1302_control_add,0x80);        //打开写保护     
+ 219   1      }
+ 220          //从DS302读出时钟数据
+ 221          void ds1302_read_time(void)  
+ 222          {
+ 223   1         time_buf[1]=ds1302_read_byte(ds1302_year_add);     //年 
+ 224   1         time_buf[2]=ds1302_read_byte(ds1302_month_add);    //月 
+ 225   1         time_buf[3]=ds1302_read_byte(ds1302_date_add);     //日 
+ 226   1         time_buf[4]=ds1302_read_byte(ds1302_hr_add);    //时 
+ 227   1         time_buf[5]=ds1302_read_byte(ds1302_min_add);      //分 
+ 228   1         time_buf[6]=(ds1302_read_byte(ds1302_sec_add))&0x7f;//秒，屏蔽秒的第7位，避免超出59
+ 229   1         time_buf[7]=ds1302_read_byte(ds1302_day_add);      //周  
+ 230   1      }
+ 231          void Display(void)
+ 232          {
+ 233   1         
+ 234   1         LCD_write_char(3,0,dis_time_buf[0]+'0');
+ 235   1         
+ 236   1         LCD_write_char(4,0,dis_time_buf[1]+'0');
+ 237   1         
+ 238   1         LCD_write_char(5,0,dis_time_buf[2]+'0');
+ 239   1         
+ 240   1         LCD_write_char(6,0,dis_time_buf[3]+'0');
+ 241   1      
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 19:20:57 PAGE 5   
+
+ 242   1         LCD_write_char(7,0,'/');
+ 243   1         
+ 244   1         
+ 245   1         LCD_write_char(8,0,dis_time_buf[4]+'0');
+ 246   1         
+ 247   1         LCD_write_char(9,0,dis_time_buf[5]+'0');
+ 248   1      
+ 249   1         LCD_write_char(10,0,'/');
+ 250   1      
+ 251   1         
+ 252   1         LCD_write_char(11,0,dis_time_buf[6]+'0');
+ 253   1         
+ 254   1         LCD_write_char(12,0,dis_time_buf[7]+'0');
+ 255   1         
+ 256   1         
+ 257   1         LCD_write_char(15,0,dis_time_buf[14]+'0');
+ 258   1         //第2行显示  
+ 259   1         
+ 260   1         LCD_write_char(3,1,dis_time_buf[8]+'0');
+ 261   1        
+ 262   1         LCD_write_char(4,1,dis_time_buf[9]+'0');
+ 263   1      
+ 264   1         LCD_write_char(5,1,':');
+ 265   1      
+ 266   1        
+ 267   1         LCD_write_char(6,1,dis_time_buf[10]+'0');
+ 268   1         
+ 269   1         LCD_write_char(7,1,dis_time_buf[11]+'0');
+ 270   1      
+ 271   1         LCD_write_char(8,1,':');
+ 272   1      
+ 273   1         
+ 274   1         LCD_write_char(9,1,dis_time_buf[12]+'0');
+ 275   1         
+ 276   1         LCD_write_char(10,1,dis_time_buf[13]+'0');
+ 277   1      }
+ 278          //定时器中断函数
+ 279          void Timer2() interrupt 5    //定时器2是5号中断
+ 280          {
+ 281   1       static uchar t;
+ 282   1       TF2=0;
+ 283   1       t++;
+ 284   1       if(t==4)               //间隔200ms(50ms*4)读取一次时间
+ 285   1        {
+ 286   2         t=0;
+ 287   2         ds1302_read_time();  //读取时间 
+ 288   2         dis_time_buf[0]=(time_buf[0]>>4); //年   
+ 289   2         dis_time_buf[1]=(time_buf[0]&0x0f);
+ 290   2         
+ 291   2         dis_time_buf[2]=(time_buf[1]>>4);   
+ 292   2         dis_time_buf[3]=(time_buf[1]&0x0f);
+ 293   2        
+ 294   2      
+ 295   2         
+ 296   2         
+ 297   2         dis_time_buf[4]=(time_buf[2]>>4); //月  
+ 298   2         dis_time_buf[5]=(time_buf[2]&0x0f);
+ 299   2         
+ 300   2      
+ 301   2         dis_time_buf[6]=(time_buf[3]>>4); //日   
+ 302   2         dis_time_buf[7]=(time_buf[3]&0x0f);
+ 303   2         
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 19:20:57 PAGE 6   
+
+ 304   2         dis_time_buf[14]=(time_buf[7]&0x07); //星期
+ 305   2         
+ 306   2         //第2行显示  
+ 307   2         dis_time_buf[8]=(time_buf[4]>>4); //时   
+ 308   2         dis_time_buf[9]=(time_buf[4]&0x0f);   
+ 309   2      
+ 310   2        
+ 311   2      
+ 312   2         dis_time_buf[10]=(time_buf[5]>>4); //分   
+ 313   2         dis_time_buf[11]=(time_buf[5]&0x0f);   
+ 314   2      
+ 315   2         dis_time_buf[12]=(time_buf[6]>>4); //秒   
+ 316   2         dis_time_buf[13]=(time_buf[6]&0x0f);
+ 317   2         
+ 318   2        }
+ 319   1      }
+ 320          //定时器2初始化
+ 321          void Init_timer2(void)
+ 322          {
+ 323   1       RCAP2H=0x3c;//赋T2初始值0x3cb0，溢出20次为1秒,每次溢出时间为50ms
+ 324   1       RCAP2L=0xb0;
+ 325   1       TR2=1;       //启动定时器2
+ 326   1       ET2=1;      //打开定时器2中断
+ 327   1       EA=1;       //打开总中断
+ 328   1      }
+ 329          
+ 330          
+ 331          //主函数
+ 332          void main(void)
+ 333          { 
+ 334   1       Delay_xms(50);//等待系统稳定
+ 335   1       LCD_init();   //LCD初始化
+ 336   1       LCD_clear();  //清屏   
+ 337   1       ds1302_init();  //DS1302初始化
+ 338   1       Delay_xms(10);
+ 339   1       ds1302_write_time(); //写入初始值
+ 340   1       Init_timer2(); //定时器2初始化 
+ 341   1       while(1)
+ 342   1        {  
+ 343   2         Display();
+ 344   2        }
+ 345   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    801    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     25    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

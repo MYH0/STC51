@@ -1,0 +1,40 @@
+C51 COMPILER V9.01   COMMON                                                                10/09/2011 21:18:49 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE COMMON
+OBJECT MODULE PLACED IN Common.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Common.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*
+   2           * ¹«¹²Ä£¿é
+   3           *
+   4           * AUTHOR                       WHAT            DATE
+   5           * Huafeng Lin          created         2011/10/08
+   6           * Huafeng Lin          modified        2011/10/08
+   7           *
+   8           */
+   9          
+  10          #include <Common.h>
+  11          
+  12          void delay_ms(uint x)
+  13          {
+  14   1              uint a,b;
+  15   1              for(a=x;a>0;a--)
+  16   1                       for(b=100;b>0;b--);
+  17   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     30    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

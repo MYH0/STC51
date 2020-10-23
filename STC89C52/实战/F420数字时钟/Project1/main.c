@@ -37,7 +37,7 @@ void main()
 	LcdShowInit();				// 液晶显示内容的初始化
 	TimerInit();					// 定时器初始化
 	
-	if(DS1302_Read_Byte(0x81)>=128)	// 判断时钟芯片是否正在运行
+	if(DS1302_Read_Byte(0x81)>=128)	// 判断时钟芯片是否正常运行
 	{
 		DS1302_Write_Time();				// 如果没有，则初始化一个时间
 	}

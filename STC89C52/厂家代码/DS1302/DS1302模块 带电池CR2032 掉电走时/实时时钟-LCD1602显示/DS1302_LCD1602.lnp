@@ -1,0 +1,3 @@
+"main.obj" 
+TO "DS1302_LCD1602" 
+RAMSIZE(256) 

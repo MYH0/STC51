@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 03:25:21 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -8,641 +8,643 @@ COMPILER INVOKED BY: C:\KEIL\KEIL-CODE\C51\BIN\C51.EXE main.c OPTIMIZE(9,SIZE) B
 
 line level    source
 
-   1          #include <STC89C5XRC.H>
-   2          #include <intrins.h>
-   3          #include <math.h>
-   4          
-   5          typedef unsigned int uint;
-   6          typedef unsigned char uchar;
-   7          
-   8          #define BIT0 1<<0
-   9          #define BIT1 1<<1
-  10          #define BIT2 1<<2
-  11          #define BIT3 1<<3
-  12          
-  13          #define BIT4 1<<4
-  14          #define BIT5 1<<5
-  15          #define BIT6 1<<6
-  16          #define BIT7 1<<7
-  17          
-  18          #define BIT8_ALL 0xff
+   1          //#include <STC89C5XRC.H>
+   2          #include <STC12C5A60S2.H>
+   3          
+   4          #include <intrins.h>
+   5          #include <math.h>
+   6          
+   7          typedef unsigned int uint;
+   8          typedef unsigned char uchar;
+   9          
+  10          #define BIT0 1<<0
+  11          #define BIT1 1<<1
+  12          #define BIT2 1<<2
+  13          #define BIT3 1<<3
+  14          
+  15          #define BIT4 1<<4
+  16          #define BIT5 1<<5
+  17          #define BIT6 1<<6
+  18          #define BIT7 1<<7
   19          
-  20          /*************************************注意******************************************/
-  21          //data是C51关键字
-  22          //ASCII中：0---48;  A--65;  a--97  
-  23          /***********************************预装数据****************************************/
-  24          /************************************数码管*********************/
-  25          uint Digital_Tube_Char_Num = 41;
-  26          /************************************LCD1602*******************/
-  27          const uchar LCD1602_Str0[] = "Men Yuhan";
-  28          const uchar LCD1602_Str1[] = "18050100196";
-  29          const uint LCD1602_Num0 = 713;
-  30          /************************************串口**********************/
-  31          char UART1_Char = 48;
-  32          /***********************************预设变量****************************************/
-  33          uint uart_flag = 0;
-  34          
-  35          //f=11.0592MHz
-  36          /******************************************粗略延时***********************************/
-  37          void Delay_ms(uint time_ms)
-  38          {
-  39   1         uint i, j;
-  40   1         for (i = 0; i < time_ms; i++)
-  41   1            for (j = 0; j < 113; j++);
-  42   1      }
-  43          /******************************************较为精准延时********************************/
-  44          /***********************************************ms*****************/
-  45          void Delay_ms_1()
-  46          {
-  47   1         unsigned char i, j;
-  48   1         _nop_();
-  49   1         i = 2;
-  50   1         j = 199;
-  51   1         do
-  52   1         {
-  53   2            while (--j);
-  54   2         } while (--i);
-C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 03:25:21 PAGE 2   
+  20          #define BIT8_ALL 0xff
+  21          
+  22          /*************************************注意******************************************/
+  23          //data是C51关键字
+  24          //ASCII中：0---48;  A--65;  a--97  
+  25          /***********************************预装数据****************************************/
+  26          /************************************数码管*********************/
+  27          uint Digital_Tube_Char_Num = 41;
+  28          /************************************LCD1602*******************/
+  29          const uchar LCD1602_Str0[] = "Men Yuhan";
+  30          const uchar LCD1602_Str1[] = "18050100196";
+  31          const uint LCD1602_Num0 = 713;
+  32          /************************************串口**********************/
+  33          char UART1_Char = 48;
+  34          /***********************************预设变量****************************************/
+  35          uint uart_flag = 0;
+  36          
+  37          //f=11.0592MHz
+  38          /******************************************粗略延时***********************************/
+  39          void Delay_ms(uint time_ms)
+  40          {
+  41   1         uint i, j;
+  42   1         for (i = 0; i < time_ms; i++)
+  43   1            for (j = 0; j < 113; j++);
+  44   1      }
+  45          /******************************************较为精准延时********************************/
+  46          /***********************************************ms*****************/
+  47          void Delay_ms_1()
+  48          {
+  49   1         unsigned char i, j;
+  50   1         _nop_();
+  51   1         i = 2;
+  52   1         j = 199;
+  53   1         do
+  54   1         {
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 2   
 
-  55   1      }
-  56          
-  57          void Delay_ms_2()
-  58          {
-  59   1         unsigned char i, j;
-  60   1         _nop_();
-  61   1         i = 4;
-  62   1         j = 146;
-  63   1         do
-  64   1         {
-  65   2            while (--j);
-  66   2         } while (--i);
-  67   1      }
-  68          
-  69          void Delay_ms_5()
-  70          {
-  71   1         unsigned char i, j;
-  72   1         i = 9;
-  73   1         j = 244;
-  74   1         do
-  75   1         {
-  76   2            while (--j);
-  77   2         } while (--i);
-  78   1      }
-  79          /***********************************************s******************/
-  80          void Delay_s_0_5()
-  81          {
-  82   1         unsigned char i, j, k;
-  83   1      
-  84   1         _nop_();
-  85   1         i = 4;
-  86   1         j = 129;
-  87   1         k = 119;
-  88   1         do
-  89   1         {
-  90   2            do
-  91   2            {
-  92   3               while (--k);
-  93   3            } while (--j);
-  94   2         } while (--i);
-  95   1      }
-  96          
-  97          void Delay_s_1()
-  98          {
-  99   1         unsigned char i, j, k;
- 100   1      
- 101   1         _nop_();
- 102   1         i = 8;
- 103   1         j = 1;
- 104   1         k = 243;
- 105   1         do
- 106   1         {
- 107   2            do
- 108   2            {
- 109   3               while (--k);
- 110   3            } while (--j);
- 111   2         } while (--i);
- 112   1      }
- 113          
- 114          /***************************************预定义*****************************************/
- 115          /***************************************LED**********************/
- 116          /**************************************IO预定义*/
-C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 03:25:21 PAGE 3   
+  55   2            while (--j);
+  56   2         } while (--i);
+  57   1      }
+  58          
+  59          void Delay_ms_2()
+  60          {
+  61   1         unsigned char i, j;
+  62   1         _nop_();
+  63   1         i = 4;
+  64   1         j = 146;
+  65   1         do
+  66   1         {
+  67   2            while (--j);
+  68   2         } while (--i);
+  69   1      }
+  70          
+  71          void Delay_ms_5()
+  72          {
+  73   1         unsigned char i, j;
+  74   1         i = 9;
+  75   1         j = 244;
+  76   1         do
+  77   1         {
+  78   2            while (--j);
+  79   2         } while (--i);
+  80   1      }
+  81          /***********************************************s******************/
+  82          void Delay_s_0_5()
+  83          {
+  84   1         unsigned char i, j, k;
+  85   1      
+  86   1         _nop_();
+  87   1         i = 4;
+  88   1         j = 129;
+  89   1         k = 119;
+  90   1         do
+  91   1         {
+  92   2            do
+  93   2            {
+  94   3               while (--k);
+  95   3            } while (--j);
+  96   2         } while (--i);
+  97   1      }
+  98          
+  99          void Delay_s_1()
+ 100          {
+ 101   1         unsigned char i, j, k;
+ 102   1      
+ 103   1         _nop_();
+ 104   1         i = 8;
+ 105   1         j = 1;
+ 106   1         k = 243;
+ 107   1         do
+ 108   1         {
+ 109   2            do
+ 110   2            {
+ 111   3               while (--k);
+ 112   3            } while (--j);
+ 113   2         } while (--i);
+ 114   1      }
+ 115          
+ 116          /***************************************预定义*****************************************/
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 3   
 
- 117          sbit LED0 = P1 ^ 0;
- 118          sbit LED1 = P1 ^ 1;
- 119          sbit LED2 = P1 ^ 2;
- 120          sbit LED3 = P1 ^ 3;
- 121          sbit LED4 = P1 ^ 4;
- 122          sbit LED5 = P1 ^ 5;
- 123          sbit LED6 = P1 ^ 6;
- 124          sbit LED7 = P1 ^ 7;
- 125          /**************************************操作预定义*/
- 126          /*开灯*/
- 127          #define LED0_On LED0=0
- 128          #define LED1_On LED1=0
- 129          #define LED2_On LED2=0
- 130          #define LED3_On LED3=0
- 131          #define LED4_On LED4=0
- 132          #define LED5_On LED5=0
- 133          #define LED6_On LED6=0
- 134          #define LED7_On LED7=0
- 135          #define LED_ALL_On P1=0x00
- 136          /*关灯*/
- 137          #define LED0_Off LED0=1
- 138          #define LED1_Off LED1=1
- 139          #define LED2_Off LED2=1
- 140          #define LED3_Off LED3=1
- 141          #define LED4_Off LED4=1
- 142          #define LED5_Off LED5=1
- 143          #define LED6_Off LED6=1
- 144          #define LED7_Off LED7=1
- 145          #define LED_ALL_Off P1=0xff
- 146          /*反转*/
- 147          #define LED0_Toggle P1^=BIT0
- 148          #define LED1_Toggle P1^=BIT1
- 149          #define LED2_Toggle P1^=BIT2
- 150          #define LED3_Toggle P1^=BIT3
- 151          #define LED4_Toggle P1^=BIT4
- 152          #define LED5_Toggle P1^=BIT5
- 153          #define LED6_Toggle P1^=BIT6
- 154          #define LED7_Toggle P1^=BIT7
- 155          #define LED_ALL_Toggle P1^=BIT8_ALL
- 156          
- 157          /***************************************Beep*****************/
- 158          /**************************************IO预定义*/
- 159          sbit Beep = P2 ^ 3;
- 160          /**************************************操作预定义*/
- 161          #define Beep_On Beep=0
- 162          #define Beep_Off Beep=1
- 163          #define Beep_Toggle P2^=BIT3
- 164          /***************************************数码管*****************/
- 165          sbit wx = P2 ^ 7;
- 166          sbit dx = P2 ^ 6;
- 167          /***************************************独立按键****************/
- 168          sbit Key_i0 = P3 ^ 4;
- 169          sbit Key_i1 = P3 ^ 5;
- 170          sbit Key_i2 = P3 ^ 6;
- 171          sbit Key_i3 = P3 ^ 7;
- 172          /***************************************操作****************************************/
- 173          void STC89_TX_1C_Board_IO_Base_Init()
- 174          {
- 175   1         dx = 0;  //dx
- 176   1         wx = 0;  //wx
- 177   1      
- 178   1         EA = 1;
-C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 03:25:21 PAGE 4   
+ 117          /***************************************LED**********************/
+ 118          /**************************************IO预定义*/
+ 119          sbit LED0 = P1 ^ 0;
+ 120          sbit LED1 = P1 ^ 1;
+ 121          sbit LED2 = P1 ^ 2;
+ 122          sbit LED3 = P1 ^ 3;
+ 123          sbit LED4 = P1 ^ 4;
+ 124          sbit LED5 = P1 ^ 5;
+ 125          sbit LED6 = P1 ^ 6;
+ 126          sbit LED7 = P1 ^ 7;
+ 127          /**************************************操作预定义*/
+ 128          /*开灯*/
+ 129          #define LED0_On LED0=0
+ 130          #define LED1_On LED1=0
+ 131          #define LED2_On LED2=0
+ 132          #define LED3_On LED3=0
+ 133          #define LED4_On LED4=0
+ 134          #define LED5_On LED5=0
+ 135          #define LED6_On LED6=0
+ 136          #define LED7_On LED7=0
+ 137          #define LED_ALL_On P1=0x00
+ 138          /*关灯*/
+ 139          #define LED0_Off LED0=1
+ 140          #define LED1_Off LED1=1
+ 141          #define LED2_Off LED2=1
+ 142          #define LED3_Off LED3=1
+ 143          #define LED4_Off LED4=1
+ 144          #define LED5_Off LED5=1
+ 145          #define LED6_Off LED6=1
+ 146          #define LED7_Off LED7=1
+ 147          #define LED_ALL_Off P1=0xff
+ 148          /*反转*/
+ 149          #define LED0_Toggle P1^=BIT0
+ 150          #define LED1_Toggle P1^=BIT1
+ 151          #define LED2_Toggle P1^=BIT2
+ 152          #define LED3_Toggle P1^=BIT3
+ 153          #define LED4_Toggle P1^=BIT4
+ 154          #define LED5_Toggle P1^=BIT5
+ 155          #define LED6_Toggle P1^=BIT6
+ 156          #define LED7_Toggle P1^=BIT7
+ 157          #define LED_ALL_Toggle P1^=BIT8_ALL
+ 158          
+ 159          /***************************************Beep*****************/
+ 160          /**************************************IO预定义*/
+ 161          sbit Beep = P2 ^ 3;
+ 162          /**************************************操作预定义*/
+ 163          #define Beep_On Beep=0
+ 164          #define Beep_Off Beep=1
+ 165          #define Beep_Toggle P2^=BIT3
+ 166          /***************************************数码管*****************/
+ 167          sbit wx = P2 ^ 7;
+ 168          sbit dx = P2 ^ 6;
+ 169          /***************************************独立按键****************/
+ 170          sbit Key_i0 = P3 ^ 4;
+ 171          sbit Key_i1 = P3 ^ 5;
+ 172          sbit Key_i2 = P3 ^ 6;
+ 173          sbit Key_i3 = P3 ^ 7;
+ 174          /***************************************操作****************************************/
+ 175          void STC89_TX_1C_Board_IO_Base_Init()
+ 176          {
+ 177   1         dx = 0;  //dx
+ 178   1         wx = 0;  //wx
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 4   
 
- 179   1      }
- 180          
- 181          /************************************初始化*****************************************/
- 182          //f=11.0592 MHz
- 183          //BR=9600 bps
- 184          //Timer=T1
- 185          //Timer Mode=2
- 186          //定时器时钟:12T
- 187          void UART1_Init()
- 188          {
- 189   1         PCON &= 0x7F;  //波特率不倍速
- 190   1         SCON = 0x50;   //8位数据,可变波特率
- 191   1         AUXR &= 0xBF;  //定时器1时钟为Fosc/12,即12T
- 192   1         AUXR &= 0xFE;  //串口1选择定时器1为波特率发生器
- 193   1         TMOD &= 0x0F;  //清除定时器1模式位
- 194   1         TMOD |= 0x20;  //设定定时器1为8位自动重装方式
- 195   1         TL1 = 0xfd;    //设定定时初值
- 196   1         TH1 = 0xfd;    //设定定时器重装值
- 197   1         ET1 = 0;    //禁止定时器1中断
- 198   1         TR1 = 1;    //启动定时器1
- 199   1      // ES = 1;        //启动串口中断
- 200   1         ES = 0;        //关闭串口中断
- 201   1      }
- 202          /************************************中断*****************************************/
- 203          /**********************************中断功能********************/
- 204          void UART1_INT_Func()
- 205          {
- 206   1      
- 207   1      }
- 208          /**********************************进入中断********************/
- 209          void UART1_INT() interrupt 4
- 210          {
- 211   1         UART1_INT_Func();
- 212   1      }
- 213          
- 214          /********************************************常量定义*********************************************/
- 215          /********************************************段选************************/
- 216          uchar code duanxuan[] =
- 217          {
- 218             0x3f,    //0
- 219             0x06,    //1
- 220             0x5b,    //2
- 221             0x4f,    //3
- 222             0x66,    //4
- 223             0x6d,    //5
- 224             0x7d,    //6
- 225             0x07,    //7
- 226             0x7f,    //8
- 227             0x6f,    //9
- 228          
- 229             0x77,    //A--10
- 230             0x7c,    //b--11
- 231             0x39,    //C--12
- 232             0x5e,    //d--13
- 233             0x79,    //E--14
- 234             0x71,    //F--15
- 235             0x3d,    //G--16
- 236             0x76,    //H--17
- 237             0x11,    //i--18
- 238             0x0e,    //J--19
- 239             0x7a,    //k--20
- 240             0x38,    //L--21
-C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 03:25:21 PAGE 5   
+ 179   1      
+ 180   1         EA = 1;
+ 181   1      }
+ 182          
+ 183          /************************************初始化*****************************************/
+ 184          //f=11.0592 MHz
+ 185          //BR=9600 bps
+ 186          //Timer=T1
+ 187          //Timer Mode=2
+ 188          //定时器时钟:12T
+ 189          void UART1_Init()
+ 190          {
+ 191   1         PCON &= 0x7F;  //波特率不倍速
+ 192   1         SCON = 0x50;   //8位数据,可变波特率
+ 193   1         AUXR &= 0xBF;  //定时器1时钟为Fosc/12,即12T
+ 194   1         AUXR &= 0xFE;  //串口1选择定时器1为波特率发生器
+ 195   1         TMOD &= 0x0F;  //清除定时器1模式位
+ 196   1         TMOD |= 0x20;  //设定定时器1为8位自动重装方式
+ 197   1         TL1 = 0xfd;    //设定定时初值
+ 198   1         TH1 = 0xfd;    //设定定时器重装值
+ 199   1         ET1 = 0;    //禁止定时器1中断
+ 200   1         TR1 = 1;    //启动定时器1
+ 201   1      // ES = 1;        //启动串口中断
+ 202   1         ES = 0;        //关闭串口中断
+ 203   1      }
+ 204          /************************************中断*****************************************/
+ 205          /**********************************中断功能********************/
+ 206          void UART1_INT_Func()
+ 207          {
+ 208   1      
+ 209   1      }
+ 210          /**********************************进入中断********************/
+ 211          void UART1_INT() interrupt 4
+ 212          {
+ 213   1         UART1_INT_Func();
+ 214   1      }
+ 215          
+ 216          /********************************************常量定义*********************************************/
+ 217          /********************************************段选************************/
+ 218          uchar code duanxuan[] =
+ 219          {
+ 220             0x3f,    //0
+ 221             0x06,    //1
+ 222             0x5b,    //2
+ 223             0x4f,    //3
+ 224             0x66,    //4
+ 225             0x6d,    //5
+ 226             0x7d,    //6
+ 227             0x07,    //7
+ 228             0x7f,    //8
+ 229             0x6f,    //9
+ 230          
+ 231             0x77,    //A--10
+ 232             0x7c,    //b--11
+ 233             0x39,    //C--12
+ 234             0x5e,    //d--13
+ 235             0x79,    //E--14
+ 236             0x71,    //F--15
+ 237             0x3d,    //G--16
+ 238             0x76,    //H--17
+ 239             0x11,    //i--18
+ 240             0x0e,    //J--19
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 5   
 
- 241             0x55,    //M--22
- 242             0x54,    //n--23
- 243             0X3f,    //O--24
- 244             0x73,    //P--25
- 245             0x67,    //q--26
- 246             0x50,    //r--27
- 247             0x6d,    //S--28
- 248             0x78,    //t--29
- 249             0x3e,    //U--30
- 250             0x3e,    //V--31
- 251             0x6a,    //W--32
- 252             0x76,    //X--33
- 253             0x6e,    //y--34
- 254             0x5b,    //Z--35
- 255          
- 256             0x7b,    //e--36
- 257             0x74,    //h--37
- 258             0x5c,    //o--38
- 259             0x1c,    //u--39
- 260             0x62,    //v--40
- 261          
- 262             0x00     //0x00为全不亮--41
- 263          };
- 264          /********************************************位选************************/
- 265          uchar code weixuan[] =        //左边第一位为bit0
- 266          {
- 267             0xfe,    //0
- 268             0xfd,    //1
- 269             0xfb,    //2
- 270             0xf7,    //3
- 271             0xef,    //4
- 272             0xdf,    //5
- 273             0xc0     //ALL--6
- 274          };
- 275          /*******************************************全局变量**********************************************/
- 276          /********************************************IO定义************************/
- 277          //sbit wx = P2 ^ 7;
- 278          //sbit dx = P2 ^ 6;
- 279          /***********************************************操作**********************************************/
- 280          /*******************************************数码管显示1bit******************/
- 281          void DigitalTube_Display_1bit(uchar wei, uchar duan)     //位数据，段数据
- 282          {
- 283   1         dx = 1;
- 284   1         P0 = duanxuan[duan];   //送段数据
- 285   1         dx = 0;
- 286   1         P0 = 0xff;     //送位数据前关闭所有显示，防止打开位选锁存后段选数据通过位选锁存器
- 287   1         wx = 1;
- 288   1         P0 = weixuan[wei];
- 289   1         wx = 0;
- 290   1         Delay_ms_1();
- 291   1      }
- 292          /*******************************************数码管显示3bit数字******************/
- 293          void DigitalTube_Display_num_3bit(uchar shu)
- 294          {
- 295   1         uchar bai, shi, ge;
- 296   1         bai = shu / 100;
- 297   1         shi = shu / 10 % 10;
- 298   1         ge = shu % 10;
- 299   1      
- 300   1         DigitalTube_Display_1bit(0, bai);
- 301   1         DigitalTube_Display_1bit(1, shi);
- 302   1         DigitalTube_Display_1bit(2, ge);
-C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 03:25:21 PAGE 6   
+ 241             0x7a,    //k--20
+ 242             0x38,    //L--21
+ 243             0x55,    //M--22
+ 244             0x54,    //n--23
+ 245             0X3f,    //O--24
+ 246             0x73,    //P--25
+ 247             0x67,    //q--26
+ 248             0x50,    //r--27
+ 249             0x6d,    //S--28
+ 250             0x78,    //t--29
+ 251             0x3e,    //U--30
+ 252             0x3e,    //V--31
+ 253             0x6a,    //W--32
+ 254             0x76,    //X--33
+ 255             0x6e,    //y--34
+ 256             0x5b,    //Z--35
+ 257          
+ 258             0x7b,    //e--36
+ 259             0x74,    //h--37
+ 260             0x5c,    //o--38
+ 261             0x1c,    //u--39
+ 262             0x62,    //v--40
+ 263          
+ 264             0x00     //0x00为全不亮--41
+ 265          };
+ 266          /********************************************位选************************/
+ 267          uchar code weixuan[] =        //左边第一位为bit0
+ 268          {
+ 269             0xfe,    //0
+ 270             0xfd,    //1
+ 271             0xfb,    //2
+ 272             0xf7,    //3
+ 273             0xef,    //4
+ 274             0xdf,    //5
+ 275             0xc0     //ALL--6
+ 276          };
+ 277          /*******************************************全局变量**********************************************/
+ 278          /********************************************IO定义************************/
+ 279          //sbit wx = P2 ^ 7;
+ 280          //sbit dx = P2 ^ 6;
+ 281          /***********************************************操作**********************************************/
+ 282          /*******************************************数码管显示1bit******************/
+ 283          void DigitalTube_Display_1bit(uchar wei, uchar duan)     //位数据，段数据
+ 284          {
+ 285   1         dx = 1;
+ 286   1         P0 = duanxuan[duan];   //送段数据
+ 287   1         dx = 0;
+ 288   1         P0 = 0xff;     //送位数据前关闭所有显示，防止打开位选锁存后段选数据通过位选锁存器
+ 289   1         wx = 1;
+ 290   1         P0 = weixuan[wei];
+ 291   1         wx = 0;
+ 292   1         Delay_ms_1();
+ 293   1      }
+ 294          /*******************************************数码管显示3bit数字******************/
+ 295          void DigitalTube_Display_num_3bit(uchar shu)
+ 296          {
+ 297   1         uchar bai, shi, ge;
+ 298   1         bai = shu / 100;
+ 299   1         shi = shu / 10 % 10;
+ 300   1         ge = shu % 10;
+ 301   1      
+ 302   1         DigitalTube_Display_1bit(0, bai);
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 6   
 
- 303   1      }
- 304          /*******************************************数码管显示6bit******************/
- 305          void DigitalTube_Display_6bit(uchar zero, uchar one, uchar two, uchar three, uchar four, uchar five)
- 306          {
- 307   1         DigitalTube_Display_1bit(0, zero);
- 308   1         DigitalTube_Display_1bit(1, one);
- 309   1         DigitalTube_Display_1bit(2, two);
- 310   1         DigitalTube_Display_1bit(3, three);
- 311   1         DigitalTube_Display_1bit(4, four);
- 312   1         DigitalTube_Display_1bit(5, five);
- 313   1      }
- 314          
- 315          //用于4*4矩阵键盘，接口为P3
- 316          /***************************************按键功能定义************************************/
- 317          void Key0_Func()
- 318          {
- 319   1         Digital_Tube_Char_Num = 0;
- 320   1         UART1_Char += Digital_Tube_Char_Num;
- 321   1      }
- 322          
- 323          void Key1_Func()
- 324          {
- 325   1         Digital_Tube_Char_Num = 1;
- 326   1         UART1_Char += Digital_Tube_Char_Num;
- 327   1      }
- 328          
- 329          void Key2_Func()
- 330          {
- 331   1         Digital_Tube_Char_Num = 2;
- 332   1         UART1_Char += Digital_Tube_Char_Num;
- 333   1      }
- 334          
- 335          void Key3_Func()
- 336          {
- 337   1         Digital_Tube_Char_Num = 3;
- 338   1         UART1_Char += Digital_Tube_Char_Num;
- 339   1      }
- 340          
- 341          void Key4_Func()
- 342          {
- 343   1         Digital_Tube_Char_Num = 4;
- 344   1         UART1_Char += Digital_Tube_Char_Num;
- 345   1      }
- 346          
- 347          void Key5_Func()
- 348          {
- 349   1         Digital_Tube_Char_Num = 5;
- 350   1         UART1_Char += Digital_Tube_Char_Num;
- 351   1      }
- 352          
- 353          void Key6_Func()
- 354          {
- 355   1         Digital_Tube_Char_Num = 6;
- 356   1         UART1_Char += Digital_Tube_Char_Num;
- 357   1      }
- 358          
- 359          void Key7_Func()
- 360          {
- 361   1         Digital_Tube_Char_Num = 7;
- 362   1         UART1_Char += Digital_Tube_Char_Num;
- 363   1      }
- 364          
-C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 03:25:21 PAGE 7   
+ 303   1         DigitalTube_Display_1bit(1, shi);
+ 304   1         DigitalTube_Display_1bit(2, ge);
+ 305   1      }
+ 306          /*******************************************数码管显示6bit******************/
+ 307          void DigitalTube_Display_6bit(uchar zero, uchar one, uchar two, uchar three, uchar four, uchar five)
+ 308          {
+ 309   1         DigitalTube_Display_1bit(0, zero);
+ 310   1         DigitalTube_Display_1bit(1, one);
+ 311   1         DigitalTube_Display_1bit(2, two);
+ 312   1         DigitalTube_Display_1bit(3, three);
+ 313   1         DigitalTube_Display_1bit(4, four);
+ 314   1         DigitalTube_Display_1bit(5, five);
+ 315   1      }
+ 316          
+ 317          //用于4*4矩阵键盘，接口为P3
+ 318          /***************************************按键功能定义************************************/
+ 319          void Key0_Func()
+ 320          {
+ 321   1         Digital_Tube_Char_Num = 0;
+ 322   1         UART1_Char += Digital_Tube_Char_Num;
+ 323   1      }
+ 324          
+ 325          void Key1_Func()
+ 326          {
+ 327   1         Digital_Tube_Char_Num = 1;
+ 328   1         UART1_Char += Digital_Tube_Char_Num;
+ 329   1      }
+ 330          
+ 331          void Key2_Func()
+ 332          {
+ 333   1         Digital_Tube_Char_Num = 2;
+ 334   1         UART1_Char += Digital_Tube_Char_Num;
+ 335   1      }
+ 336          
+ 337          void Key3_Func()
+ 338          {
+ 339   1         Digital_Tube_Char_Num = 3;
+ 340   1         UART1_Char += Digital_Tube_Char_Num;
+ 341   1      }
+ 342          
+ 343          void Key4_Func()
+ 344          {
+ 345   1         Digital_Tube_Char_Num = 4;
+ 346   1         UART1_Char += Digital_Tube_Char_Num;
+ 347   1      }
+ 348          
+ 349          void Key5_Func()
+ 350          {
+ 351   1         Digital_Tube_Char_Num = 5;
+ 352   1         UART1_Char += Digital_Tube_Char_Num;
+ 353   1      }
+ 354          
+ 355          void Key6_Func()
+ 356          {
+ 357   1         Digital_Tube_Char_Num = 6;
+ 358   1         UART1_Char += Digital_Tube_Char_Num;
+ 359   1      }
+ 360          
+ 361          void Key7_Func()
+ 362          {
+ 363   1         Digital_Tube_Char_Num = 7;
+ 364   1         UART1_Char += Digital_Tube_Char_Num;
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 7   
 
- 365          void Key8_Func()
- 366          {
- 367   1         Digital_Tube_Char_Num = 8;
- 368   1         UART1_Char += Digital_Tube_Char_Num;
- 369   1      }
- 370          
- 371          void Key9_Func()
- 372          {
- 373   1         Digital_Tube_Char_Num = 9;
- 374   1         UART1_Char += Digital_Tube_Char_Num;
- 375   1      }
- 376          
- 377          void Key10_Func()
- 378          {
- 379   1         Digital_Tube_Char_Num = 10;
- 380   1         UART1_Char += Digital_Tube_Char_Num;
- 381   1         UART1_Char += 7;
- 382   1      }
- 383          
- 384          void Key11_Func()
- 385          {
- 386   1         Digital_Tube_Char_Num = 11;
- 387   1         UART1_Char += Digital_Tube_Char_Num;
- 388   1         UART1_Char += 7;
- 389   1      }
- 390          
- 391          void Key12_Func()
- 392          {
- 393   1         Digital_Tube_Char_Num = 12;
- 394   1         UART1_Char += Digital_Tube_Char_Num;
- 395   1         UART1_Char += 7;
- 396   1      }
- 397          
- 398          void Key13_Func()
- 399          {
- 400   1         Digital_Tube_Char_Num = 13;
- 401   1         UART1_Char += Digital_Tube_Char_Num;
- 402   1         UART1_Char += 7;
- 403   1      }
- 404          
- 405          void Key14_Func()
- 406          {
- 407   1         Digital_Tube_Char_Num = 14;
- 408   1         UART1_Char += Digital_Tube_Char_Num;
- 409   1         UART1_Char += 7;
- 410   1      }
- 411          
- 412          void Key15_Func()
- 413          {
- 414   1         Digital_Tube_Char_Num = 15;
- 415   1         UART1_Char += Digital_Tube_Char_Num;
- 416   1         UART1_Char += 7;
- 417   1      }
- 418          /******************************************操作****************************************/
- 419          void Keyboard_4x4()
- 420          {
- 421   1         uint temp = 0;
- 422   1      
- 423   1         P3 = 0xfe;                      //检测P30这一行的按键
- 424   1         temp = P3;                 //读取P3的值
- 425   1         temp = temp & 0xf0;
- 426   1         if (temp != 0xf0)       //有按下的倾向
-C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 03:25:21 PAGE 8   
+ 365   1      }
+ 366          
+ 367          void Key8_Func()
+ 368          {
+ 369   1         Digital_Tube_Char_Num = 8;
+ 370   1         UART1_Char += Digital_Tube_Char_Num;
+ 371   1      }
+ 372          
+ 373          void Key9_Func()
+ 374          {
+ 375   1         Digital_Tube_Char_Num = 9;
+ 376   1         UART1_Char += Digital_Tube_Char_Num;
+ 377   1      }
+ 378          
+ 379          void Key10_Func()
+ 380          {
+ 381   1         Digital_Tube_Char_Num = 10;
+ 382   1         UART1_Char += Digital_Tube_Char_Num;
+ 383   1         UART1_Char += 7;
+ 384   1      }
+ 385          
+ 386          void Key11_Func()
+ 387          {
+ 388   1         Digital_Tube_Char_Num = 11;
+ 389   1         UART1_Char += Digital_Tube_Char_Num;
+ 390   1         UART1_Char += 7;
+ 391   1      }
+ 392          
+ 393          void Key12_Func()
+ 394          {
+ 395   1         Digital_Tube_Char_Num = 12;
+ 396   1         UART1_Char += Digital_Tube_Char_Num;
+ 397   1         UART1_Char += 7;
+ 398   1      }
+ 399          
+ 400          void Key13_Func()
+ 401          {
+ 402   1         Digital_Tube_Char_Num = 13;
+ 403   1         UART1_Char += Digital_Tube_Char_Num;
+ 404   1         UART1_Char += 7;
+ 405   1      }
+ 406          
+ 407          void Key14_Func()
+ 408          {
+ 409   1         Digital_Tube_Char_Num = 14;
+ 410   1         UART1_Char += Digital_Tube_Char_Num;
+ 411   1         UART1_Char += 7;
+ 412   1      }
+ 413          
+ 414          void Key15_Func()
+ 415          {
+ 416   1         Digital_Tube_Char_Num = 15;
+ 417   1         UART1_Char += Digital_Tube_Char_Num;
+ 418   1         UART1_Char += 7;
+ 419   1      }
+ 420          /******************************************操作****************************************/
+ 421          void Keyboard_4x4()
+ 422          {
+ 423   1         uint temp = 0;
+ 424   1      
+ 425   1         P3 = 0xfe;                      //检测P30这一行的按键
+ 426   1         temp = P3;                 //读取P3的值
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 8   
 
- 427   1         {
- 428   2            Delay_ms_5();           //等一会
- 429   2            temp = P3;              //再次读取P3的值
- 430   2            temp = temp & 0xf0;
- 431   2            if (temp != 0xf0)    //确实按下了
- 432   2            {
- 433   3               /*****开始按下后的操作*****/
- 434   3               temp = P3;
- 435   3               switch (temp)
- 436   3               {
- 437   4               case 0xee:Key0_Func();
- 438   4                  break;
- 439   4               case 0xde:Key1_Func();
+ 427   1         temp = temp & 0xf0;
+ 428   1         if (temp != 0xf0)       //有按下的倾向
+ 429   1         {
+ 430   2            Delay_ms_5();           //等一会
+ 431   2            temp = P3;              //再次读取P3的值
+ 432   2            temp = temp & 0xf0;
+ 433   2            if (temp != 0xf0)    //确实按下了
+ 434   2            {
+ 435   3               /*****开始按下后的操作*****/
+ 436   3               temp = P3;
+ 437   3               switch (temp)
+ 438   3               {
+ 439   4               case 0xee:Key0_Func();
  440   4                  break;
- 441   4               case 0xbe:Key2_Func();
+ 441   4               case 0xde:Key1_Func();
  442   4                  break;
- 443   4               case 0x7e:Key3_Func();
+ 443   4               case 0xbe:Key2_Func();
  444   4                  break;
- 445   4               }
- 446   3               /********结束按下后的操作********/
- 447   3      
- 448   3               /********检测抬起********/
- 449   3               while (temp != 0xf0)      //有抬起的倾向
- 450   3               {
- 451   4                  temp = P3;          //重新读取P3
- 452   4                  temp = temp & 0xf0;
- 453   4               }
- 454   3               Delay_ms_5();
- 455   3               while (temp != 0xf0)      //再检测抬起的倾向
- 456   3               {
- 457   4                  temp = P3;          //重新读取P3
- 458   4                  temp = temp & 0xf0;
- 459   4               }
- 460   3               uart_flag = 1;
- 461   3            }
- 462   2         }
- 463   1      
- 464   1         P3 = 0xfd;
- 465   1         temp = P3;
- 466   1         temp = temp & 0xf0;
- 467   1         if (temp != 0xf0)
- 468   1         {
- 469   2            Delay_ms_5();
- 470   2            temp = P3;
- 471   2            temp = temp & 0xf0;
- 472   2            if (temp != 0xf0)
- 473   2            {
- 474   3               /*****开始按下后的操作*****/
- 475   3               temp = P3;
- 476   3               switch (temp)
- 477   3               {
- 478   4               case 0xed:Key4_Func();
- 479   4                  break;
- 480   4               case 0xdd:Key5_Func();
+ 445   4               case 0x7e:Key3_Func();
+ 446   4                  break;
+ 447   4               }
+ 448   3               /********结束按下后的操作********/
+ 449   3      
+ 450   3               /********检测抬起********/
+ 451   3               while (temp != 0xf0)      //有抬起的倾向
+ 452   3               {
+ 453   4                  temp = P3;          //重新读取P3
+ 454   4                  temp = temp & 0xf0;
+ 455   4               }
+ 456   3               Delay_ms_5();
+ 457   3               while (temp != 0xf0)      //再检测抬起的倾向
+ 458   3               {
+ 459   4                  temp = P3;          //重新读取P3
+ 460   4                  temp = temp & 0xf0;
+ 461   4               }
+ 462   3               uart_flag = 1;
+ 463   3            }
+ 464   2         }
+ 465   1      
+ 466   1         P3 = 0xfd;
+ 467   1         temp = P3;
+ 468   1         temp = temp & 0xf0;
+ 469   1         if (temp != 0xf0)
+ 470   1         {
+ 471   2            Delay_ms_5();
+ 472   2            temp = P3;
+ 473   2            temp = temp & 0xf0;
+ 474   2            if (temp != 0xf0)
+ 475   2            {
+ 476   3               /*****开始按下后的操作*****/
+ 477   3               temp = P3;
+ 478   3               switch (temp)
+ 479   3               {
+ 480   4               case 0xed:Key4_Func();
  481   4                  break;
- 482   4               case 0xbd:Key6_Func();
+ 482   4               case 0xdd:Key5_Func();
  483   4                  break;
- 484   4               case 0x7d:Key7_Func();
+ 484   4               case 0xbd:Key6_Func();
  485   4                  break;
- 486   4               }
- 487   3               /*****结束按下后的操作*****/
- 488   3      
-C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 03:25:21 PAGE 9   
+ 486   4               case 0x7d:Key7_Func();
+ 487   4                  break;
+ 488   4               }
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 9   
 
- 489   3               /********检测抬起********/
- 490   3               while (temp != 0xf0)
- 491   3               {
- 492   4                  temp = P3;
- 493   4                  temp = temp & 0xf0;
- 494   4               }
- 495   3               Delay_ms_5();
- 496   3               while (temp != 0xf0)      //再检测抬起的倾向
- 497   3               {
- 498   4                  temp = P3;          //重新读取P3
- 499   4                  temp = temp & 0xf0;
- 500   4               }
- 501   3               uart_flag = 1;
- 502   3            }
- 503   2         }
- 504   1      
- 505   1         P3 = 0xfb;
- 506   1         temp = P3;
- 507   1         temp = temp & 0xf0;
- 508   1         if (temp != 0xf0)
- 509   1         {
- 510   2            Delay_ms_5();
- 511   2            temp = P3;
- 512   2            temp = temp & 0xf0;
- 513   2            if (temp != 0xf0)
- 514   2            {
- 515   3               /*****开始按下后的操作*****/
- 516   3      
- 517   3               temp = P3;
- 518   3               switch (temp)
- 519   3               {
- 520   4               case 0xeb:Key8_Func();
- 521   4                  break;
- 522   4               case 0xdb:Key9_Func();
+ 489   3               /*****结束按下后的操作*****/
+ 490   3      
+ 491   3               /********检测抬起********/
+ 492   3               while (temp != 0xf0)
+ 493   3               {
+ 494   4                  temp = P3;
+ 495   4                  temp = temp & 0xf0;
+ 496   4               }
+ 497   3               Delay_ms_5();
+ 498   3               while (temp != 0xf0)      //再检测抬起的倾向
+ 499   3               {
+ 500   4                  temp = P3;          //重新读取P3
+ 501   4                  temp = temp & 0xf0;
+ 502   4               }
+ 503   3               uart_flag = 1;
+ 504   3            }
+ 505   2         }
+ 506   1      
+ 507   1         P3 = 0xfb;
+ 508   1         temp = P3;
+ 509   1         temp = temp & 0xf0;
+ 510   1         if (temp != 0xf0)
+ 511   1         {
+ 512   2            Delay_ms_5();
+ 513   2            temp = P3;
+ 514   2            temp = temp & 0xf0;
+ 515   2            if (temp != 0xf0)
+ 516   2            {
+ 517   3               /*****开始按下后的操作*****/
+ 518   3      
+ 519   3               temp = P3;
+ 520   3               switch (temp)
+ 521   3               {
+ 522   4               case 0xeb:Key8_Func();
  523   4                  break;
- 524   4               case 0xbb:Key10_Func();
+ 524   4               case 0xdb:Key9_Func();
  525   4                  break;
- 526   4               case 0x7b:Key11_Func();
+ 526   4               case 0xbb:Key10_Func();
  527   4                  break;
- 528   4               }
- 529   3      
- 530   3               /********结束按下后的操作********/
+ 528   4               case 0x7b:Key11_Func();
+ 529   4                  break;
+ 530   4               }
  531   3      
- 532   3               /********检测抬起********/
+ 532   3               /********结束按下后的操作********/
  533   3      
- 534   3               while (temp != 0xf0)
- 535   3               {
- 536   4                  temp = P3;
- 537   4                  temp = temp & 0xf0;
- 538   4               }
- 539   3               Delay_ms_5();
- 540   3               while (temp != 0xf0)      //再检测抬起的倾向
- 541   3               {
- 542   4                  temp = P3;          //重新读取P3
- 543   4                  temp = temp & 0xf0;
- 544   4               }
- 545   3               uart_flag = 1;
- 546   3            }
- 547   2         }
- 548   1      
- 549   1         P3 = 0xf7;
- 550   1         temp = P3;
-C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 03:25:21 PAGE 10  
+ 534   3               /********检测抬起********/
+ 535   3      
+ 536   3               while (temp != 0xf0)
+ 537   3               {
+ 538   4                  temp = P3;
+ 539   4                  temp = temp & 0xf0;
+ 540   4               }
+ 541   3               Delay_ms_5();
+ 542   3               while (temp != 0xf0)      //再检测抬起的倾向
+ 543   3               {
+ 544   4                  temp = P3;          //重新读取P3
+ 545   4                  temp = temp & 0xf0;
+ 546   4               }
+ 547   3               uart_flag = 1;
+ 548   3            }
+ 549   2         }
+ 550   1      
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 10  
 
- 551   1         temp = temp & 0xf0;
- 552   1         if (temp != 0xf0)
- 553   1         {
- 554   2            Delay_ms_5();
- 555   2            temp = P3;
- 556   2            temp = temp & 0xf0;
- 557   2            if (temp != 0xf0)
- 558   2            {
- 559   3               /*****开始按下后的操作*****/
- 560   3               temp = P3;
- 561   3               switch (temp)
- 562   3               {
- 563   4               case 0xe7:Key12_Func();
- 564   4                  break;
- 565   4               case 0xd7:Key13_Func();
+ 551   1         P3 = 0xf7;
+ 552   1         temp = P3;
+ 553   1         temp = temp & 0xf0;
+ 554   1         if (temp != 0xf0)
+ 555   1         {
+ 556   2            Delay_ms_5();
+ 557   2            temp = P3;
+ 558   2            temp = temp & 0xf0;
+ 559   2            if (temp != 0xf0)
+ 560   2            {
+ 561   3               /*****开始按下后的操作*****/
+ 562   3               temp = P3;
+ 563   3               switch (temp)
+ 564   3               {
+ 565   4               case 0xe7:Key12_Func();
  566   4                  break;
- 567   4               case 0xb7:Key14_Func();
+ 567   4               case 0xd7:Key13_Func();
  568   4                  break;
- 569   4               case 0x77:Key15_Func();
+ 569   4               case 0xb7:Key14_Func();
  570   4                  break;
- 571   4               }
- 572   3               /********结束按下后的操作********/
- 573   3      
- 574   3               /********检测抬起********/
- 575   3               while (temp != 0xf0)
- 576   3               {
- 577   4                  temp = P3;
- 578   4                  temp = temp & 0xf0;
- 579   4               }
- 580   3               Delay_ms_5();
- 581   3               while (temp != 0xf0)      //再检测抬起的倾向
- 582   3               {
- 583   4                  temp = P3;          //重新读取P3
- 584   4                  temp = temp & 0xf0;
- 585   4               }
- 586   3               uart_flag = 1;
- 587   3            }
- 588   2         }
- 589   1      }
- 590          
- 591          
+ 571   4               case 0x77:Key15_Func();
+ 572   4                  break;
+ 573   4               }
+ 574   3               /********结束按下后的操作********/
+ 575   3      
+ 576   3               /********检测抬起********/
+ 577   3               while (temp != 0xf0)
+ 578   3               {
+ 579   4                  temp = P3;
+ 580   4                  temp = temp & 0xf0;
+ 581   4               }
+ 582   3               Delay_ms_5();
+ 583   3               while (temp != 0xf0)      //再检测抬起的倾向
+ 584   3               {
+ 585   4                  temp = P3;          //重新读取P3
+ 586   4                  temp = temp & 0xf0;
+ 587   4               }
+ 588   3               uart_flag = 1;
+ 589   3            }
+ 590   2         }
+ 591   1      }
  592          
- 593          void main()
- 594          {
- 595   1         STC89_TX_1C_Board_IO_Base_Init();
- 596   1      
- 597   1         UART1_Init();
+ 593          
+ 594          
+ 595          void main()
+ 596          {
+ 597   1         STC89_TX_1C_Board_IO_Base_Init();
  598   1      
- 599   1         while (1)
- 600   1         {
- 601   2            Keyboard_4x4();
- 602   2            DigitalTube_Display_1bit(5, Digital_Tube_Char_Num);
- 603   2            P3 = 0xff;
- 604   2            if (uart_flag == 1)
- 605   2            {
- 606   3               uart_flag = 0;
- 607   3               SBUF = UART1_Char;
- 608   3               while (!TI);
- 609   3               TI = 0;
- 610   3               UART1_Char = 48;
- 611   3            }
- 612   2            
-C51 COMPILER V9.60.0.0   MAIN                                                              10/17/2020 03:25:21 PAGE 11  
+ 599   1         UART1_Init();
+ 600   1      
+ 601   1         while (1)
+ 602   1         {
+ 603   2            Keyboard_4x4();
+ 604   2            DigitalTube_Display_1bit(5, Digital_Tube_Char_Num);
+ 605   2            P3 = 0xff;
+ 606   2            if (uart_flag == 1)
+ 607   2            {
+ 608   3               uart_flag = 0;
+ 609   3               SBUF = UART1_Char;
+ 610   3               while (!TI);
+ 611   3               TI = 0;
+ 612   3               UART1_Char = 48;
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 11  
 
- 613   2         }
- 614   1      }
- 615          
+ 613   3            }
+ 614   2            
+ 615   2         }
+ 616   1      }
+ 617          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

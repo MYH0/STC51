@@ -1,0 +1,6 @@
+"Clock.obj",
+"Lcd.obj",
+"Main.obj",
+"Common.obj" 
+TO "DS1302" 
+RAMSIZE(256) 

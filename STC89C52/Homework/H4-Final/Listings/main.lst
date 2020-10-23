@@ -1,0 +1,501 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 22:11:26 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\KEIL\KEIL-CODE\C51\BIN\C51.EXE main.c OPTIMIZE(9,SIZE) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\main.lst) TABS(3) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <STC89C5XRC.H>
+   2          //#include <STC12C5A60S2.H>
+   3          #include <intrins.h>
+   4          #include <math.h>
+   5          
+   6          typedef unsigned int uint;
+   7          typedef unsigned char uchar;
+   8          
+   9          #define BIT0 1<<0
+  10          #define BIT1 1<<1
+  11          #define BIT2 1<<2
+  12          #define BIT3 1<<3
+  13          
+  14          #define BIT4 1<<4
+  15          #define BIT5 1<<5
+  16          #define BIT6 1<<6
+  17          #define BIT7 1<<7
+  18          
+  19          #define BIT8_ALL 0xff
+  20          
+  21          /*************************************注意******************************************/
+  22          //data是C51关键字
+  23          /***********************************预装数据****************************************/
+  24          
+  25          /***********************************预设变量****************************************/
+  26          uchar hour_shi = 0;
+  27          uchar hour_ge = 0;
+  28          uchar min_shi = 0;
+  29          uchar min_ge = 0;
+  30          uchar sec_shi = 0;
+  31          uchar sec_ge = 0;
+  32          
+  33          //f=11.0592MHz
+  34          /******************************************粗略延时***********************************/
+  35          void Delay_ms(uint time_ms)
+  36          {
+  37   1         uint i, j;
+  38   1         for (i = 0; i < time_ms; i++)
+  39   1            for (j = 0; j < 113; j++);
+  40   1      }
+  41          /******************************************较为精准延时********************************/
+  42          /***********************************************ms*****************/
+  43          void Delay_ms_1()
+  44          {
+  45   1         unsigned char i, j;
+  46   1         _nop_();
+  47   1         i = 2;
+  48   1         j = 199;
+  49   1         do
+  50   1         {
+  51   2            while (--j);
+  52   2         } while (--i);
+  53   1      }
+  54          
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 22:11:26 PAGE 2   
+
+  55          void Delay_ms_2()
+  56          {
+  57   1         unsigned char i, j;
+  58   1         _nop_();
+  59   1         i = 4;
+  60   1         j = 146;
+  61   1         do
+  62   1         {
+  63   2            while (--j);
+  64   2         } while (--i);
+  65   1      }
+  66          
+  67          void Delay_ms_5()
+  68          {
+  69   1         unsigned char i, j;
+  70   1         i = 9;
+  71   1         j = 244;
+  72   1         do
+  73   1         {
+  74   2            while (--j);
+  75   2         } while (--i);
+  76   1      }
+  77          /***********************************************s******************/
+  78          void Delay_s_0_5()
+  79          {
+  80   1         unsigned char i, j, k;
+  81   1      
+  82   1         _nop_();
+  83   1         i = 4;
+  84   1         j = 129;
+  85   1         k = 119;
+  86   1         do
+  87   1         {
+  88   2            do
+  89   2            {
+  90   3               while (--k);
+  91   3            } while (--j);
+  92   2         } while (--i);
+  93   1      }
+  94          
+  95          void Delay_s_1()
+  96          {
+  97   1         unsigned char i, j, k;
+  98   1      
+  99   1         _nop_();
+ 100   1         i = 8;
+ 101   1         j = 1;
+ 102   1         k = 243;
+ 103   1         do
+ 104   1         {
+ 105   2            do
+ 106   2            {
+ 107   3               while (--k);
+ 108   3            } while (--j);
+ 109   2         } while (--i);
+ 110   1      }
+ 111          
+ 112          /***************************************预定义*****************************************/
+ 113          /***************************************LED**********************/
+ 114          /**************************************IO预定义*/
+ 115          sbit LED0 = P1 ^ 0;
+ 116          sbit LED1 = P1 ^ 1;
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 22:11:26 PAGE 3   
+
+ 117          sbit LED2 = P1 ^ 2;
+ 118          sbit LED3 = P1 ^ 3;
+ 119          sbit LED4 = P1 ^ 4;
+ 120          sbit LED5 = P1 ^ 5;
+ 121          sbit LED6 = P1 ^ 6;
+ 122          sbit LED7 = P1 ^ 7;
+ 123          /**************************************操作预定义*/
+ 124          /*开灯*/
+ 125          #define LED0_On LED0=0
+ 126          #define LED1_On LED1=0
+ 127          #define LED2_On LED2=0
+ 128          #define LED3_On LED3=0
+ 129          #define LED4_On LED4=0
+ 130          #define LED5_On LED5=0
+ 131          #define LED6_On LED6=0
+ 132          #define LED7_On LED7=0
+ 133          #define LED_ALL_On P1=0x00
+ 134          /*关灯*/
+ 135          #define LED0_Off LED0=1
+ 136          #define LED1_Off LED1=1
+ 137          #define LED2_Off LED2=1
+ 138          #define LED3_Off LED3=1
+ 139          #define LED4_Off LED4=1
+ 140          #define LED5_Off LED5=1
+ 141          #define LED6_Off LED6=1
+ 142          #define LED7_Off LED7=1
+ 143          #define LED_ALL_Off P1=0xff
+ 144          /*反转*/
+ 145          #define LED0_Toggle P1^=BIT0
+ 146          #define LED1_Toggle P1^=BIT1
+ 147          #define LED2_Toggle P1^=BIT2
+ 148          #define LED3_Toggle P1^=BIT3
+ 149          #define LED4_Toggle P1^=BIT4
+ 150          #define LED5_Toggle P1^=BIT5
+ 151          #define LED6_Toggle P1^=BIT6
+ 152          #define LED7_Toggle P1^=BIT7
+ 153          #define LED_ALL_Toggle P1^=BIT8_ALL
+ 154          
+ 155          /***************************************Beep*****************/
+ 156          /**************************************IO预定义*/
+ 157          sbit Beep = P2 ^ 3;
+ 158          /**************************************操作预定义*/
+ 159          #define Beep_On Beep=0
+ 160          #define Beep_Off Beep=1
+ 161          #define Beep_Toggle P2^=BIT3
+ 162          /***************************************数码管*****************/
+ 163          sbit wx = P2 ^ 7;
+ 164          sbit dx = P2 ^ 6;
+ 165          /***************************************独立按键****************/
+ 166          sbit Key_i0 = P3 ^ 4;
+ 167          sbit Key_i1 = P3 ^ 5;
+ 168          sbit Key_i2 = P3 ^ 6;
+ 169          sbit Key_i3 = P3 ^ 7;
+ 170          /***************************************操作****************************************/
+ 171          void STC89_TX_1C_Board_IO_Base_Init()
+ 172          {
+ 173   1         dx = 0;  //dx
+ 174   1         wx = 0;  //wx
+ 175   1      
+ 176   1         EA = 1;
+ 177   1      }
+ 178          
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 22:11:26 PAGE 4   
+
+ 179          /********************************************常量定义*********************************************/
+ 180          /********************************************段选************************/
+ 181          uchar code duanxuan[] =
+ 182          {
+ 183             0x3f,    //0
+ 184             0x06,    //1
+ 185             0x5b,    //2
+ 186             0x4f,    //3
+ 187             0x66,    //4
+ 188             0x6d,    //5
+ 189             0x7d,    //6
+ 190             0x07,    //7
+ 191             0x7f,    //8
+ 192             0x6f,    //9
+ 193          
+ 194             0x77,    //A--10
+ 195             0x7c,    //b--11
+ 196             0x39,    //C--12
+ 197             0x5e,    //d--13
+ 198             0x79,    //E--14
+ 199             0x71,    //F--15
+ 200             0x3d,    //G--16
+ 201             0x76,    //H--17
+ 202             0x11,    //i--18
+ 203             0x0e,    //J--19
+ 204             0x7a,    //k--20
+ 205             0x38,    //L--21
+ 206             0x55,    //M--22
+ 207             0x54,    //n--23
+ 208             0X3f,    //O--24
+ 209             0x73,    //P--25
+ 210             0x67,    //q--26
+ 211             0x50,    //r--27
+ 212             0x6d,    //S--28
+ 213             0x78,    //t--29
+ 214             0x3e,    //U--30
+ 215             0x3e,    //V--31
+ 216             0x6a,    //W--32
+ 217             0x76,    //X--33
+ 218             0x6e,    //y--34
+ 219             0x5b,    //Z--35
+ 220          
+ 221             0x7b,    //e--36
+ 222             0x74,    //h--37
+ 223             0x5c,    //o--38
+ 224             0x1c,    //u--39
+ 225             0x62,    //v--40
+ 226          
+ 227             0x00     //0x00为全不亮--41
+ 228          };
+ 229          /********************************************位选************************/
+ 230          uchar code weixuan[] =        //左边第一位为bit0
+ 231          {
+ 232             0xfe,    //0
+ 233             0xfd,    //1
+ 234             0xfb,    //2
+ 235             0xf7,    //3
+ 236             0xef,    //4
+ 237             0xdf,    //5
+ 238             0xc0     //ALL--6
+ 239          };
+ 240          /*******************************************预装数据**********************************************/
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 22:11:26 PAGE 5   
+
+ 241          uchar code HELLO[] = { 17,14,21,21,24,41 };
+ 242          /********************************************IO定义**********************************************/
+ 243          //sbit wx = P2 ^ 7;
+ 244          //sbit dx = P2 ^ 6;
+ 245          /***********************************************操作**********************************************/
+ 246          /*******************************************数码管显示1bit******************/
+ 247          void DigitalTube_Display_1bit(uchar wei, uchar duan)     //位数据，段数据
+ 248          {
+ 249   1         dx = 1;
+ 250   1         P0 = duanxuan[duan];   //送段数据
+ 251   1         dx = 0;
+ 252   1         P0 = 0xff;     //送位数据前关闭所有显示，防止打开位选锁存后段选数据通过位选锁存器
+ 253   1         wx = 1;
+ 254   1         P0 = weixuan[wei];
+ 255   1         wx = 0;
+ 256   1         Delay_ms_1();
+ 257   1      }
+ 258          /*******************************************数码管显示3bit数字******************/
+ 259          void DigitalTube_Display_num_3bit(uchar shu)
+ 260          {
+ 261   1         uchar bai, shi, ge;
+ 262   1         bai = shu / 100;
+ 263   1         shi = shu / 10 % 10;
+ 264   1         ge = shu % 10;
+ 265   1      
+ 266   1         DigitalTube_Display_1bit(0, bai);
+ 267   1         DigitalTube_Display_1bit(1, shi);
+ 268   1         DigitalTube_Display_1bit(2, ge);
+ 269   1      }
+ 270          /*******************************************数码管显示6bit******************/
+ 271          void DigitalTube_Display_6bit(uchar zero, uchar one, uchar two, uchar three, uchar four, uchar five)
+ 272          {
+ 273   1         DigitalTube_Display_1bit(0, zero);
+ 274   1         DigitalTube_Display_1bit(1, one);
+ 275   1         DigitalTube_Display_1bit(2, two);
+ 276   1         DigitalTube_Display_1bit(3, three);
+ 277   1         DigitalTube_Display_1bit(4, four);
+ 278   1         DigitalTube_Display_1bit(5, five);
+ 279   1      }
+ 280          /*******************************************数码管显示HELLO******************/
+ 281          void DigitalTube_Display_Str_HELLO()
+ 282          {
+ 283   1         DigitalTube_Display_6bit(HELLO[0], HELLO[1], HELLO[2], HELLO[3], HELLO[4], HELLO[5]);
+ 284   1      }
+ 285          
+ 286          /************************************注意*****************************************/
+ 287          //data为C51关键字
+ 288          /***********************************预设量****************************************/
+ 289          uchar TimeBuff[7] = { 20,10,23,6,21,56,00 };   //时间数组，默认2020年10月23日，星期五，18:30:40
+ 290          // TimeBuff[0] 代表年份，范围00-99
+ 291          // TimeBuff[1] 代表月份，范围1-12
+ 292          // TimeBuff[2] 代表日期，范围1-31
+ 293          // TimeBuff[3] 代表星期，范围1-7，1是星期天，2是星期一
+ 294          // TimeBuff[4] 代表小时，范围00-23
+ 295          // TimeBuff[5] 代表分钟，范围00-59
+ 296          // TimeBuff[6] 代表秒钟，范围00-59
+ 297          
+ 298          /**********************************IO定义*****************************************/
+ 299          sbit DS1302_CLK = P2 ^ 1;
+ 300          sbit DS1302_IO = P2 ^ 0;
+ 301          sbit DS1302_RST = P2 ^ 4;
+ 302          /***********************************操作******************************************/
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 22:11:26 PAGE 6   
+
+ 303          /***********************************通信********************/
+ 304          /*********************************读1字节*/
+ 305          uchar DS1302_R_Byte(uchar addr)
+ 306          {
+ 307   1         uchar i;
+ 308   1         uchar temp;
+ 309   1      
+ 310   1         DS1302_RST = 1;
+ 311   1         for (i = 0; i < 8; i++)       //写入目标地址：addr
+ 312   1         {
+ 313   2            if (addr & 0x01)
+ 314   2               DS1302_IO = 1;
+ 315   2            else
+ 316   2               DS1302_IO = 0;
+ 317   2      
+ 318   2            DS1302_CLK = 1;
+ 319   2            _nop_();
+ 320   2            DS1302_CLK = 0;
+ 321   2            _nop_();
+ 322   2      
+ 323   2            addr = addr >> 1;
+ 324   2         }
+ 325   1      
+ 326   1         for (i = 0; i < 8; i++)       //读出该地址的数据
+ 327   1         {
+ 328   2            temp = temp >> 1;
+ 329   2      
+ 330   2            if (DS1302_IO)
+ 331   2               temp |= 0x80;
+ 332   2            else
+ 333   2               temp &= 0x7F;
+ 334   2      
+ 335   2            DS1302_CLK = 1;
+ 336   2            _nop_();
+ 337   2            DS1302_CLK = 0;
+ 338   2            _nop_();
+ 339   2         }
+ 340   1         DS1302_RST = 0;
+ 341   1         return temp;
+ 342   1      }
+ 343          
+ 344          /*********************************写1字节*/
+ 345          void DS1302_W_Byte(uchar addr, uchar dat)
+ 346          {
+ 347   1         uchar i;
+ 348   1      
+ 349   1         DS1302_RST = 1;
+ 350   1         for (i = 0; i < 8; i++)       //写入目标地址：addr
+ 351   1         {
+ 352   2            if (addr & 0x01)
+ 353   2               DS1302_IO = 1;
+ 354   2            else
+ 355   2               DS1302_IO = 0;
+ 356   2      
+ 357   2            DS1302_CLK = 1;
+ 358   2            _nop_();
+ 359   2            DS1302_CLK = 0;
+ 360   2            _nop_();
+ 361   2      
+ 362   2            addr = addr >> 1;
+ 363   2         }
+ 364   1      
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 22:11:26 PAGE 7   
+
+ 365   1         for (i = 0; i < 8; i++)       //写入数据：dat
+ 366   1         {
+ 367   2            if (dat & 0x01)
+ 368   2               DS1302_IO = 1;
+ 369   2            else
+ 370   2               DS1302_IO = 0;
+ 371   2      
+ 372   2            DS1302_CLK = 1;
+ 373   2            _nop_();
+ 374   2            DS1302_CLK = 0;
+ 375   2            _nop_();
+ 376   2      
+ 377   2            dat = dat >> 1;
+ 378   2         }
+ 379   1         DS1302_RST = 0;
+ 380   1      }
+ 381          
+ 382          /***********************************行动********************/
+ 383          /*******************************写入时间数据*/
+ 384          void DS1302_W_Time()
+ 385          {
+ 386   1         uchar i;
+ 387   1         uchar temp1;
+ 388   1         uchar temp2;
+ 389   1      
+ 390   1         for (i = 0; i < 7; i++)       // 十进制转BCD码
+ 391   1         {
+ 392   2            temp1 = (TimeBuff[i] / 10) << 4;
+ 393   2            temp2 = TimeBuff[i] % 10;
+ 394   2            TimeBuff[i] = temp1 + temp2;
+ 395   2         }
+ 396   1         DS1302_W_Byte(0x8E, 0x00);                // 关闭写保护 
+ 397   1         DS1302_W_Byte(0x80, 0x80);                // 暂停时钟 
+ 398   1         DS1302_W_Byte(0x8C, TimeBuff[0]);            // 年 
+ 399   1         DS1302_W_Byte(0x88, TimeBuff[1]);            // 月 
+ 400   1         DS1302_W_Byte(0x86, TimeBuff[2]);            // 日 
+ 401   1         DS1302_W_Byte(0x8A, TimeBuff[3]);            // 星期
+ 402   1         DS1302_W_Byte(0x84, TimeBuff[4]);            // 时 
+ 403   1         DS1302_W_Byte(0x82, TimeBuff[5]);            // 分
+ 404   1         DS1302_W_Byte(0x80, TimeBuff[6]);            // 秒
+ 405   1         DS1302_W_Byte(0x80, TimeBuff[6] & 0x7F);     // 运行时钟
+ 406   1         DS1302_W_Byte(0x8E, 0x80);                // 打开写保护  
+ 407   1      }
+ 408          
+ 409          /*******************************读出时间数据*/
+ 410          void DS1302_R_Time()
+ 411          {
+ 412   1         uchar i;
+ 413   1         TimeBuff[0] = DS1302_R_Byte(0x8D);           // 年 
+ 414   1         TimeBuff[1] = DS1302_R_Byte(0x89);           // 月 
+ 415   1         TimeBuff[2] = DS1302_R_Byte(0x87);           // 日 
+ 416   1         TimeBuff[3] = DS1302_R_Byte(0x8B);           // 星期
+ 417   1         TimeBuff[4] = DS1302_R_Byte(0x85);           // 时 
+ 418   1         TimeBuff[5] = DS1302_R_Byte(0x83);           // 分 
+ 419   1         TimeBuff[6] = (DS1302_R_Byte(0x81)) & 0x7F;     // 秒 
+ 420   1      
+ 421   1         for (i = 0; i < 7; i++)    // BCD转十进制
+ 422   1         {
+ 423   2            TimeBuff[i] = (TimeBuff[i] / 16) * 10 + TimeBuff[i] % 16;
+ 424   2         }
+ 425   1      }
+ 426          
+C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 22:11:26 PAGE 8   
+
+ 427          /*******************判断时钟芯片是否正常运行*/
+ 428          void DS1302_Check()
+ 429          {
+ 430   1         if (DS1302_R_Byte(0x81) >= 128)  // 判断时钟芯片是否正常运行
+ 431   1            DS1302_W_Time();           // 如果没有，则初始化一个时间
+ 432   1      }
+ 433          /***********************************初始化*/
+ 434          void DS1302_Init()
+ 435          {
+ 436   1         DS1302_RST = 0;
+ 437   1         DS1302_CLK = 0;
+ 438   1         DS1302_IO = 0;
+ 439   1      }
+ 440          
+ 441          
+ 442          void main()
+ 443          {
+ 444   1         STC89_TX_1C_Board_IO_Base_Init();
+ 445   1      
+ 446   1         DS1302_Init();
+ 447   1         //DS1302_W_Time();
+ 448   1         DS1302_Check();
+ 449   1      
+ 450   1         while (1)
+ 451   1         {
+ 452   2            DS1302_R_Time();
+ 453   2      
+ 454   2            hour_shi = TimeBuff[4] / 10;
+ 455   2            hour_ge = TimeBuff[4] % 10;
+ 456   2            min_shi = TimeBuff[5] / 10;
+ 457   2            min_ge = TimeBuff[5] % 10;
+ 458   2            sec_shi = TimeBuff[6] / 10;
+ 459   2            sec_ge = TimeBuff[6] % 10;
+ 460   2      
+ 461   2            DigitalTube_Display_6bit(hour_shi, hour_ge, min_shi, min_ge, sec_shi, sec_ge);
+ 462   2         }
+ 463   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    718    ----
+   CONSTANT SIZE    =     55    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     13       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
