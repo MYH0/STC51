@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\Homework",
-    "\\Homework\\H2",
-    "\\Homework\\H2\\MenYuhan_Drivers_STC89",
-    "\\Homework\\H3-Final",
+    "\\Homework\\H3",
     "\\Homework\\H3\\MenYuhan_Drivers_STC89",
     "\\Homework\\H4",
+    "\\Homework\\H4-Final",
     "\\Homework\\H4\\MenYuhan_Drivers_STC89",
     "\\实战",
-    "\\实战\\F420数字时钟"
+    "\\实战\\F420数字时钟",
+    "\\实战\\F420数字时钟\\Project1"
   ],
-  "SelectedNode": "\\Homework\\H4\\main.c",
+  "SelectedNode": "\\Homework\\H4-Final\\main.c",
   "PreviewInSolutionExplorer": false
 }

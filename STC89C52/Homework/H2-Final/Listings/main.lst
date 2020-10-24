@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              10/18/2020 00:09:13 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:49:13 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   1         i = 2;
   53   1         j = 199;
   54   1         do
-C51 COMPILER V9.60.0.0   MAIN                                                              10/18/2020 00:09:13 PAGE 2   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:49:13 PAGE 2   
 
   55   1         {
   56   2            while (--j);
@@ -126,7 +126,7 @@ line level    source
  114   2         } while (--i);
  115   1      }
  116          
-C51 COMPILER V9.60.0.0   MAIN                                                              10/18/2020 00:09:13 PAGE 3   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:49:13 PAGE 3   
 
  117          /***************************************‘§∂®“Â*****************************************/
  118          /***************************************LED**********************/
@@ -190,7 +190,7 @@ line level    source
  176          void STC89_TX_1C_Board_IO_Base_Init()
  177          {
  178   1         dx = 0;  //dx
-C51 COMPILER V9.60.0.0   MAIN                                                              10/18/2020 00:09:13 PAGE 4   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:49:13 PAGE 4   
 
  179   1         wx = 0;  //wx
  180   1      
@@ -254,7 +254,7 @@ line level    source
  238   2            LED1_On;
  239   2            Delay_ms(500);
  240   2            LED1_Off;
-C51 COMPILER V9.60.0.0   MAIN                                                              10/18/2020 00:09:13 PAGE 5   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:49:13 PAGE 5   
 
  241   2      
  242   2            LED2_On;

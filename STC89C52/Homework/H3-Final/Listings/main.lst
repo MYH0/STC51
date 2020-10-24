@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:48:28 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   1         j = 199;
   53   1         do
   54   1         {
-C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 2   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:48:28 PAGE 2   
 
   55   2            while (--j);
   56   2         } while (--i);
@@ -126,7 +126,7 @@ line level    source
  114   1      }
  115          
  116          /***************************************预定义*****************************************/
-C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 3   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:48:28 PAGE 3   
 
  117          /***************************************LED**********************/
  118          /**************************************IO预定义*/
@@ -190,7 +190,7 @@ line level    source
  176          {
  177   1         dx = 0;  //dx
  178   1         wx = 0;  //wx
-C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 4   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:48:28 PAGE 4   
 
  179   1      
  180   1         EA = 1;
@@ -254,7 +254,7 @@ line level    source
  238             0x76,    //H--17
  239             0x11,    //i--18
  240             0x0e,    //J--19
-C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 5   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:48:28 PAGE 5   
 
  241             0x7a,    //k--20
  242             0x38,    //L--21
@@ -318,7 +318,7 @@ line level    source
  300   1         ge = shu % 10;
  301   1      
  302   1         DigitalTube_Display_1bit(0, bai);
-C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 6   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:48:28 PAGE 6   
 
  303   1         DigitalTube_Display_1bit(1, shi);
  304   1         DigitalTube_Display_1bit(2, ge);
@@ -382,7 +382,7 @@ line level    source
  362          {
  363   1         Digital_Tube_Char_Num = 7;
  364   1         UART1_Char += Digital_Tube_Char_Num;
-C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 7   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:48:28 PAGE 7   
 
  365   1      }
  366          
@@ -446,7 +446,7 @@ line level    source
  424   1      
  425   1         P3 = 0xfe;                      //检测P30这一行的按键
  426   1         temp = P3;                 //读取P3的值
-C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 8   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:48:28 PAGE 8   
 
  427   1         temp = temp & 0xf0;
  428   1         if (temp != 0xf0)       //有按下的倾向
@@ -510,7 +510,7 @@ line level    source
  486   4               case 0x7d:Key7_Func();
  487   4                  break;
  488   4               }
-C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 9   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:48:28 PAGE 9   
 
  489   3               /*****结束按下后的操作*****/
  490   3      
@@ -574,7 +574,7 @@ line level    source
  548   3            }
  549   2         }
  550   1      
-C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 10  
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:48:28 PAGE 10  
 
  551   1         P3 = 0xf7;
  552   1         temp = P3;
@@ -638,7 +638,7 @@ line level    source
  610   3               while (!TI);
  611   3               TI = 0;
  612   3               UART1_Char = 48;
-C51 COMPILER V9.60.0.0   MAIN                                                              10/23/2020 18:38:27 PAGE 11  
+C51 COMPILER V9.60.0.0   MAIN                                                              10/24/2020 17:48:28 PAGE 11  
 
  613   3            }
  614   2            

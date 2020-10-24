@@ -1,0 +1,207 @@
+C51 COMPILER V9.00   DA_AD                                                                 12/15/2011 11:57:03 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE DA_AD
+OBJECT MODULE PLACED IN DA-AD.OBJ
+COMPILER INVOKED BY: E:\安装软件\keil-51\C51\BIN\C51.EXE DA-AD.C BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          
+   2          /*********************************************************************************
+   3          * 【编写时间】： 2011.07.07
+   4          * 【作    者】： 雁翎电子
+   5          * 【版    本】： V1.0
+   6          * 【网    站】： http://ylelectronic.taobao.com/ 
+   7          * 【Q      Q】： 348439350
+   8          * 【声    明】： 此程序仅用于学习与参考，引用请注明版权和作者信息！
+   9          * 【函数功能】： DA-AD试验                                                                                  
+  10          * 【使用说明】： 单片机：STC89C52 
+  11                           串口波特率：9600
+  12                                           串口一共发送4个字节  
+  13                                           1 光敏电阻
+  14                                           2 热敏电阻
+  15                                           3 悬空
+  16                                           4 可调0-5V电压（蓝色电位器调节）
+  17                                           
+  18          **********************************************************************************/
+  19          /********************************************************************************************/
+  20          
+  21          #include<reg52.h>    //包含单片机寄存器的头文件
+  22          #include <I2C.H>
+  23          
+  24          #define uchar unsigned char
+  25          #define  PCF8591 0x90    //PCF8591 地址
+  26          
+  27          
+  28          
+  29          // 变量定义
+  30          unsigned char AD_CHANNEL;
+  31          unsigned long xdata  LedOut[8];
+  32          unsigned int  D[32];
+  33          sbit P2_0 = P2^0;
+  34          sbit P2_1 = P2^1;
+  35          sbit P2_2 = P2^2;
+  36          sbit P2_3 = P2^3;
+  37          
+  38          unsigned char date;
+  39          
+  40          uchar code table[]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,
+  41                                  0xf8,0x80,0x90};
+  42          
+  43          
+  44            // 函数申明 
+  45          
+  46          void display();
+  47          void delay(uchar i);
+  48          bit DACconversion(unsigned char sla,unsigned char c,  unsigned char Val);
+  49          bit ISendByte(unsigned char sla,unsigned char c);
+  50          unsigned char IRcvByte(unsigned char sla);
+  51          void Initial_com(void);
+  52          //******************************************************************/
+  53          main()
+  54          {  
+  55   1      
+C51 COMPILER V9.00   DA_AD                                                                 12/15/2011 11:57:03 PAGE 2   
+
+  56   1              Initial_com();
+  57   1              while(1)
+  58   1              {
+  59   2      
+  60   2              /********以下AD-DA处理*************/  
+  61   2              
+  62   2                  switch(AD_CHANNEL)
+  63   2                      {
+  64   3                              case 0: ISendByte(PCF8591,0x41);
+  65   3                                   D[0]=IRcvByte(PCF8591);  //ADC0 模数转换1      光敏电阻
+  66   3                                       break;  
+  67   3                              
+  68   3                              case 1: ISendByte(PCF8591,0x42);
+  69   3                                   D[1]=IRcvByte(PCF8591);  //ADC1  模数转换2   热敏电阻
+  70   3                                       break;  
+  71   3                              
+  72   3                              case 2: ISendByte(PCF8591,0x43);
+  73   3                                   D[2]=IRcvByte(PCF8591);  //ADC2    模数转换3          悬空
+  74   3                                       break;  
+  75   3                              
+  76   3                              case 3: ISendByte(PCF8591,0x40);
+  77   3                                   D[3]=IRcvByte(PCF8591);  //ADC3   模数转换4           可调0-5v
+  78   3                                       break;  
+  79   3                              
+  80   3                              case 4: DACconversion(PCF8591,0x40, D[4]); //DAC          数模转换
+  81   3                                   break;
+  82   3                       
+  83   3                      }
+  84   2      
+  85   2              D[4]=D[3];  //把模拟输入采样的信号 通过数模转换输出
+  86   2                              
+  87   2                 if(++AD_CHANNEL>4) AD_CHANNEL=0;
+  88   2              
+  89   2                 /********以下将AD的值通过串口发送出去*************/
+  90   2               delay(200);    
+  91   2               SBUF=D[0];                        
+  92   2               delay(200);              
+  93   2               SBUF=D[1];                        
+  94   2               delay(200);    
+  95   2               SBUF=D[2];
+  96   2               delay(200);
+  97   2               SBUF=D[3];
+  98   2               delay(200);
+  99   2               if(RI)
+ 100   2              {
+ 101   3                      date=SBUF;    //单片机接受
+ 102   3                      SBUF=date;    //单片机发送
+ 103   3                      RI=0;
+ 104   3              }        
+ 105   2         }
+ 106   1      }
+ 107          
+ 108          
+ 109          void delay(uchar i)
+ 110          {
+ 111   1        uchar j,k; 
+ 112   1        for(j=i;j>0;j--)
+ 113   1          for(k=125;k>0;k--);
+ 114   1      }
+ 115          
+ 116          /*******************************************************************
+ 117          DAC 变换, 转化函数               
+C51 COMPILER V9.00   DA_AD                                                                 12/15/2011 11:57:03 PAGE 3   
+
+ 118          *******************************************************************/
+ 119          bit DACconversion(unsigned char sla,unsigned char c,  unsigned char Val)
+ 120          {
+ 121   1         Start_I2c();              //启动总线
+ 122   1         SendByte(sla);            //发送器件地址
+ 123   1         if(ack==0)return(0);
+ 124   1         SendByte(c);              //发送控制字节
+ 125   1         if(ack==0)return(0);
+ 126   1         SendByte(Val);            //发送DAC的数值  
+ 127   1         if(ack==0)return(0);
+ 128   1         Stop_I2c();               //结束总线
+ 129   1         return(1);
+ 130   1      }
+ 131          
+ 132          /*******************************************************************
+ 133          ADC发送字节[命令]数据函数               
+ 134          *******************************************************************/
+ 135          bit ISendByte(unsigned char sla,unsigned char c)
+ 136          {
+ 137   1         Start_I2c();              //启动总线
+ 138   1         SendByte(sla);            //发送器件地址
+ 139   1         if(ack==0)return(0);
+ 140   1         SendByte(c);              //发送数据
+ 141   1         if(ack==0)return(0);
+ 142   1         Stop_I2c();               //结束总线
+ 143   1         return(1);
+ 144   1      }
+ 145          
+ 146          /*******************************************************************
+ 147          ADC读字节数据函数               
+ 148          *******************************************************************/
+ 149          unsigned char IRcvByte(unsigned char sla)
+ 150          {  unsigned char c;
+ 151   1      
+ 152   1         Start_I2c();          //启动总线
+ 153   1         SendByte(sla+1);      //发送器件地址
+ 154   1         if(ack==0)return(0);
+ 155   1         c=RcvByte();          //读取数据0
+ 156   1      
+ 157   1         Ack_I2c(1);           //发送非就答位
+ 158   1         Stop_I2c();           //结束总线
+ 159   1         return(c);
+ 160   1      }
+ 161          
+ 162          
+ 163          //*****串口初始化函数***********
+ 164          
+ 165          //******************************
+ 166          void Initial_com(void)
+ 167          {
+ 168   1       EA=1;        //开总中断
+ 169   1       ES=1;        //允许串口中断
+ 170   1       ET1=1;        //允许定时器T1的中断
+ 171   1       TMOD=0x20;   //定时器T1，在方式2中断产生波特率
+ 172   1       PCON=0x00;   //SMOD=0
+ 173   1       SCON=0x50;   // 方式1 由定时器控制
+ 174   1       TH1=0xfd;    //波特率设置为9600
+ 175   1       TL1=0xfd;
+ 176   1       TR1=1;       //开定时器T1运行控制位
+ 177   1      
+ 178   1      }
+
+C51 COMPILER V9.00   DA_AD                                                                 12/15/2011 11:57:03 PAGE 4   
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    326    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =     32    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     66       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
