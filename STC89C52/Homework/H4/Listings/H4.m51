@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/23/2020  21:55:53  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/31/2020  11:24:41  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -59,7 +59,7 @@ LINK MAP OF MODULE:  .\Objects\H4 (MAIN)
             CODE    049DH     0056H     UNIT         ?PR?MAIN?MAIN
             CODE    04F3H     0055H     UNIT         ?PR?T1_INT?MAIN
             CODE    0548H     0055H     UNIT         ?PR?KEYBOARD_INDEPENDENT?MAIN
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 2
 
 
             CODE    059DH     004DH     UNIT         ?PR?T0_INT?MAIN
@@ -119,7 +119,7 @@ LINK MAP OF MODULE:  .\Objects\H4 (MAIN)
             CODE    0940H     0001H     UNIT         ?PR?KEY15_FUNC?MAIN
 
 
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 3
 
 
 
@@ -179,7 +179,7 @@ SEGMENT                                           DATA_GROUP
   +--> ?PR?MAIN
 
 ?PR?DS1302_CHECK?MAIN                           -----    -----
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 4
 
 
   +--> ?PR?_DS1302_R_BYTE?MAIN
@@ -239,7 +239,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   C:08BBH         PUBLIC        DS1302_Check
   C:0016H         PUBLIC        LCD1602_Display_Clear
   B:00B0H.4       PUBLIC        Key_i0
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 5
 
 
   B:00B0H.5       PUBLIC        Key_i1
@@ -299,7 +299,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   B:00A0H.6       PUBLIC        dx
   D:000FH         PUBLIC        sec_shi
   C:0809H         PUBLIC        _DigitalTube_Display_1bit
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 6
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 6
 
 
   C:07EAH         PUBLIC        UART1_Init
@@ -359,7 +359,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   C:08EAH         LINE#         11
   C:08EAH         LINE#         12
   C:08EAH         LINE#         14
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 7
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 7
 
 
   C:08EBH         LINE#         15
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   -------         ENDPROC       DELAY_S_0_5
   -------         PROC          DELAY_S_1
   -------         DO            
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 8
 
 
   D:0007H         SYMBOL        i
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   -------         DO            
   D:0015H         SYMBOL        time_long0
   -------         ENDDO         
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 9
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 9
 
 
   C:059DH         LINE#         17
@@ -539,7 +539,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   C:0012H         LINE#         7
   -------         ENDPROC       EX1_INIT
   -------         PROC          EX1_FUNC
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 10
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 10
 
 
   C:092BH         LINE#         9
@@ -599,7 +599,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   D:0003H         SYMBOL        ge
   -------         ENDDO         
   C:0756H         LINE#         81
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 11
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 11
 
 
   C:0756H         LINE#         82
@@ -659,7 +659,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   C:054BH         LINE#         31
   C:054EH         LINE#         32
   C:0551H         LINE#         33
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 12
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 12
 
 
   C:0551H         LINE#         34
@@ -719,7 +719,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   C:0933H         LINE#         16
   -------         ENDPROC       KEY2_FUNC
   -------         PROC          KEY3_FUNC
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 13
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 13
 
 
   C:0934H         LINE#         18
@@ -779,7 +779,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   -------         PROC          KEY14_FUNC
   C:093FH         LINE#         73
   C:093FH         LINE#         74
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 14
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 14
 
 
   C:093FH         LINE#         76
@@ -839,7 +839,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   C:01EFH         LINE#         132
   C:01EFH         LINE#         133
   C:01EFH         LINE#         134
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 15
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 15
 
 
   C:01F2H         LINE#         135
@@ -899,7 +899,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   C:027DH         LINE#         201
   C:0280H         LINE#         202
   C:0285H         LINE#         203
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 16
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 16
 
 
   C:0285H         LINE#         204
@@ -959,7 +959,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   -------         PROC          _LCD1602_W_DATA
   D:0007H         SYMBOL        dataa
   C:091BH         LINE#         19
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 17
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 17
 
 
   C:091BH         LINE#         20
@@ -1019,7 +1019,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   C:06EDH         LINE#         59
   C:06F0H         LINE#         60
   -------         ENDPROC       _LCD1602_DISPLAY_NUM
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 18
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 18
 
 
   -------         PROC          LCD1602_INIT
@@ -1079,7 +1079,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   C:0674H         LINE#         65
   C:067CH         LINE#         66
   C:067CH         LINE#         67
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 19
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 19
 
 
   C:0680H         LINE#         68
@@ -1139,7 +1139,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   C:03E7H         LINE#         128
   C:03EEH         LINE#         129
   C:03F5H         LINE#         130
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 20
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 20
 
 
   C:03FCH         LINE#         131
@@ -1199,7 +1199,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
   -------         MODULE        ?C?UIDIV
   C:0051H         PUBLIC        ?C?UIDIV
   -------         ENDMOD        ?C?UIDIV
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 21
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 21
 
 
 
@@ -1259,7 +1259,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\H4 (MAIN)
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_LCD1602_DISPLAY_NUM?MAIN
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/23/2020  21:55:53  PAGE 22
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/31/2020  11:24:41  PAGE 22
 
 
 

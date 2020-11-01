@@ -9,7 +9,7 @@ void main()
 	STC89_TX_1C_Board_IO_Base_Init();
 
 	DS1302_Init();
-	//DS1302_W_Time();
+	DS1302_W_Time();
 	DS1302_Check();
 
 	while (1)
