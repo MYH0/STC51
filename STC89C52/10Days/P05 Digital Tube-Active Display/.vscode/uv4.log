@@ -1,0 +1,8 @@
+Rebuild target 'Target 1'
+compiling main.c...
+main.c(4): warning C318: can't open file 'MenYuhan_Drivers_STC89.h'
+main.c(7): warning C206: 'STC89_TX_1C_Board_IO_Base_Init': missing function-prototype
+main.c(10): warning C206: 'DigitalTube_Display_6bit': missing function-prototype
+main.c(10): error C267: 'DigitalTube_Display_6bit': requires ANSI-style prototype
+Target not created.
+Build Time Elapsed:  00:00:00
