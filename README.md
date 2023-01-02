@@ -1,5 +1,7 @@
 # STC51
 
-Compiler:Keil5 C51
+IDE:Keil5 
 
-STC89C52基于郭天祥TX-1C开发板
+MCU:STC89C52
+
+Board:郭天祥TX-1C开发板
