@@ -1,3 +1,0 @@
-".\Objects\main.obj" 
-TO ".\Objects\H1" 
-PRINT(".\Listings\H1.m51") RAMSIZE(256) 

@@ -1,9 +1,7 @@
 #include <STC89C5XRC.H>
-//#include <STC12C5A60S2.H>
 
 #include <intrins.h>
 #include <math.h>
-//#include "MenYuhan_Drivers_STC89.h"
 
 typedef unsigned int uint;
 typedef unsigned char uchar;
